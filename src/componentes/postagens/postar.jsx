@@ -4,7 +4,11 @@ import supabase from "./supabase";
 import "./postar.css";
 
 export default function Postar({ onPostado }) {
+    const userLocal = localStorage.getItem("usuario");
 
+    if (!userLocal) {
+        return null; // 🔥 não mostra nada
+    }
     const [conteudo, setConteudo] = useState("");
     const [arquivos, setArquivos] = useState([]);
     const [usuarios, setUsuarios] = useState([]);

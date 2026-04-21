@@ -4,4 +4,4 @@ const isLocalhost =
 
 export const API_URL = isLocalhost
     ? "http://localhost:8889"
-    : "ESCREVA O LINK AQUI QUANDO FOR FAZER O BACKEND";
+    : "https://missionetwork-back.onrender.com";
