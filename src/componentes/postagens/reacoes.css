@@ -1,0 +1,45 @@
+/* 🔥 CONTAINER */
+.reacoes-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* 🔥 BOTÃO */
+.reacao-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: none;
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    font-size: 13px;
+}
+
+/* 🔥 HOVER DO BOTÃO */
+.reacao-btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+}
+
+/* 🔥 IMAGEM */
+.reacao-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* 🔥 HOVER (SÓ O EMOJI CRESCE) */
+.reacao-btn:hover .reacao-img {
+    transform: scale(1.9);
+}
+
+/* 🔥 CONTADOR */
+.reacao-btn span {
+    font-weight: 600;
+    color: #0f172a;
+}

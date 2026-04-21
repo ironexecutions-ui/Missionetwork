@@ -1,0 +1,71 @@
+.hdr-container-geral {
+    width: 95%;
+    height: 80px;
+    background: #0b1a2b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    margin: auto auto;
+    border-radius: 30px;
+
+}
+
+.hdr-area-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hdr-logo-imagem {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+}
+
+.hdr-titulo-principal {
+    color: white;
+    font-size: 22px;
+}
+
+.hdr-area-centro {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hdr-input-busca {
+    width: 300px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.hdr-area-direita {
+    display: flex;
+    gap: 10px;
+}
+
+.hdr-btn-nav {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hdr-btn-inicio {
+    background: #1e90ff;
+    color: white;
+}
+
+.hdr-btn-perfil {
+    background: #28a745;
+    color: white;
+}
+
+.hdr-btn-missionario {
+    background: #ffc107;
+    color: black;
+}

@@ -1,0 +1,105 @@
+/* 🔥 CONTAINER PRINCIPAL */
+.cfg-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #020617, #0f172a);
+    border-radius: 20px;
+    border: 1px solid #1e293b;
+    color: #fff;
+}
+
+/* 🔥 TITULO */
+.cfg-container h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* 🔥 SEÇÕES */
+.cfg-container section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #020617;
+    border-radius: 16px;
+    border: 1px solid #1e293b;
+}
+
+.cfg-container h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #60a5fa;
+}
+
+/* 🔥 BLOCO PADRÃO */
+.cfg-bloco {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.cfg-bloco label {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+/* 🔥 INPUT */
+.cfg-input,
+.cfg-container input,
+.cfg-container select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #1e293b;
+    background: #020617;
+    color: #fff;
+    outline: none;
+    transition: 0.2s;
+}
+
+.cfg-container input:focus,
+.cfg-container select:focus {
+    border-color: #2563eb;
+}
+
+/* 🔥 TEXTO BLOQUEADO */
+.cfg-bloqueado {
+    padding: 10px;
+    border-radius: 10px;
+    background: #020617;
+    border: 1px solid #1e293b;
+    color: #64748b;
+}
+
+/* 🔥 BOTÕES */
+.cfg-container button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cfg-container button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+/* 🔥 LOADING */
+.cfg-loading {
+    text-align: center;
+    color: #fff;
+    margin-top: 80px;
+}
+
+/* 🔥 DIVISOR */
+.cfg-divider {
+    height: 1px;
+    background: #1e293b;
+    margin: 20px 0;
+}

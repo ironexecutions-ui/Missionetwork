@@ -1,0 +1,136 @@
+/* 🔥 COLUNA */
+.coluna-esquerda {
+    flex: 0 0 20%;
+    padding: 18px 14px;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 🔥 FOTO REAL */
+.avatar-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e2e8f0;
+}
+
+/* 🔥 TÍTULO */
+.titulo-coluna {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+/* 🔥 LISTA */
+.lista-missionarios {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+/* 🔥 ITEM */
+.item-missionario {
+    width: 100%;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 8px;
+    transition: 0.2s;
+}
+
+/* 🔥 CONTEÚDO */
+.item-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 🔥 AVATAR */
+.avatar-fake {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* 🔥 NOME */
+.nome-missionario {
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 🔥 HOVER */
+.item-missionario:hover {
+    background: #e2e8f0;
+}
+
+/* 🔥 ATIVO */
+.item-missionario.ativo {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.item-missionario.ativo .nome-missionario {
+    color: #ffffff;
+}
+
+.item-missionario.ativo .avatar-fake {
+    background: #ffffff;
+    color: #2563eb;
+}
+
+/* 🔥 SCROLL BONITO */
+.lista-missionarios::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lista-missionarios::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* 🔥 HEADER LOGO */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    margin-bottom: 18px;
+
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* 🔥 IMAGEM */
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* 🔥 TEXTO */
+.logo-texto {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.3px;
+}
+
+/* 🔥 HOVER */
+.logo-container:hover .logo-texto {
+    color: #2563eb;
+}

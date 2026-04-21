@@ -1,0 +1,45 @@
+.reacoes-comentario-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.reacoes-comentario-container button {
+    background: #eef2f7;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.reacoes-comentario-container button:hover {
+    background: #dbeafe;
+}
+
+.reacoes-comentario-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.reacao-comentario-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.reacao-comentario-btn:hover {
+    background: #f1f5f9;
+}
+
+.reacao-comentario-btn img {
+    width: 18px;
+    height: 18px;
+}

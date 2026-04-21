@@ -1,0 +1,99 @@
+/* 🔥 CONTAINER */
+.config-container {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 16px;
+    color: #0f172a;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔍 INPUT */
+.config-input {
+    width: 90%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.config-input::placeholder {
+    color: #94a3b8;
+}
+
+.config-input:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+}
+
+/* 🔥 RESULTADOS DE BUSCA */
+.config-item {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+
+    border: 1px solid transparent;
+}
+
+.config-item:hover {
+    background: #e2e8f0;
+}
+
+/* 🔥 TEXTO SELECIONADO */
+.config-container p {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 4px 0;
+    color: #1e293b;
+}
+
+/* 🔥 BOTÃO */
+.config-botao {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.config-botao:hover {
+    background: #1d4ed8;
+}
+
+/* 🔥 LISTA FINAL (já adicionados) */
+.config-container .config-item:last-child {
+    margin-top: 6px;
+}
+
+/* 🔥 LINHA DE LISTA FINAL */
+.config-container .config-item+.config-item {
+    margin-top: 6px;
+}
+
+/* 🔥 SEPARAÇÃO VISUAL */
+.config-container>.config-item {
+    border: 1px solid #e2e8f0;
+}
+
+/* 🔥 SCROLL */
+.config-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.config-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}

@@ -1,0 +1,24 @@
+.cfg-senha-container {
+    margin-top: 20px;
+}
+
+.cfg-senha-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.cfg-senha-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cfg-senha-error {
+    color: #ef4444;
+    font-size: 13px;
+}
+
+.cfg-senha-success {
+    color: #22c55e;
+    font-size: 13px;
+}

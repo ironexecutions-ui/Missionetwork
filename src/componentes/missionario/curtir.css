@@ -1,0 +1,78 @@
+/* 🔥 CONTAINER DAS REAÇÕES */
+.post-reacoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 12px;
+    padding: 8px;
+
+    background: #f1f5f9;
+    border-radius: 12px;
+}
+
+/* 🔥 BOTÃO BASE */
+.btn-reacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    flex: 1;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    padding: 8px 6px;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+
+    transition: 0.2s;
+}
+
+/* 🔥 HOVER */
+.btn-reacao:hover {
+    background: #e2e8f0;
+}
+
+/* 🔥 ATIVO (opcional futuro) */
+.btn-reacao.ativo {
+    background: #dbeafe;
+}
+
+/* 🔥 ÍCONES */
+.icone-reacao {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    transition: transform 0.15s ease;
+}
+
+/* 🔥 EFEITO AO PASSAR */
+.btn-reacao:hover .icone-reacao {
+    transform: scale(1.95);
+}
+
+/* 🔥 CONTADOR */
+.btn-reacao span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* 🔥 CORES POR TIPO (leve destaque) */
+.btn-reacao.like span {
+    color: #2563eb;
+}
+
+.btn-reacao.love span {
+    color: #e11d48;
+}
+
+.btn-reacao.sad span {
+    color: #f59e0b;
+}

@@ -1,0 +1,162 @@
+/* 🔥 RESET IMPORTANTE */
+
+
+/* 🔥 LAYOUT PRINCIPAL */
+.perfil-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* 🔥 ESQUERDA (PERFIL) */
+.perfil-esquerda {
+    width: 30%;
+    min-width: 260px;
+}
+
+/* CAPA */
+.perfil-capa img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* FOTO + NOME */
+.perfil-info-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: -40px;
+}
+
+.perfil-foto {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    background: #000;
+}
+
+.perfil-foto-placeholder {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+/* NOME */
+.perfil-info-topo h2 {
+    font-size: 18px;
+}
+
+/* FRASE */
+.perfil-frase {
+    margin-top: 10px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* INFOS */
+.perfil-dados {
+    margin-top: 15px;
+}
+
+.perfil-dados p {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+/* 🔥 DIREITA (POSTS) */
+.perfil-direita {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 🔥 CARD POST */
+.postagens-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+/* TEXTO */
+.postagens-conteudo {
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* 🔥 AREA DE ARQUIVOS */
+.postagens-card img,
+.postagens-card video {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 8px;
+    object-fit: cover;
+}
+
+/* 🔥 GARANTE QUE NUNCA ESTOURE */
+.postagens-card video {
+    max-height: 400px;
+}
+
+/* 🔥 COMENTÁRIOS */
+.postagens-card strong {
+    font-size: 13px;
+}
+
+.postagens-card p {
+    word-wrap: break-word;
+}
+
+/* 🔥 INPUT COMENTARIO */
+.comentarios-input-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.comentarios-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.comentarios-botao {
+    padding: 8px 12px;
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* 🔥 RESPONSIVO */
+@media (max-width: 900px) {
+    .perfil-layout {
+        flex-direction: column;
+    }
+
+    .perfil-esquerda {
+        width: 100%;
+    }
+
+    .perfil-direita {
+        width: 100%;
+    }
+}

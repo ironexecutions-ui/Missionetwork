@@ -1,0 +1,38 @@
+.cfg-editable-container {
+    margin-bottom: 15px;
+}
+
+.cfg-editable-label {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.cfg-editable-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.cfg-editable-text {
+    color: #fff;
+}
+
+.cfg-editable-placeholder {
+    color: #64748b;
+}
+
+.cfg-editable-edit {
+    font-size: 12px;
+    color: #2563eb;
+}
+
+.cfg-editable-input {
+    width: 100%;
+}

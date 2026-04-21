@@ -1,0 +1,221 @@
+/* 🔥 CONTAINER GERAL */
+.direcao-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0f172a, #020617);
+    padding: 40px 20px;
+    font-family: "Segoe UI", sans-serif;
+    color: #e2e8f0;
+}
+
+/* 🔥 HEADER */
+.direcao-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.direcao-header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.direcao-header p {
+    margin-top: 10px;
+    color: #94a3b8;
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+/* 🔥 CARD PROPÓSITO */
+.direcao-card {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid #1e293b;
+    padding: 25px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.direcao-card h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+.direcao-card p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.direcao-card ul {
+    padding-left: 20px;
+}
+
+.direcao-card li {
+    margin-bottom: 8px;
+    color: #cbd5f5;
+}
+
+/* 🔥 PERFIS */
+.direcao-perfil {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid #1e293b;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.direcao-perfil:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+}
+
+/* 🔥 FOTO PERFIL */
+.direcao-foto {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 3px solid #38bdf8;
+    transition: 0.3s;
+}
+
+.direcao-foto:hover {
+    transform: scale(1.05);
+}
+
+/* 🔥 TEXTO PERFIL */
+.direcao-perfil h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.cargo {
+    color: #38bdf8;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.direcao-perfil p {
+    color: #cbd5f5;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* 🔥 LINKS */
+.direcao-perfil a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.direcao-perfil a:hover {
+    text-decoration: underline;
+}
+
+/* 🔥 MODAL */
+.direcao-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(2, 6, 23, 0.97);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    animation: fadeInDirecao 0.3s ease;
+}
+
+/* 🔥 BOTÃO FECHAR */
+.direcao-fechar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.direcao-fechar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 🔥 GALERIA */
+.direcao-galeria {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px;
+    max-width: 90%;
+}
+
+/* 🔥 IMAGENS DO MODAL */
+.direcao-galeria img {
+    width: 280px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.direcao-galeria img:hover {
+    transform: scale(1.05);
+}
+
+/* 🔥 SCROLL CUSTOM */
+.direcao-galeria::-webkit-scrollbar {
+    height: 8px;
+}
+
+.direcao-galeria::-webkit-scrollbar-thumb {
+    background: #38bdf8;
+    border-radius: 10px;
+}
+
+/* 🔥 ANIMAÇÃO */
+@keyframes fadeInDirecao {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 🔥 RESPONSIVO */
+@media (max-width: 768px) {
+
+    .direcao-header h1 {
+        font-size: 28px;
+    }
+
+    .direcao-card {
+        padding: 20px;
+    }
+
+    .direcao-foto {
+        width: 100px;
+        height: 100px;
+    }
+
+    .direcao-galeria img {
+        width: 220px;
+        height: 320px;
+    }
+}

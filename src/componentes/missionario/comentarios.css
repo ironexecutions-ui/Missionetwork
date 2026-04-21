@@ -1,0 +1,108 @@
+/* 🔥 CONTAINER GERAL */
+.comentarios-container {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 🔥 ITEM DE COMENTÁRIO */
+.comentario-item {
+    background: #f8fafc;
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    border: 1px solid #e2e8f0;
+}
+
+/* 🔥 NOME */
+.comentario-item strong {
+    font-size: 13px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* 🔥 TEXTO */
+.comentario-item p {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.4;
+}
+
+/* 🔥 ÁREA DE INPUT */
+.comentario-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+/* 🔥 TEXTAREA */
+.comentario-input {
+    width: 80%;
+    margin: auto auto;
+    min-height: 60px;
+    max-height: 140px;
+
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+
+    font-size: 14px;
+    color: #0f172a;
+
+    resize: none;
+    outline: none;
+
+    background: #f8fafc;
+    transition: 0.2s;
+}
+
+.comentario-input::placeholder {
+    color: #94a3b8;
+}
+
+/* 🔥 FOCUS */
+.comentario-input:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+}
+
+/* 🔥 BOTÃO */
+.comentario-btn {
+    align-self: flex-end;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.comentario-btn:hover {
+    background: #1d4ed8;
+}
+
+/* 🔥 SCROLL CASO TENHA MUITOS */
+.comentarios-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.comentarios-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}

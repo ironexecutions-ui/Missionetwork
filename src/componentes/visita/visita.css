@@ -1,0 +1,205 @@
+/* 🔥 LAYOUT GERAL */
+.perfil-layout {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background: #f1f5f9;
+    min-height: 100vh;
+}
+
+/* 🔥 COLUNA ESQUERDA (PERFIL) */
+.perfil-esquerda {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 CAPA */
+.perfil-capa {
+    width: 100%;
+    height: 120px;
+    background: #0f172a;
+    overflow: hidden;
+}
+
+.perfil-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🔥 FOTO + NOME */
+.perfil-info-topo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -40px;
+    padding: 10px;
+}
+
+/* 🔥 FOTO */
+.perfil-foto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+}
+
+/* 🔥 FOTO PLACEHOLDER */
+.perfil-foto-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: bold;
+    border: 3px solid #fff;
+}
+
+/* 🔥 NOME */
+.perfil-info-topo h2 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #0f172a;
+}
+
+/* 🔥 FRASE */
+.perfil-frase {
+    text-align: center;
+    font-style: italic;
+    color: #64748b;
+    padding: 0 15px 10px;
+}
+
+/* 🔥 DADOS */
+.perfil-dados {
+    padding: 10px 15px 15px;
+}
+
+.perfil-dados p {
+    font-size: 13px;
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+/* 🔥 COLUNA DIREITA (POSTS) */
+
+
+/* 🔥 CARD POST */
+.postagens-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 TEXTO */
+.postagens-conteudo {
+    font-size: 14px;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+/* 🔥 IMAGENS */
+.postagens-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+/* 🔥 VÍDEO */
+.postagens-card video {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+/* 🔥 COMENTÁRIOS */
+.postagens-card strong {
+    font-size: 13px;
+    color: #0f172a;
+    cursor: pointer;
+}
+
+.postagens-card p {
+    font-size: 13px;
+    color: #334155;
+}
+
+/* 🔥 ESPAÇO COMENTÁRIOS */
+.postagens-card>div {
+    margin-top: 10px;
+}
+
+.visita-loading,
+.visita-erro,
+.sem-postagens {
+    text-align: center;
+    margin-top: 20px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.perfil-capa-vazia {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+.perfil-footer-logo {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    width: 80%;
+    margin: auto auto;
+    padding: 12px 18px;
+    border-radius: 16px;
+
+    /* 🔥 FUNDO ESTILOSO */
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* 🔥 HOVER TOP */
+.perfil-footer-logo:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+
+    background: linear-gradient(135deg, #1e293b, #334155);
+}
+
+/* 🔥 IMAGEM (mantém seu tamanho) */
+.perfil-footer-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    border-radius: 20px;
+
+    /* brilho leve */
+    background: #fff;
+    padding: 3px;
+}
+
+/* 🔥 TEXTO (mantém seu tamanho) */
+.perfil-footer-texto {
+    font-weight: 700;
+    font-size: 24px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}

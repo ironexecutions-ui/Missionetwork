@@ -1,0 +1,391 @@
+.postagens-container {
+    max-width: 650px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* 🔥 CARD */
+.postagens-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+    transition: 0.2s;
+}
+
+.postagens-card:hover {
+    transform: translateY(-2px);
+}
+
+/* 🔥 TOPO */
+.postagens-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.postagens-foto {
+    width: 42px !important;
+    height: 42px;
+    border-radius: 50% !important;
+    object-fit: cover;
+}
+
+/* CONTAINER DO SLIDER */
+.postagens-slider {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 14px;
+    margin-top: 10px;
+}
+
+/* TRACK (linha horizontal) */
+.postagens-slider-track {
+    display: flex;
+    gap: 8px;
+    scroll-snap-type: x mandatory;
+}
+
+/* CADA ITEM */
+.postagens-slider-track img,
+.postagens-slider-track video {
+    min-width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 14px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+}
+
+/* SCROLL SUAVE */
+.postagens-slider {
+    scroll-behavior: smooth;
+}
+
+/* REMOVE SCROLLBAR */
+.postagens-slider::-webkit-scrollbar {
+    display: none;
+}
+
+
+.postagens-foto-placeholder {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d1d5db, #9ca3af);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+}
+
+.postagens-nome {
+    font-weight: 600;
+    font-size: 15px;
+    color: #111827;
+}
+
+/* 🔥 CONTEÚDO */
+.postagens-conteudo {
+    margin: 12px 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #374151;
+}
+
+/* 🔥 IMAGEM */
+.postagens-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+
+/* 🔥 CURTIDAS */
+.postagens-curtidas {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6b7280;
+    display: flex;
+    gap: 15px;
+}
+
+/* 🔥 COMENTÁRIOS */
+.postagens-comentarios {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.postagens-sem-comentario {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+/* 🔥 COMENTÁRIO */
+.postagens-comentario {
+    margin-top: 10px;
+    background: #f9fafb;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.postagens-comentario strong {
+    font-size: 13px;
+    color: #111827;
+}
+
+.postagens-comentario p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* 🔥 CURTIDAS DO COMENTÁRIO */
+.postagens-curtidas-comentario {
+    font-size: 12px;
+    color: #6b7280;
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+/* 🔥 LOADING */
+.postagens-loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+}
+
+/* 🔥 VAZIO */
+.postagens-vazio {
+    text-align: center;
+    color: #9ca3af;
+}
+
+.postagens-arquivos {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.postagens-video {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.postagens-marcados {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.postagens-marcado {
+    font-size: 12px;
+    color: #2563eb;
+    background: #e0f2fe;
+    padding: 2px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.postagens-marcado:hover {
+    background: #bae6fd;
+}
+
+.postagens-foto {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* 🔥 ESSENCIAL */
+    display: block;
+}
+
+/* 🔥 SLIDER CONTAINER */
+.postagens-slider {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+/* 🔥 TRACK */
+.postagens-slider-track {
+    display: flex;
+    scroll-snap-type: x mandatory;
+}
+
+/* 🔥 FORÇA ITEM A OCUPAR 100% */
+.postagens-slider-track>* {
+    min-width: 100% !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+/* 🔥 IMAGENS */
+.postagens-slider-track img {
+    width: 100% !important;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* 🔥 VIDEOS */
+.postagens-slider-track video {
+    width: 100% !important;
+    height: 320px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* 🔥 SCROLL SUAVE */
+.postagens-slider {
+    scroll-behavior: smooth;
+}
+
+/* 🔥 REMOVE SCROLLBAR */
+.postagens-slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* 🔥 CONTAINER */
+.postagens-slider {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 14px;
+    margin-top: 10px;
+    scroll-behavior: smooth;
+}
+
+/* 🔥 TRACK */
+.postagens-slider-track {
+    display: flex;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+}
+
+/* 🔥 ITEM (IMAGEM OU VIDEO) */
+.postagens-slide-item {
+    width: 100%;
+    min-width: 100%;
+    height: 320px;
+    object-fit: cover;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border-radius: 14px;
+}
+
+/* 🔥 REMOVE SCROLLBAR */
+.postagens-slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================
+   GRID INTELIGENTE FINAL
+========================= */
+
+.postagens-grid {
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+/* ITEM */
+.postagens-grid-item {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* IMG / VIDEO */
+.postagens-grid-item img,
+.postagens-grid-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================
+   1 IMAGEM
+========================= */
+.postagens-grid.total-1 {
+    grid-template-columns: 1fr;
+}
+
+.postagens-grid.total-1 .postagens-grid-item {
+    height: 320px;
+}
+
+/* =========================
+   2 IMAGENS (lado a lado)
+========================= */
+.postagens-grid.total-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* =========================
+   3 IMAGENS
+   2 em cima + 1 central embaixo
+========================= */
+.postagens-grid.total-3 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.postagens-grid.total-3 .postagens-grid-item:nth-child(3) {
+    grid-column: span 2;
+    width: 60%;
+    margin: auto;
+}
+
+/* =========================
+   4 IMAGENS (2x2)
+========================= */
+.postagens-grid.total-4 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* =========================
+   5+ IMAGENS (igual 4)
+========================= */
+.postagens-grid.total-5,
+.postagens-grid.total-6,
+.postagens-grid.total-7 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* =========================
+   OVERLAY +X
+========================= */
+.postagens-grid-item.overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.overlay-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 2;
+}

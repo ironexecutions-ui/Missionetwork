@@ -1,0 +1,21 @@
+.comentarios-input-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.comentarios-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.comentarios-botao {
+    padding: 8px 12px;
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}

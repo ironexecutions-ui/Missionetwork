@@ -1,0 +1,98 @@
+.postar-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 TEXTAREA */
+.postar-textarea {
+    width: 100%;
+    min-height: 80px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 15px;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 10px;
+}
+
+/* 🔥 MARCADOS */
+.postar-marcados {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.postar-marcados span {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* 🔥 BUSCA */
+.postar-busca {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* 🔥 LISTA */
+.postar-lista {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 5px;
+}
+
+.postar-lista div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.postar-lista div:hover {
+    background: #f1f5f9;
+}
+
+/* 🔥 PREVIEW */
+.postar-preview {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.postar-preview img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* 🔥 BOTÃO */
+.postar-container button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.postar-container button:hover {
+    background: #1d4ed8;
+}

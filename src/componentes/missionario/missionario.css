@@ -1,0 +1,25 @@
+/* 🔥 CONTAINER PRINCIPAL */
+.layout-missionario {
+    display: flex;
+    width: 100%;
+    background-color: rgba(235, 157, 55, 0.623);
+    min-height: 100vh;
+    border-radius: 20px;
+}
+
+/* 🔥 ESQUERDA */
+.coluna-esquerda {
+    flex: 0 0 20%;
+}
+
+/* 🔥 CENTRO */
+.coluna-centro {
+    flex: 0 0 54%;
+}
+
+/* 🔥 DIREITA */
+.coluna-direita {
+    flex: 0 0 20%;
+    margin-top: 20px;
+    /* 🔥 baixa só ela */
+}
