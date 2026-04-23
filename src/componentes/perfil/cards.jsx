@@ -116,7 +116,6 @@ export default function PostCard({ post, atualizar }) {
             {/* TEXTO / EDIÇÃO */}
             {!editando ? (
                 <p className="postagens-conteudo">
-                    <hr />
                     {post.conteudo}
                 </p>
             ) : (

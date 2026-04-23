@@ -158,10 +158,7 @@ export default function PerfilUsuario() {
                             <img
                                 src={usuario.foto}
                                 className="perfil-foto"
-                                onClick={() => {
-                                    setModalImagem("foto");
-                                    setPreviewImagem(usuario.foto);
-                                }}
+                                onClick={() => selecionarImagem("foto")}
                             />
                         ) : (
                             <div

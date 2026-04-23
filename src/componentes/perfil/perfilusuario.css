@@ -129,6 +129,10 @@
     text-decoration: underline;
 }
 
+.perfil-foto-overlay {
+    pointer-events: none;
+}
+
 /* FRASE */
 .perfil-frase {
     margin-top: 10px;
