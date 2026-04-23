@@ -7,8 +7,11 @@ import likeImg from "../imagens/emojis/like.png";
 import loveImg from "../imagens/emojis/love.png";
 import sadImg from "../imagens/emojis/sad.png";
 import shareImg from "../imagens/emojis/compartilhar.png";
-export default function Reacoes({ postId, curtidasInicial }) {
+import ModalLogin from "./modallogin";
 
+
+export default function Reacoes({ postId, curtidasInicial }) {
+    const [abrirModalLogin, setAbrirModalLogin] = useState(false);
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
         love: curtidasInicial?.love || 0,
@@ -39,7 +42,7 @@ export default function Reacoes({ postId, curtidasInicial }) {
             const userLocal = localStorage.getItem("usuario");
 
             if (!userLocal) {
-                alert("Você precisa estar logado");
+                setAbrirModalLogin(true);
                 return;
             }
 
@@ -57,7 +60,6 @@ export default function Reacoes({ postId, curtidasInicial }) {
                 })
             });
 
-            // 🔥 ATUALIZA CONTAGEM
             const res = await fetch(`${API_URL}/curtidas/${postId}`);
             const data = await res.json();
 
@@ -100,6 +102,9 @@ export default function Reacoes({ postId, curtidasInicial }) {
             >
                 <img src={shareImg} alt="share" className="reacao-img" />
             </button>
+            {abrirModalLogin && (
+                <ModalLogin fechar={() => setAbrirModalLogin(false)} />
+            )}
         </div>
     );
 }

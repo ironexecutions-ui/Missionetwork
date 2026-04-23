@@ -1,174 +1,395 @@
-/* 🔥 COLUNA CENTRO */
+/* =========================
+   COLUNA CENTRO
+========================= */
 .coluna-centro {
-    width: 70%;
-    padding: 24px;
+    width: 95% !important;
+    padding: 28px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* 🔥 centraliza */
-    gap: 20px;
+    gap: 22px;
 }
 
-/* 🔥 CARD DO POST */
+/* =========================
+   CARD POST
+========================= */
 .post-card {
     width: 100%;
-    max-width: 600px;
-    /* 🔥 largura ideal */
+    max-width: 640px;
+
     background: #ffffff;
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: 0.25s ease;
+
+    border-radius: 18px;
+    padding: 18px;
+
+    border: 1px solid #f1f5f9;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    transition: all 0.2s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 🔥 HEADER */
+/* =========================
+   HEADER
+========================= */
 .post-header {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 10px;
 }
 
-/* 🔥 AVATAR */
+/* =========================
+   AVATAR
+========================= */
 .post-avatar {
-    width: 44px;
-    height: 44px;
+    width: 62px;
+    height: 62px;
+
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #2563eb;
+
+    border: 2px solid #ffffff;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
-/* 🔥 NOME */
+/* =========================
+   NOME
+========================= */
 .post-nome {
-    font-weight: 700;
+    font-size: 25px;
+    font-weight: 600;
     color: #0f172a;
-    font-size: 15px;
+
 }
 
-/* 🔥 TEXTO */
+/* =========================
+   TEXTO
+========================= */
 .post-texto {
-    margin: 12px 0;
+    font-size: 34px;
     color: #334155;
+
     line-height: 1.6;
-    font-size: 14px;
+    white-space: pre-line;
 }
 
-/* 🔥 IMAGEM */
+/* =========================
+   MEDIA CONTAINER
+========================= */
 .post-media {
-    margin-top: 10px;
+    width: 100%;
+    border: #0f172a solid 1px;
+    border-radius: 14px;
+    overflow: hidden;
+
+    background: #f8fafc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* =========================
+   IMAGEM (SEM ZOOM / SEM CORTE)
+========================= */
 .post-img {
     width: 100%;
-    border-radius: 12px;
-    max-height: 420px;
-    object-fit: cover;
+    height: auto;
+
+    max-height: 500px;
+
+    object-fit: contain;
+
+    display: block;
 }
 
-/* 🔥 REAÇÕES */
+/* =========================
+   REAÇÕES
+========================= */
 .post-reacoes {
     display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-    background: #f1f5f9;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 6px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
     padding: 8px;
     border-radius: 10px;
 }
 
-/* 🔥 BOTÕES */
+/* =========================
+   BOTÕES REAÇÃO
+========================= */
 .btn-reacao {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+
     background: transparent;
     border: none;
+
     cursor: pointer;
+
+    font-size: 13px;
     font-weight: 600;
-    color: #334155;
+
+    color: #475569;
+
     padding: 6px 10px;
     border-radius: 8px;
-    transition: 0.2s;
+
+    transition: all 0.2s ease;
 }
 
 .btn-reacao:hover {
     background: #e2e8f0;
+    color: #0f172a;
 }
 
-/* 🔥 STATUS */
+/* =========================
+   STATUS
+========================= */
 .nao-autorizado {
-    color: #020202;
+    font-size: 18px;
     font-weight: 600;
+
+    color: #0f172a;
+
     text-align: center;
-    margin-top: 20px;
-    font-size: 40px;
+    padding: 30px 0;
 }
 
-/* 🔥 LOADING */
 .loading {
-    color: #cbd5f5;
-    text-align: center;
-}
-
-/* 🔥 SEM POSTS */
-.sem-posts {
+    font-size: 14px;
     color: #94a3b8;
     text-align: center;
 }
 
-/* 🔥 COMENTÁRIOS */
-.comentarios {
-    margin-top: 12px;
-    border-top: 1px solid #e2e8f0;
-    padding-top: 10px;
+.sem-posts {
+    font-size: 14px;
+    color: #94a3b8;
+    text-align: center;
 }
 
-/* 🔥 ITEM COMENTÁRIO */
+/* =========================
+   COMENTÁRIOS
+========================= */
+.comentarios {
+    margin-top: 10px;
+
+    border-top: 1px solid #e2e8f0;
+    padding-top: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* =========================
+   ITEM COMENTÁRIO
+========================= */
 .comentario {
     background: #f8fafc;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 6px;
+
+    padding: 8px 10px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .comentario strong {
-    font-size: 13px;
+    font-weight: 600;
     color: #0f172a;
 }
 
 .comentario p {
-    font-size: 13px;
-    color: #334155;
-    margin: 2px 0 0;
+    margin: 0;
+    color: #475569;
 }
 
-/* 🔥 INPUT COMENTÁRIO */
+/* =========================
+   INPUT COMENTÁRIO
+========================= */
 .comentario-box {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     margin-top: 8px;
 }
 
 .comentario-box input {
     flex: 1;
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #cbd5e1;
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+
     font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.comentario-box input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
 .comentario-box button {
-    background: #2563eb;
+    background: #6366f1;
     color: white;
+
     border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
+
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 .comentario-box button:hover {
-    background: #1d4ed8;
+    background: #4f46e5;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .coluna-centro {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .post-card {
+        max-width: 100%;
+    }
+
+    .post-avatar {
+        width: 52px;
+        height: 52px;
+    }
+
+    .post-nome {
+        font-size: 20px;
+    }
+
+    .post-texto {
+        font-size: 24px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .coluna-centro {
+        width: 100%;
+        padding: 14px;
+        gap: 16px;
+    }
+
+    .post-card {
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .post-header {
+        gap: 10px;
+    }
+
+    .post-avatar {
+        width: 46px;
+        height: 46px;
+    }
+
+    .post-nome {
+        font-size: 18px;
+    }
+
+    .post-texto {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    .post-img {
+        max-height: 320px;
+    }
+
+    .btn-reacao {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    .comentario-box input {
+        font-size: 12px;
+    }
+
+    .comentario-box button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .coluna-centro {
+        padding: 10px;
+    }
+
+    .post-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .post-nome {
+        font-size: 16px;
+    }
+
+    .post-texto {
+        font-size: 18px;
+    }
+
+    .post-img {
+        max-height: 260px;
+    }
+
 }

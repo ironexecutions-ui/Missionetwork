@@ -1,99 +1,293 @@
-/* 🔥 CONTAINER */
-.config-container {
-    background: #ffffff;
-    padding: 18px;
-    border-radius: 16px;
-    color: #0f172a;
+/* =========================
+   CONTAINER
+========================= */
+.cfgd-container {
+    background: #ffffff !important;
+
+    border-radius: 18px;
+    padding: 20px;
+
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f1f5f9;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-/* 🔍 INPUT */
-.config-input {
+/* =========================
+   INPUT
+========================= */
+.cfgd-input {
     width: 90%;
+
     padding: 10px 12px;
+
     border-radius: 10px;
     border: 1px solid #e2e8f0;
+
     background: #f8fafc;
+
     font-size: 14px;
+
     outline: none;
     transition: 0.2s;
 }
 
-.config-input::placeholder {
-    color: #94a3b8;
-}
-
-.config-input:focus {
-    border-color: #2563eb;
+.cfgd-input:focus {
     background: #ffffff;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
-/* 🔥 RESULTADOS DE BUSCA */
-.config-item {
+/* =========================
+   RESULTADOS
+========================= */
+.cfgd-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+/* =========================
+   ITEM RESULTADO
+========================= */
+.cfgd-item-resultado {
     padding: 10px 12px;
+
     border-radius: 10px;
+
     background: #f8fafc;
+
     cursor: pointer;
+
+    font-size: 14px;
+
     transition: 0.2s;
-    font-size: 14px;
-
-    border: 1px solid transparent;
 }
 
-.config-item:hover {
-    background: #e2e8f0;
+.cfgd-item-resultado:hover {
+    background: #eef2ff;
+    color: #4338ca;
 }
 
-/* 🔥 TEXTO SELECIONADO */
-.config-container p {
+/* =========================
+   BLOCO SELEÇÃO
+========================= */
+.cfgd-selecao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================
+   SELECIONADO
+========================= */
+.cfgd-selecionado {
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(180deg, #eef2ff, #ffffff);
+
+    border: 1px solid #6366f1;
+
     font-weight: 600;
-    font-size: 14px;
-    margin: 4px 0;
-    color: #1e293b;
 }
 
-/* 🔥 BOTÃO */
-.config-botao {
-    width: 100%;
+/* =========================
+   BOTÃO
+========================= */
+.cfgd-botao-adicionar {
+
     padding: 10px;
+
     border-radius: 10px;
     border: none;
-    background: #2563eb;
+
+    background: #6366f1;
     color: #ffffff;
+
     font-weight: 600;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
-.config-botao:hover {
-    background: #1d4ed8;
+.cfgd-botao-adicionar:hover {
+    background: #4f46e5;
 }
 
-/* 🔥 LISTA FINAL (já adicionados) */
-.config-container .config-item:last-child {
-    margin-top: 6px;
+/* =========================
+   LISTA FINAL
+========================= */
+.cfgd-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-/* 🔥 LINHA DE LISTA FINAL */
-.config-container .config-item+.config-item {
-    margin-top: 6px;
-}
+/* =========================
+   ITEM LISTA
+========================= */
+.cfgd-item-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-/* 🔥 SEPARAÇÃO VISUAL */
-.config-container>.config-item {
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
     border: 1px solid #e2e8f0;
 }
 
-/* 🔥 SCROLL */
-.config-container::-webkit-scrollbar {
+/* =========================
+   NOME
+========================= */
+.cfgd-nome {
+    font-size: 14px;
+    color: #0f172a;
+}
+
+/* =========================
+   TIPO
+========================= */
+.cfgd-tipo {
+    font-size: 11px;
+    font-weight: 600;
+
+    padding: 3px 8px;
+
+    border-radius: 999px;
+
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+/* =========================
+   SCROLL
+========================= */
+.cfgd-resultados::-webkit-scrollbar {
     width: 6px;
 }
 
-.config-container::-webkit-scrollbar-thumb {
+.cfgd-resultados::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 10px;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .cfgd-container {
+        padding: 16px;
+    }
+
+    .cfgd-input {
+        font-size: 13px;
+    }
+
+    .cfgd-item-resultado {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .cfgd-selecionado {
+        font-size: 14px;
+    }
+
+    .cfgd-nome {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .cfgd-container {
+        padding: 14px;
+        border-radius: 14px;
+        gap: 12px;
+    }
+
+    .cfgd-input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .cfgd-resultados {
+        max-height: 130px;
+    }
+
+    .cfgd-item-resultado {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .cfgd-selecao {
+        gap: 8px;
+    }
+
+    .cfgd-selecionado {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .cfgd-botao-adicionar {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .cfgd-item-lista {
+        padding: 8px 10px;
+    }
+
+    .cfgd-nome {
+        font-size: 13px;
+    }
+
+    .cfgd-tipo {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .cfgd-container {
+        padding: 10px;
+    }
+
+    .cfgd-input {
+        font-size: 12px;
+    }
+
+    .cfgd-nome {
+        font-size: 12px;
+    }
+
+    .cfgd-tipo {
+        font-size: 9px;
+    }
+
 }

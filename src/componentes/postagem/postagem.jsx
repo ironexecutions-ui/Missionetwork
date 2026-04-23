@@ -99,8 +99,13 @@ export default function Postagem() {
 
                 <button
                     className="postagem-btn-voltar"
-                    onClick={() => navigate(-1)}
-                >
+                    onClick={() => {
+                        if (window.history.length > 1) {
+                            navigate(-1);
+                        } else {
+                            navigate("/");
+                        }
+                    }}                >
                     ←
                 </button>
 

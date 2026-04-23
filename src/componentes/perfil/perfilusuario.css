@@ -1,30 +1,221 @@
-/* 🔥 RESET IMPORTANTE */
-
-
-/* 🔥 LAYOUT PRINCIPAL */
+/* =========================
+   LAYOUT
+========================= */
 .perfil-layout {
     display: flex;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    background-color: transparent !important;
+    padding: 30px;
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
 }
 
-/* 🔥 ESQUERDA (PERFIL) */
+/* =========================
+   COLUNAS
+========================= */
 .perfil-esquerda {
     width: 30%;
-    min-width: 260px;
+}
+
+.perfil-direita {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =========================
+   CARDS
+========================= */
+.perfil-esquerda,
+.perfil-direita>div {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    height: fit-content;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* CAPA */
-.perfil-capa img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
+.perfil-capa {
+    position: relative;
+    height: 160px;
     border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #f3f4f6;
 }
 
-/* FOTO + NOME */
+.perfil-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.perfil-capa-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.perfil-capa:hover .perfil-capa-overlay {
+    opacity: 1;
+}
+
+.perfil-capa-vazia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #6b7280;
+}
+
+/* FOTO */
+.perfil-foto-area {
+    position: relative;
+}
+
+.perfil-foto-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 12px;
+
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.perfil-foto-area:hover .perfil-foto-overlay {
+    opacity: 1;
+}
+
+/* NOME */
+.perfil-nome-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-nome-area h2 {
+    font-size: 30px !important;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 900 !important;
+}
+
+.perfil-editar-link {
+    font-size: 13px;
+    color: #2563eb;
+    cursor: pointer;
+}
+
+.perfil-editar-link:hover {
+    text-decoration: underline;
+}
+
+/* FRASE */
+.perfil-frase {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+/* DADOS */
+.perfil-dados {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perfil-dado-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 8px;
+
+    background: #f9fafb;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.perfil-dado-item:hover {
+    background: #f3f4f6;
+}
+
+.perfil-dado-item span {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.perfil-dado-item strong {
+    color: #111827;
+    font-size: 13px;
+}
+
+/* BOTÕES */
+.perfil-acoes {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perfil-btn-config {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.perfil-btn-logout {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =========================
+   CAPA
+========================= */
+.perfil-capa {
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f3f4f6;
+    cursor: pointer;
+}
+
+.perfil-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================
+   TOPO PERFIL
+========================= */
 .perfil-info-topo {
     display: flex;
     align-items: center;
@@ -32,131 +223,359 @@
     margin-top: -40px;
 }
 
-.perfil-foto {
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #fff;
-    background: #000;
-}
-
+/* FOTO */
+.perfil-foto,
 .perfil-foto-placeholder {
-    width: 85px;
-    height: 85px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
-    background: #ccc;
+    border: 3px solid #fff;
+    background: #e5e7eb;
+
+    object-fit: cover;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+
+    font-size: 22px;
+    font-weight: 600;
 }
 
 /* NOME */
 .perfil-info-topo h2 {
     font-size: 18px;
+    color: #111827;
 }
 
-/* FRASE */
+/* =========================
+   FRASE
+========================= */
 .perfil-frase {
     margin-top: 10px;
-    color: #555;
     font-size: 14px;
+    color: #6b7280;
 }
 
-/* INFOS */
+/* =========================
+   DADOS
+========================= */
 .perfil-dados {
-    margin-top: 15px;
-}
+    margin-top: 12px;
+    font-size: 13px;
+    color: #374151;
 
-.perfil-dados p {
-    margin: 6px 0;
-    font-size: 14px;
-    color: #333;
-}
-
-/* 🔥 DIREITA (POSTS) */
-.perfil-direita {
-    width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 6px;
 }
 
-/* 🔥 CARD POST */
-.postagens-card {
-    background: #fff;
-    padding: 15px;
-    border-radius: 14px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-}
-
-/* TEXTO */
-.postagens-conteudo {
-    margin-bottom: 10px;
-    font-size: 15px;
-    line-height: 1.4;
-}
-
-/* 🔥 AREA DE ARQUIVOS */
-.postagens-card img,
-.postagens-card video {
+/* =========================
+   BOTÃO
+========================= */
+.perfil-logout button {
+    margin-top: 15px;
     width: 100%;
-    max-width: 100%;
-    border-radius: 12px;
-    margin-top: 8px;
-    object-fit: cover;
-}
-
-/* 🔥 GARANTE QUE NUNCA ESTOURE */
-.postagens-card video {
-    max-height: 400px;
-}
-
-/* 🔥 COMENTÁRIOS */
-.postagens-card strong {
-    font-size: 13px;
-}
-
-.postagens-card p {
-    word-wrap: break-word;
-}
-
-/* 🔥 INPUT COMENTARIO */
-.comentarios-input-area {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.comentarios-input {
-    flex: 1;
-    padding: 8px;
+    padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ddd;
-}
 
-.comentarios-botao {
-    padding: 8px 12px;
+    background: #ef4444;
     border: none;
-    background: #2563eb;
-    color: #fff;
-    border-radius: 8px;
+    color: white;
+    font-weight: 600;
     cursor: pointer;
 }
 
-/* 🔥 RESPONSIVO */
-@media (max-width: 900px) {
+/* =========================
+   MODAL
+========================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-conteudo {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-imagem {
+    width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+.modal-botao {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 8px;
+
+    background: #2563eb;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* =========================
+   MELHORIAS VISUAIS (SAFE)
+   NÃO CONFLITA
+========================= */
+
+/* hover suave no card */
+.perfil-esquerda:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: 0.3s;
+}
+
+/* leve animação nos dados */
+.perfil-dado-item {
+    transition: all 0.2s ease;
+}
+
+.perfil-dado-item:hover {
+    transform: translateX(3px);
+}
+
+/* feedback clique */
+.perfil-dado-item:active {
+    transform: scale(0.98);
+}
+
+/* botão config melhorado */
+.perfil-btn-config {
+    transition: all 0.25s ease;
+}
+
+.perfil-btn-config:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* botão logout melhorado */
+.perfil-btn-logout {
+    transition: all 0.25s ease;
+}
+
+.perfil-btn-logout:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* frase mais viva */
+.perfil-frase:hover {
+    color: #374151;
+}
+
+/* nome mais destaque sem quebrar */
+.perfil-nome-area h2 {
+    letter-spacing: 0.3px;
+}
+
+/* foto leve interação */
+.perfil-foto,
+.perfil-foto-placeholder {
+    transition: transform 0.25s ease;
+}
+
+.perfil-foto:hover,
+.perfil-foto-placeholder:hover {
+    transform: scale(1.05);
+}
+
+/* capa mais premium */
+.perfil-capa {
+    transition: transform 0.3s ease;
+}
+
+.perfil-capa:hover {
+    transform: scale(1.01);
+}
+
+/* overlay mais suave */
+.perfil-capa-overlay,
+.perfil-foto-overlay {
+    backdrop-filter: blur(2px);
+}
+
+/* BOTÃO VOLTAR */
+.perfil-btn-voltar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 9999 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+/* HOVER */
+.perfil-btn-voltar:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* CLICK */
+.perfil-btn-voltar:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 800px) {
+
     .perfil-layout {
         flex-direction: column;
     }
 
     .perfil-esquerda {
-        width: 100%;
+        width: 94%;
     }
 
     .perfil-direita {
         width: 100%;
     }
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .perfil-layout {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .perfil-esquerda {
+        width: 35%;
+    }
+
+    .perfil-direita {
+        width: 65%;
+    }
+
+    .perfil-nome-area h2 {
+        font-size: 24px !important;
+    }
+
+}
+
+
+/* =========================
+   MOBILE (STACK + ORDEM)
+========================= */
+@media (max-width: 800px) {
+
+    .perfil-layout {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    /* 🔥 ORDEM CORRETA */
+    .perfil-esquerda {
+        order: 1;
+        width: 95%;
+    }
+
+    .perfil-direita {
+        order: 2;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* 🔥 POSTAR primeiro */
+    .perfil-direita>div:first-child {
+        order: 1;
+    }
+
+    /* 🔥 POSTS depois */
+    .perfil-direita>div:not(:first-child) {
+        order: 2;
+    }
+
+    /* 🔥 AJUSTES VISUAIS */
+    .perfil-esquerda,
+    .perfil-direita>div {
+        padding: 16px;
+    }
+
+    .perfil-info-topo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .perfil-nome-area h2 {
+        font-size: 20px !important;
+    }
+
+    .perfil-foto,
+    .perfil-foto-placeholder {
+        width: 65px;
+        height: 65px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .perfil-layout {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .perfil-esquerda,
+    .perfil-direita>div {
+        padding: 12px;
+    }
+
+    .perfil-nome-area h2 {
+        font-size: 18px !important;
+    }
+
+    .perfil-dado-item span,
+    .perfil-dado-item strong {
+        font-size: 12px;
+    }
+
+    .perfil-btn-config,
+    .perfil-btn-logout {
+        padding: 8px;
+        font-size: 12px;
+    }
+
 }

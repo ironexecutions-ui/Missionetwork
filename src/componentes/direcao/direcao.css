@@ -1,221 +1,367 @@
-/* 🔥 CONTAINER GERAL */
+/* =========================
+   CONTAINER
+========================= */
 .direcao-container {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #0f172a, #020617);
-    padding: 40px 20px;
-    font-family: "Segoe UI", sans-serif;
-    color: #e2e8f0;
+    width: 100%;
+    max-width: 1100px;
+    background-color: #ffffffeb;
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
 }
 
-/* 🔥 HEADER */
+/* =========================
+   HEADER
+========================= */
 .direcao-header {
     text-align: center;
-    margin-bottom: 50px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #f1f5f9;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .direcao-header h1 {
-    font-size: 36px;
-    font-weight: 800;
-    color: #ffffff;
+    margin: 0;
+
+    font-size: 44px;
+    font-weight: 700;
+
+    color: #0f172a;
 }
 
 .direcao-header p {
-    margin-top: 10px;
-    color: #94a3b8;
-    max-width: 600px;
-    margin-inline: auto;
+    margin-top: 8px;
+
+    font-size: 14px;
+    color: #64748b;
 }
 
-/* 🔥 CARD PROPÓSITO */
+/* =========================
+   CARD
+========================= */
 .direcao-card {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid #1e293b;
-    padding: 25px;
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
+    background: #ffffff;
+
+    border-radius: 18px;
+    padding: 20px;
+
+    border: 1px solid #f1f5f9;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    transition: all 0.2s ease;
+}
+
+.direcao-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .direcao-card h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: #38bdf8;
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #0f172a;
 }
 
 .direcao-card p {
-    margin-bottom: 15px;
+    margin: 0;
+
+    font-size: 14px;
+    color: #475569;
+
     line-height: 1.6;
 }
 
 .direcao-card ul {
-    padding-left: 20px;
+    margin: 6px 0 0;
+    padding-left: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .direcao-card li {
-    margin-bottom: 8px;
-    color: #cbd5f5;
+    font-size: 14px;
+    color: #334155;
 }
 
-/* 🔥 PERFIS */
-.direcao-perfil {
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid #1e293b;
-    border-radius: 20px;
-    padding: 25px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.direcao-perfil:hover {
-    transform: translateY(-5px);
-    border-color: #38bdf8;
-}
-
-/* 🔥 FOTO PERFIL */
-.direcao-foto {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-    cursor: pointer;
-    border: 3px solid #38bdf8;
-    transition: 0.3s;
-}
-
-.direcao-foto:hover {
-    transform: scale(1.05);
-}
-
-/* 🔥 TEXTO PERFIL */
-.direcao-perfil h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.cargo {
-    color: #38bdf8;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.direcao-perfil p {
-    color: #cbd5f5;
-    line-height: 1.5;
-    margin-bottom: 10px;
-}
-
-/* 🔥 LINKS */
-.direcao-perfil a {
-    color: #38bdf8;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.direcao-perfil a:hover {
-    text-decoration: underline;
-}
-
-/* 🔥 MODAL */
+/* =========================
+   MODAL
+========================= */
 .direcao-modal {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(2, 6, 23, 0.97);
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(15, 23, 42, 0.75);
+
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+
     z-index: 999;
-    animation: fadeInDirecao 0.3s ease;
+
+    backdrop-filter: blur(6px);
 }
 
-/* 🔥 BOTÃO FECHAR */
+/* =========================
+   BOTÃO FECHAR
+========================= */
 .direcao-fechar {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 14px;
+
+    width: 40px;
+    height: 40px;
+
     border-radius: 50%;
+    border: none;
+
+    background: #ffffff;
+    color: #0f172a;
+
+    font-size: 18px;
+    font-weight: 700;
+
     cursor: pointer;
-    transition: 0.3s;
+
+    transition: all 0.2s ease;
 }
 
 .direcao-fechar:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #f1f5f9;
+    transform: scale(1.1);
 }
 
-/* 🔥 GALERIA */
+/* =========================
+   GALERIA
+========================= */
 .direcao-galeria {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 20px;
     max-width: 90%;
+    max-height: 85%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 12px;
+
+    overflow-y: auto;
 }
 
-/* 🔥 IMAGENS DO MODAL */
+/* =========================
+   IMAGENS
+========================= */
 .direcao-galeria img {
-    width: 280px;
-    height: 420px;
-    object-fit: cover;
-    border-radius: 20px;
-    transition: 0.3s;
+    width: 80%;
+    height: auto;
+
+    border-radius: 12px;
+
+    object-fit: contain;
+
+    background: #000;
+
+    transition: all 0.2s ease;
 }
 
 .direcao-galeria img:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
-/* 🔥 SCROLL CUSTOM */
+/* =========================
+   SCROLL
+========================= */
 .direcao-galeria::-webkit-scrollbar {
-    height: 8px;
+    width: 6px;
 }
 
 .direcao-galeria::-webkit-scrollbar-thumb {
-    background: #38bdf8;
+    background: #cbd5e1;
     border-radius: 10px;
 }
 
-/* 🔥 ANIMAÇÃO */
-@keyframes fadeInDirecao {
-    from {
-        opacity: 0;
-    }
+/* =========================
+   RESPONSIVO COMPLETO DIREÇÃO
+========================= */
 
-    to {
-        opacity: 1;
-    }
+/* 🔥 BASE AJUSTES */
+.direcao-container {
+    box-sizing: border-box;
 }
 
-/* 🔥 RESPONSIVO */
-@media (max-width: 768px) {
+/* =========================
+   MOBILE PEQUENO (até 400px)
+========================= */
+@media (max-width: 400px) {
+
+    .direcao-container {
+        padding: 16px 10px;
+        border-radius: 16px;
+        gap: 14px;
+    }
+
+    .direcao-header {
+        padding: 14px;
+    }
 
     .direcao-header h1 {
-        font-size: 28px;
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .direcao-header p {
+        font-size: 12px;
     }
 
     .direcao-card {
-        padding: 20px;
+        padding: 14px;
+        border-radius: 14px;
     }
 
-    .direcao-foto {
-        width: 100px;
-        height: 100px;
+    .direcao-card h2 {
+        font-size: 16px;
     }
 
-    .direcao-galeria img {
-        width: 220px;
-        height: 320px;
+    .direcao-card p,
+    .direcao-card li {
+        font-size: 13px;
+    }
+
+    /* 🔥 GALERIA */
+    .direcao-galeria {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    /* 🔥 BOTÃO FECHAR */
+    .direcao-fechar {
+        top: 10px;
+        right: 10px;
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+    }
+}
+
+
+/* =========================
+   MOBILE NORMAL (até 600px)
+========================= */
+@media (max-width: 600px) {
+
+    .direcao-container {
+        padding: 18px 12px;
+    }
+
+    .direcao-header h1 {
+        font-size: 26px;
+    }
+
+    .direcao-header p {
+        font-size: 13px;
+    }
+
+    .direcao-card {
+        padding: 16px;
+    }
+
+    .direcao-galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .direcao-fechar {
+        top: 12px;
+        right: 12px;
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .direcao-container {
+        padding: 22px 16px;
+    }
+
+    .direcao-header h1 {
+        font-size: 32px;
+    }
+
+    .direcao-card {
+        padding: 18px;
+    }
+
+    .direcao-galeria {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* =========================
+   DESKTOP (901px+)
+========================= */
+@media (min-width: 901px) {
+
+    .direcao-container {
+        padding: 30px 20px;
+    }
+
+    .direcao-header h1 {
+        font-size: 44px;
+    }
+
+    .direcao-galeria {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES (1400px+)
+========================= */
+@media (min-width: 1400px) {
+
+    .direcao-container {
+        max-width: 1200px;
+        padding: 40px;
+    }
+
+    .direcao-header h1 {
+        font-size: 52px;
+    }
+
+    .direcao-card {
+        padding: 22px;
     }
 }

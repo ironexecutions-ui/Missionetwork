@@ -1,19 +1,372 @@
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+.perfil-container-geral {
+    width: 100%;
+    min-height: 100dvh;
+
+    display: flex;
+
+
+}
+
+/* =========================
+   LADO ESQUERDO
+========================= */
+.perfil-lado-esquerdo {
+    width: 60%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px;
+}
+
+/* caixa do aviso */
+.perfil-wrapper-aviso {
+    width: 100%;
+    max-width: 600px;
+
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 40px;
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================
+   LADO DIREITO
+========================= */
+.perfil-lado-direito {
+    width: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px;
+}
+
+/* =========================
+   CARD LOGIN
+========================= */
+.perfil-card-login {
+    width: 100%;
+    max-width: 420px;
+
+    background: rgb(255, 255, 255);
+    border-radius: 24px;
+
+    padding: 40px;
+
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* =========================
+   TITULO
+========================= */
+.perfil-titulo-login {
+    font-size: 28px;
+    font-weight: 600;
+    color: #0e0e0e;
+
+    margin-bottom: 30px;
+}
+
+/* =========================
+   FORM
+========================= */
+.perfil-formulario-login {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.perfil-input-email,
+.perfil-input-senha,
+.perfil-input-nome,
+.perfil-input-confirmar {
+    width: 95%;
+    height: 48px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(0, 0, 0, 0.986);
+
+    background: rgba(255, 255, 255, 0.05);
+
+    padding: 0 14px;
+
+    color: #000000;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+/* foco elegante */
+.perfil-input-email:focus,
+.perfil-input-senha:focus,
+.perfil-input-nome:focus,
+.perfil-input-confirmar:focus {
+    border: 1px solid #c89b3c;
+    box-shadow: 0 0 0 2px rgba(200, 155, 60, 0.25);
+}
+
+/* =========================
+   CHECKBOX TERMOS
+========================= */
+.perfil-termos-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 15px;
+    color: #000000;
+}
+
+/* =========================
+   ERRO
+========================= */
+.perfil-erro-login {
+    color: #ff4d4d;
+    font-size: 13px;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+.perfil-botao-login {
+    height: 50px;
+
+    border-radius: 14px;
+
+    border: none;
+
+    background: linear-gradient(135deg, #c89b3c, #a57a1f);
+
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+/* hover forte */
+.perfil-botao-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(200, 155, 60, 0.3);
+}
+
+/* =========================
+   LINK ALTERAR
+========================= */
 .perfil-link-alternar {
     margin-top: 10px;
-    text-align: center;
-    color: #60a5fa;
+
+    font-size: 17px;
+    color: #c89b3c;
+
     cursor: pointer;
-    font-size: 14px;
+    text-align: center;
+
+    transition: 0.2s;
 }
 
 .perfil-link-alternar:hover {
-    text-decoration: underline;
+    color: #b5b807;
 }
 
-.perfil-termos-box {
-    display: flex;
-    gap: 8px;
-    font-size: 14px;
-    color: #cbd5f5;
-    align-items: center;
+.perfil-card-login:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.perfil-card-login {
+    animation: perfilFadeUp 0.6s ease;
+}
+
+@keyframes perfilFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.perfil-input-email:focus,
+.perfil-input-senha:focus,
+.perfil-input-nome:focus,
+.perfil-input-confirmar:focus {
+    border: 1px solid #c89b3c;
+    box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.15);
+    background: #fff;
+    color: #000;
+}
+
+.perfil-input-email::placeholder,
+.perfil-input-senha::placeholder,
+.perfil-input-nome::placeholder,
+.perfil-input-confirmar::placeholder {
+    color: #999;
+}
+
+.perfil-botao-login:active {
+    transform: scale(0.97);
+}
+
+.perfil-botao-login {
+    position: relative;
+    overflow: hidden;
+}
+
+.perfil-botao-login::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    top: 0;
+
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+
+    transition: 0.4s;
+}
+
+.perfil-botao-login:hover::after {
+    left: 100%;
+}
+
+.perfil-erro-login {
+    background: rgba(255, 77, 77, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 77, 77, 0.3);
+}
+
+.perfil-termos-box input {
+    accent-color: #c89b3c;
+    cursor: pointer;
+}
+
+/* =========================
+   ULTRA SMALL (100px)
+========================= */
+@media (max-width: 1000px) {
+    .perfil-lado-direito {
+        margin-bottom: 90px;
+    }
+
+    .perfil-container-geral {
+        flex-direction: column;
+    }
+
+    /* 🔥 AVISO PRIMEIRO */
+    .perfil-lado-esquerdo {
+        order: 1;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* 🔥 LOGIN DEPOIS */
+    .perfil-lado-direito {
+        order: 2;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .perfil-wrapper-aviso {
+        padding: 10px;
+    }
+
+    .perfil-card-login {
+        padding: 14px;
+    }
+
+}
+
+/* =========================
+   BASE RESPONSIVO
+========================= */
+.perfil-container-geral {
+    justify-content: center;
+}
+
+/* =========================
+   ATÉ 900px (EMPILHA)
+========================= */
+@media (max-width: 900px) {
+
+    .perfil-container-geral {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .perfil-lado-esquerdo,
+    .perfil-lado-direito {
+        width: 95%;
+        padding: 20px 0;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+
+    .perfil-lado-esquerdo,
+    .perfil-lado-direito {
+        width: 95%;
+        padding: 10px 0;
+    }
+
+    .perfil-wrapper-aviso {
+        padding: 16px;
+    }
+
+    .perfil-card-login {
+        width: 100%;
+        padding: 18px;
+    }
+
+}
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 400px) {
+
+    .perfil-wrapper-aviso {
+        padding: 12px;
+    }
+
+    .perfil-card-login {
+        padding: 14px;
+    }
+
 }

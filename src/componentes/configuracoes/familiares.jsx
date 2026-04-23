@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
-
+import "./familiares.css"
 export default function FamiliaresConfig() {
 
     const [busca, setBusca] = useState("");
@@ -80,13 +80,13 @@ export default function FamiliaresConfig() {
     };
 
     return (
-        <div className="cfg-secao">
+        <div className="fam-container">
 
-            <h2>Familiares</h2>
 
-            {/* BUSCA */}
+            {/* 🔍 BUSCA */}
             {!selecionado && (
                 <input
+                    className="fam-input"
                     placeholder="Buscar familiar..."
                     value={busca}
                     onChange={(e) => setBusca(e.target.value)}
@@ -94,43 +94,66 @@ export default function FamiliaresConfig() {
             )}
 
             {/* RESULTADOS */}
-            {resultados.map(r => (
-                <div key={r.id} onClick={() => setSelecionado(r)}>
-                    {r.nome_completo}
-                </div>
-            ))}
+            <div className="fam-resultados">
+                {resultados.map(r => (
+                    <div
+                        key={r.id}
+                        className="fam-item-resultado"
+                        onClick={() => setSelecionado(r)}
+                    >
+                        {r.nome_completo}
+                    </div>
+                ))}
+            </div>
 
             {/* SELECIONADO */}
             {selecionado && (
-                <div>
-                    {selecionado.nome_completo}
-                    <button onClick={() => setSelecionado(null)}>X</button>
+                <div className="fam-selecionado">
+                    <span>{selecionado.nome_completo}</span>
+
+                    <button
+                        className="fam-btn-remover"
+                        onClick={() => setSelecionado(null)}
+                    >
+                        ✕
+                    </button>
                 </div>
             )}
 
             {/* TIPO */}
-            <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-                <option value="">Tipo</option>
+            <select
+                className="fam-select"
+                value={tipo}
+                onChange={(e) => setTipo(e.target.value)}
+            >
+                <option value="">Tipo de vínculo</option>
                 {TIPOS.map(t => <option key={t}>{t}</option>)}
             </select>
 
-            <button onClick={adicionar}>Adicionar</button>
+            <button className="fam-btn-adicionar" onClick={adicionar}>
+                Adicionar
+            </button>
 
             {/* LISTA */}
-            {lista.map(f => (
-                <div key={f.id} className="cfg-item">
+            <div className="fam-lista">
+                {lista.map(f => (
+                    <div key={f.id} className="fam-item">
 
-                    <div>
-                        <strong>{f.nome_completo}</strong>
-                        <div>{f.tipo_familiar}</div>
+                        <div className="fam-info">
+                            <strong>{f.nome_completo}</strong>
+                            <span>{f.tipo_familiar}</span>
+                        </div>
+
+                        <button
+                            className="fam-btn-remover"
+                            onClick={() => remover(f.id)}
+                        >
+                            Remover
+                        </button>
+
                     </div>
-
-                    <button onClick={() => remover(f.id)}>
-                        Remover
-                    </button>
-
-                </div>
-            ))}
+                ))}
+            </div>
 
         </div>
     );

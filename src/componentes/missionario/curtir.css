@@ -1,70 +1,101 @@
-/* 🔥 CONTAINER DAS REAÇÕES */
+/* =========================
+   CONTAINER REAÇÕES
+========================= */
 .post-reacoes {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    margin-top: 12px;
-    padding: 8px;
+    margin-top: 10px;
+    padding: 6px;
 
-    background: #f1f5f9;
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
+
+    gap: 6px;
 }
 
-/* 🔥 BOTÃO BASE */
+/* =========================
+   BOTÃO BASE
+========================= */
 .btn-reacao {
+    flex: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
 
-    flex: 1;
-
     background: transparent;
     border: none;
-    cursor: pointer;
 
     padding: 8px 6px;
     border-radius: 10px;
 
+    cursor: pointer;
+
     font-size: 13px;
     font-weight: 600;
-    color: #334155;
 
-    transition: 0.2s;
+    color: #475569;
+
+    transition: all 0.2s ease;
 }
 
-/* 🔥 HOVER */
+/* =========================
+   HOVER
+========================= */
 .btn-reacao:hover {
     background: #e2e8f0;
+    color: #0f172a;
 }
 
-/* 🔥 ATIVO (opcional futuro) */
+/* =========================
+   CLICK FEEDBACK
+========================= */
+.btn-reacao:active {
+    transform: scale(0.96);
+}
+
+/* =========================
+   ESTADO ATIVO
+========================= */
 .btn-reacao.ativo {
-    background: #dbeafe;
+    background: #eef2ff;
+    border: 1px solid #6366f1;
 }
 
-/* 🔥 ÍCONES */
+/* =========================
+   ÍCONES
+========================= */
 .icone-reacao {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
+
     object-fit: contain;
+
     transition: transform 0.15s ease;
 }
 
-/* 🔥 EFEITO AO PASSAR */
+/* efeito leve, não exagerado */
 .btn-reacao:hover .icone-reacao {
-    transform: scale(1.95);
+    transform: scale(1.15);
 }
 
-/* 🔥 CONTADOR */
+/* =========================
+   CONTADOR
+========================= */
 .btn-reacao span {
     font-size: 13px;
     font-weight: 700;
     color: #0f172a;
 }
 
-/* 🔥 CORES POR TIPO (leve destaque) */
+/* =========================
+   CORES POR TIPO
+========================= */
 .btn-reacao.like span {
     color: #2563eb;
 }
@@ -75,4 +106,19 @@
 
 .btn-reacao.sad span {
     color: #f59e0b;
+}
+
+/* =========================
+   HOVER COLORIDO POR TIPO
+========================= */
+.btn-reacao.like:hover {
+    background: rgba(37, 99, 235, 0.08);
+}
+
+.btn-reacao.love:hover {
+    background: rgba(225, 29, 72, 0.08);
+}
+
+.btn-reacao.sad:hover {
+    background: rgba(245, 158, 11, 0.12);
 }

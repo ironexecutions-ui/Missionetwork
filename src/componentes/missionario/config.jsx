@@ -50,43 +50,63 @@ export default function MissionarioConfig({ atualizarLista }) {
     };
 
     return (
-        <div className="config-container">
+        <div className="cfgd-container">
 
+            {/* 🔍 BUSCA */}
             <input
-                className="config-input"
+                className="cfgd-input"
                 placeholder="Buscar missionário..."
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
             />
 
-            {resultados.map(m => (
-                <div key={m.id} className="config-item" onClick={() => setSelecionado(m)}>
-                    {m.nome}
-                </div>
-            ))}
+            {/* 🔥 RESULTADOS */}
+            <div className="cfgd-resultados">
+                {resultados.map(m => (
+                    <div
+                        key={m.id}
+                        className="cfgd-item-resultado"
+                        onClick={() => setSelecionado(m)}
+                    >
+                        {m.nome}
+                    </div>
+                ))}
+            </div>
 
+            {/* 🔥 SELECIONADO */}
             {selecionado && (
-                <>
-                    <p>{selecionado.nome}</p>
+                <div className="cfgd-selecao">
+
+                    <div className="cfgd-selecionado">
+                        {selecionado.nome}
+                    </div>
 
                     <input
-                        className="config-input"
+                        className="cfgd-input"
                         placeholder="Tipo"
                         value={tipo}
                         onChange={(e) => setTipo(e.target.value)}
                     />
 
-                    <button className="config-botao" onClick={adicionar}>
+                    <button
+                        className="cfgd-botao-adicionar"
+                        onClick={adicionar}
+                    >
                         Adicionar
                     </button>
-                </>
+
+                </div>
             )}
 
-            {lista.map(item => (
-                <div key={item.id} className="config-item">
-                    {item.nome} - {item.tipo}
-                </div>
-            ))}
+            {/* 🔥 LISTA FINAL */}
+            <div className="cfgd-lista">
+                {lista.map(item => (
+                    <div key={item.id} className="cfgd-item-lista">
+                        <span className="cfgd-nome">{item.nome}</span>
+                        <span className="cfgd-tipo">{item.tipo}</span>
+                    </div>
+                ))}
+            </div>
 
         </div>
     );

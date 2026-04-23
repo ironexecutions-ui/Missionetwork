@@ -212,9 +212,10 @@
     padding: 6px 10px;
     border-radius: 8px;
     cursor: pointer;
+    z-index: 99999 !important;
     transition: 0.2s;
 }
 
 .postagem-btn-voltar:hover {
-    background: #e2e8f0;
+    background: #e2e8f0d2;
 }

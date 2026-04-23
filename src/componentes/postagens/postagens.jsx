@@ -6,8 +6,16 @@ import Comentarios from "./comentarios";
 import ReacoesComentario from "./reacoescomentarios";
 import Postar from "./postar";
 import { useNavigate } from "react-router-dom";
+import Denuncia from "./denuncia";
 
 export default function Postagens() {
+
+    const [menuAberto, setMenuAberto] = useState(null);
+    const [editandoPost, setEditandoPost] = useState(null);
+    const [textoEdit, setTextoEdit] = useState("");
+    const [denunciaPostId, setDenunciaPostId] = useState(null);
+
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,7 +24,21 @@ export default function Postagens() {
     useEffect(() => {
         carregarPostsInicial();
     }, []);
+    const deletarPost = async (id) => {
+        const confirmar = confirm("Apagar postagem?");
+        if (!confirmar) return;
 
+        try {
+            await fetch(`${API_URL}/postagens/deletar/${id}`, {
+                method: "DELETE"
+            });
+
+            atualizarPosts();
+
+        } catch (err) {
+            console.log("erro deletar:", err);
+        }
+    };
     const carregarPostsInicial = async () => {
         try {
             const res = await fetch(`${API_URL}/postagens/feed`);
@@ -39,6 +61,29 @@ export default function Postagens() {
         }
     };
 
+    const salvarEdicao = async (postId) => {
+        try {
+            await fetch(`${API_URL}/postagens/atualizar/${postId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    conteudo: textoEdit,
+                    nivel: 1
+                })
+            });
+
+            setEditandoPost(null);
+            atualizarPosts();
+
+        } catch (err) {
+            console.log("erro editar:", err);
+        }
+    };
+
+    const abrirDenunciaPost = (id) => {
+        setDenunciaPostId(id);
+    };
+
     if (loading) {
         return <div className="postagens-loading">Carregando...</div>;
     }
@@ -48,11 +93,8 @@ export default function Postagens() {
 
             <Postar onPostado={atualizarPosts} />
 
-            {posts.length === 0 && (
-                <p className="postagens-vazio">Nenhuma postagem ainda</p>
-            )}
-
             {posts.map((p) => (
+
                 <div
                     key={p.id}
                     className="postagens-card"
@@ -62,18 +104,29 @@ export default function Postagens() {
                     {/* TOPO */}
                     <div className="postagens-topo">
 
+                        {/* FOTO */}
                         {p.foto ? (
                             <img
                                 src={p.foto}
                                 className="postagens-foto"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate(`/visita/${p.usuario_id}`);
+                                }}
                             />
                         ) : (
-                            <div className="postagens-foto-placeholder">
+                            <div
+                                className="postagens-foto-placeholder"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate(`/visita/${p.usuario_id}`);
+                                }}
+                            >
                                 {p.nome_completo?.charAt(0) || "?"}
                             </div>
                         )}
 
+                        {/* NOME */}
                         <div>
                             <span
                                 className="postagens-nome"
@@ -82,82 +135,122 @@ export default function Postagens() {
                                     navigate(`/visita/${p.usuario_id}`);
                                 }}
                             >
-                                {p.nome_completo || "Usuário"}
+                                {p.nome_completo}
                             </span>
+                        </div>
 
-                            {p.marcados?.length > 0 && (
-                                <div className="postagens-marcados">
-                                    {p.marcados.map((m, i) => (
-                                        <span
-                                            key={i}
-                                            className="postagens-marcado"
-                                            onClick={(e) => e.stopPropagation()}
+                        {/* MENU */}
+                        <div
+                            className="postagens-menu-container"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                className="postagens-menu-btn"
+                                onClick={() =>
+                                    setMenuAberto(menuAberto === p.id ? null : p.id)
+                                }
+                            >
+                                ⋮
+                            </button>
+
+                            {menuAberto === p.id && (
+                                <div className="postagens-menu-box">
+
+                                    {Number(usuarioLogado?.id) === Number(p.usuario_id) ? (
+                                        <>
+                                            <button
+                                                onClick={() => {
+                                                    setEditandoPost(p.id);
+                                                    setTextoEdit(p.conteudo);
+                                                    setMenuAberto(null);
+                                                }}
+                                            >
+                                                Editar
+                                            </button>
+
+                                            <button
+                                                onClick={() => {
+                                                    deletarPost(p.id);
+                                                    setMenuAberto(null);
+                                                }}
+                                            >
+                                                Apagar
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <button
+                                            onClick={() => {
+                                                abrirDenunciaPost(p.id);
+                                                setMenuAberto(null);
+                                            }}
                                         >
-                                            @{m.nome_completo}
-                                        </span>
-                                    ))}
+                                            Denunciar
+                                        </button>
+                                    )}
+
                                 </div>
                             )}
                         </div>
+
                     </div>
 
                     {/* TEXTO */}
-                    {p.conteudo && (
-                        <p
-                            className="postagens-conteudo"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            {p.conteudo}
-                        </p>
+
+
+                    {editandoPost === p.id ? (
+                        <div className="postagens-editar-box" onClick={(e) => e.stopPropagation()}>
+                            <textarea
+                                value={textoEdit}
+                                onChange={(e) => setTextoEdit(e.target.value)}
+                            />
+                            <button onClick={() => salvarEdicao(p.id)}>Salvar</button>
+                        </div>
+                    ) : (
+                        p.conteudo && (
+                            <p className="postagens-conteudoo">
+                                {p.conteudo?.split("\n").map((linha, i) => (
+                                    <span key={i}>
+                                        {linha}
+                                        <br />
+                                    </span>
+                                ))}
+                            </p>
+                        )
                     )}
-
-                    {/* IMAGENS */}
                     {p.arquivos?.length > 0 && (
-                        <div className={`postagens-grid total-${p.arquivos.length}`}>
+                        <div
+                            className="preview-wrap"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(`/postagem/${p.id}`);
+                            }}
+                        >
+                            {/* PRIMEIRO ITEM (SEM ALTERAR CLASSE) */}
+                            {(() => {
+                                const url = p.arquivos[0]?.arquivo || "";
+                                const isVideo =
+                                    url.includes(".mp4") ||
+                                    url.includes(".webm") ||
+                                    url.includes(".mov");
 
-                            {p.arquivos.slice(0, 4).map((a, i) => {
-                                const url = a.arquivo || "";
-                                const restante = p.arquivos.length - 4;
-
-                                if (i === 3 && restante > 0) {
-                                    return (
-                                        <div
-                                            key={i}
-                                            className="postagens-grid-item overlay"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                navigate(`/postagem/${p.id}`);
-                                            }}
-                                        >
-                                            <img src={url} />
-                                            <div className="overlay-text">+{restante}</div>
-                                        </div>
-                                    );
-                                }
-
-                                return (
-                                    <div
-                                        key={i}
-                                        className="postagens-grid-item"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            navigate(`/postagem/${p.id}`);
-                                        }}
-                                    >
-                                        <img src={url} />
-                                    </div>
+                                return isVideo ? (
+                                    <video src={url} controls className="FIX_VIDEO" />) : (
+                                    <img src={url} className="FIX_VIDEO" />
                                 );
-                            })}
+                            })()}
 
+                            {/* +X */}
+                            {p.arquivos.length > 1 && (
+                                <div className="preview-overlay">
+                                    +{p.arquivos.length - 1}
+                                </div>
+                            )}
                         </div>
                     )}
 
                     {/* REAÇÕES */}
                     <div onClick={(e) => e.stopPropagation()}>
-                        <Reacoes
-                            postId={p.id}
-                            curtidasInicial={p.curtidas}
-                        />
+                        <Reacoes postId={p.id} curtidasInicial={p.curtidas} />
                     </div>
 
                     {/* COMENTÁRIOS */}
@@ -166,26 +259,7 @@ export default function Postagens() {
                         onClick={(e) => e.stopPropagation()}
                     >
 
-                        {p.comentarios?.map((c) => (
-                            <div key={c.id} className="postagens-comentario">
 
-                                <strong
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        navigate(`/visita/${c.usuario?.id}`);
-                                    }}
-                                >
-                                    {c.usuario?.nome_completo}
-                                </strong>
-
-                                <p>{c.comentario}</p>
-
-                                <ReacoesComentario
-                                    comentarioId={c.id}
-                                    curtidasInicial={c.curtidas}
-                                />
-                            </div>
-                        ))}
 
                         <Comentarios
                             postId={p.id}
@@ -196,6 +270,15 @@ export default function Postagens() {
 
                 </div>
             ))}
+
+            {/* MODAL DENUNCIA */}
+            {denunciaPostId && (
+                <Denuncia
+                    tipo="post"
+                    id={denunciaPostId}
+                    fechar={() => setDenunciaPostId(null)}
+                />
+            )}
 
         </div>
     );

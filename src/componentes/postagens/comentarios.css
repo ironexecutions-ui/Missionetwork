@@ -1,21 +1,284 @@
+/* =========================
+   CONTAINER
+========================= */
+.comentarios-container {
+    margin-top: 14px;
+}
+
+/* =========================
+   CARD DO COMENTÁRIO
+========================= */
+.postagens-comentario {
+    background: #f8fafc;
+
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+
+    border: 1px solid #e5e7eb;
+
+    transition: 0.2s;
+}
+
+.postagens-comentario:hover {
+    background: #f1f5f9;
+}
+
+/* =========================
+   TOPO
+========================= */
+.comentario-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+/* =========================
+   NOME
+========================= */
+.postagens-comentario strong {
+    font-size: 18px !important;
+    color: #111827;
+    font-weight: 600;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.postagens-comentario p {
+    font-size: 17px !important;
+    color: #374151;
+
+    margin: 4px 0 6px;
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+/* =========================
+   MENU
+========================= */
+.comentario-menu {
+    position: relative;
+}
+
+.comentario-menu button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    font-size: 16px;
+    padding: 4px;
+
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.comentario-menu button:hover {
+    background: #e5e7eb;
+}
+
+/* DROPDOWN */
+.comentario-dropdown {
+    position: absolute;
+    right: 0;
+    top: 24px;
+
+    background: #fff;
+    border-radius: 10px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    overflow: hidden;
+    z-index: 10;
+    min-width: 130px;
+
+    animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.comentario-dropdown button {
+    width: 100%;
+    padding: 10px;
+
+    border: none;
+    background: none;
+
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+
+    transition: 0.15s;
+}
+
+.comentario-dropdown button:hover {
+    background: #f1f5f9;
+}
+
+/* BOTÃO PERIGO */
+.comentario-dropdown button:last-child {
+    color: #dc2626;
+}
+
+.comentario-dropdown button:last-child:hover {
+    background: #fee2e2;
+}
+
+/* =========================
+   DENUNCIAR (se usar separado)
+========================= */
+.comentario-denunciar-btn {
+    background: none;
+    border: none;
+
+    color: #dc2626;
+    font-size: 12px;
+
+    cursor: pointer;
+    margin-top: 4px;
+
+    transition: 0.2s;
+}
+
+.comentario-denunciar-btn:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   REAÇÕES
+========================= */
+.postagens-comentario>div {
+    margin-top: 6px;
+}
+
+/* =========================
+   EDIÇÃO
+========================= */
+.comentario-editar {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.comentario-editar input {
+    flex: 1;
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+
+    font-size: 13px;
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.comentario-editar input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.comentario-editar button {
+    background: #2563eb;
+    color: #fff;
+
+    border: none;
+    padding: 6px 12px;
+
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.comentario-editar button:hover {
+    background: #1d4ed8;
+}
+
+/* =========================
+   INPUT ÁREA
+========================= */
 .comentarios-input-area {
     display: flex;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
+/* INPUT */
 .comentarios-input {
     flex: 1;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+
+    font-size: 14px;
+
+    outline: none;
+    transition: 0.2s;
 }
 
+.comentarios-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* BOTÃO */
 .comentarios-botao {
-    padding: 8px 12px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+
     border: none;
-    background: #2563eb;
-    color: #fff;
-    border-radius: 8px;
+    padding: 10px 16px;
+
+    border-radius: 10px;
     cursor: pointer;
+
+    font-weight: 500;
+
+    transition: 0.2s;
+}
+
+.comentarios-botao:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+
+.comentarios-botao:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.comentarios-ver-mais {
+    background: none;
+    border: none;
+
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+    margin: 6px 0;
+
+    transition: 0.2s;
+}
+
+.comentarios-ver-mais:hover {
+    text-decoration: underline;
 }

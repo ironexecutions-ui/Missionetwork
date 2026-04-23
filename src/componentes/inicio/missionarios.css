@@ -1,0 +1,147 @@
+/* 🔥 SIDEBAR BLOCO */
+.sidebar-bloco {
+    background: #fff;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: 0.2s;
+
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.sidebar-bloco:hover {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* 🔥 SCROLL */
+.sidebar-bloco::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-bloco::-webkit-scrollbar-thumb {
+    background: #cbd5f5;
+    border-radius: 10px;
+}
+
+/* 🔥 TÍTULO */
+.sidebar-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+
+/* 🔥 ESTADO VAZIO */
+.sidebar-vazio {
+    font-size: 13px;
+    color: #64748b;
+    text-align: center;
+    padding: 12px 8px;
+    line-height: 1.4;
+}
+
+/* 🔥 ITEM */
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+}
+
+.sidebar-item:hover {
+    background: #f1f5f9;
+    transform: translateX(3px);
+}
+
+/* 🔥 BARRA LATERAL NO HOVER */
+.sidebar-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0%;
+    background: #2563eb;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.sidebar-item:hover::after {
+    height: 60%;
+}
+
+/* 🔥 AVATAR */
+.sidebar-avatar,
+.sidebar-avatar-fake {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* FOTO */
+.sidebar-avatar {
+    object-fit: cover;
+    border: 2px solid #e2e8f0;
+}
+
+/* FALLBACK */
+.sidebar-avatar-fake {
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* 🔥 INFO */
+.sidebar-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 🔥 TEXTO */
+.sidebar-nome {
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sidebar-item:hover .sidebar-nome {
+    color: #2563eb;
+}
+
+.sidebar-tipo {
+    font-size: 12px;
+    color: #64748b;
+
+}
+
+/* 🔥 STATUS PENDENTE */
+.status-pendente {
+    margin-left: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #f59e0b;
+    /* amarelo elegante */
+}
+
+/* opcional: deixar mais chamativo */
+.status-pendente::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #f59e0b;
+    border-radius: 50%;
+    margin-right: 4px;
+}

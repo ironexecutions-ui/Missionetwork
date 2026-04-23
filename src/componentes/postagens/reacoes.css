@@ -29,6 +29,7 @@
 .reacao-img {
     width: 28px;
     height: 28px;
+    background-color: transparent !important;
     object-fit: contain;
     transition: transform 0.2s ease;
 }
@@ -42,4 +43,149 @@
 .reacao-btn span {
     font-weight: 600;
     color: #0f172a;
+}
+
+/* =========================
+   RESPONSIVO COMPLETO REAÇÕES
+========================= */
+
+/* 🔥 BASE AJUSTES */
+.reacoes-container {
+    flex-wrap: wrap;
+}
+
+.reacao-btn {
+    min-height: 38px;
+    flex-shrink: 0;
+}
+
+.reacao-btn:active {
+    transform: scale(0.95);
+}
+
+.reacao-img {
+    transition: transform 0.15s ease;
+}
+
+.reacao-btn:active .reacao-img {
+    transform: scale(1.2);
+}
+
+
+/* =========================
+   MOBILE PEQUENO (até 400px)
+========================= */
+@media (max-width: 400px) {
+
+    .reacoes-container {
+        gap: 6px;
+    }
+
+    .reacao-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    .reacao-img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .reacao-btn span {
+        font-size: 11px;
+    }
+
+    .reacao-btn:hover .reacao-img {
+        transform: scale(1.3);
+    }
+}
+
+
+/* =========================
+   MOBILE NORMAL (até 600px)
+========================= */
+@media (max-width: 600px) {
+
+    .reacoes-container {
+        justify-content: space-between;
+    }
+
+    .reacao-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .reacao-img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .reacao-btn span {
+        font-size: 12px;
+    }
+
+    .reacao-btn:hover .reacao-img {
+        transform: scale(1.4);
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .reacoes-container {
+        gap: 8px;
+    }
+
+    .reacao-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .reacao-img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+
+/* =========================
+   DESKTOP (901px+)
+========================= */
+@media (min-width: 901px) {
+
+    .reacao-btn {
+        padding: 6px 12px;
+    }
+
+    .reacao-img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES (1400px+)
+========================= */
+@media (min-width: 1400px) {
+
+    .reacoes-container {
+        gap: 12px;
+    }
+
+    .reacao-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+    .reacao-img {
+        width: 30px;
+        height: 30px;
+    }
 }

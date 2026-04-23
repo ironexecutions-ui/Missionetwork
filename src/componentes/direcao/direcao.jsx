@@ -1,50 +1,27 @@
 import React, { useState } from "react";
 import "./direcao.css";
 
-// 🔥 IMPORTS CORRETOS
-import fotoEnya from "./fotos/do.jpg";
-import fotoAndy from "./fotos/ds.jpg";
-
-import enya1 from "./enya/1.jpg";
-import enya2 from "./enya/2.jpg";
-import enya3 from "./enya/3.jpg";
-
-import andy1 from "./andy/1.jpg";
-import andy2 from "./andy/2.jpg";
-import andy3 from "./andy/3.jpg";
+import Enya from "./enya";
+import Andy from "./andy";
 
 export default function Direcao() {
 
     const [modalFotos, setModalFotos] = useState(false);
-    const [perfilAtivo, setPerfilAtivo] = useState(null);
+    const [imagensModal, setImagensModal] = useState([]);
 
-    const imagensEnya = [
-        fotoEnya,
-        enya1,
-        enya2,
-        enya3
-    ];
-
-    const imagensAndy = [
-        fotoAndy,
-        andy1,
-        andy2,
-        andy3
-    ];
-
-    const imagensAtuais =
-        perfilAtivo === "enya"
-            ? imagensEnya
-            : perfilAtivo === "andy"
-                ? imagensAndy
-                : [];
+    const abrirModal = (imagens) => {
+        setImagensModal(imagens);
+        setModalFotos(true);
+    };
 
     return (
         <div className="direcao-container">
+            <div className="direcao-header">
+                <h1>Direção do Aplicativo</h1>
+                <p>Conectando missionários, famílias e propósito em um só lugar</p>            </div>
 
             {/* HEADER */}
             <div className="direcao-header">
-                <h1>Direção do Aplicativo</h1>
                 <p>
                     Este não é um aplicativo oficial de A Igreja de Jesus Cristo dos Santos dos Últimos Dias
                 </p>
@@ -52,74 +29,54 @@ export default function Direcao() {
 
             {/* PROPÓSITO */}
             <div className="direcao-card">
-                <h2>Propósito da Plataforma</h2>
+                <h2>Visão da Plataforma</h2>
 
                 <p>
-                    Este aplicativo foi concebido com o objetivo de fortalecer conexões reais e significativas.
+                    Tornar-se uma referência digital no apoio a missionários e suas famílias,
+                    proporcionando uma experiência organizada, segura e centrada em princípios.
                 </p>
+
+                <p>
+                    A plataforma busca evoluir continuamente, incorporando novas funcionalidades
+                    que facilitem a comunicação e fortaleçam os laços entre todos os envolvidos.
+                </p>
+            </div>
+            <div className="direcao-card">
+                <h2>Princípios e Valores</h2>
 
                 <ul>
-                    <li>Acompanhamento entre famílias e missionários</li>
-                    <li>Comunicação organizada</li>
-                    <li>Estrutura para apoio mútuo</li>
+                    <li>Respeito e integridade em todas as interações</li>
+                    <li>Proteção e privacidade dos dados dos usuários</li>
+                    <li>Foco em edificação espiritual e apoio mútuo</li>
+                    <li>Simplicidade e clareza na comunicação</li>
                 </ul>
             </div>
-
-            {/* ENYA */}
-            <div className="direcao-perfil">
-
-                <img
-                    src={fotoEnya} // ✅ AQUI ESTAVA O ERRO
-                    className="direcao-foto"
-                    onClick={() => {
-                        setPerfilAtivo("enya");
-                        setModalFotos(true);
-                    }}
-                />
-
-                <h3>Enya Valadares</h3>
-                <p className="cargo">Diretora de Operações</p>
+            <div className="direcao-card">
+                <h2>Segurança e Privacidade</h2>
 
                 <p>
-                    Responsável pela gestão operacional do aplicativo e experiência dos usuários.
+                    Todos os dados são tratados com responsabilidade e protegidos por boas práticas
+                    de desenvolvimento e armazenamento seguro.
                 </p>
 
                 <p>
-                    Atua na{" "}
-                    <a href="https://www.tiktok.com/@missionary.store" target="_blank" rel="noreferrer">
-                        Missionary Store Brasil
-                    </a>
+                    O acesso às informações é controlado e limitado, garantindo que cada usuário
+                    visualize apenas o que é necessário.
                 </p>
-
             </div>
+            <div className="direcao-card">
+                <h2>Como Funciona</h2>
 
-            {/* ANDY */}
-            <div className="direcao-perfil">
-
-                <img
-                    src={fotoAndy} // ✅ CORRIGIDO
-                    className="direcao-foto"
-                    onClick={() => {
-                        setPerfilAtivo("andy");
-                        setModalFotos(true);
-                    }}
-                />
-
-                <h3>Andy de Oliveira</h3>
-                <p className="cargo">Diretor de Sistemas</p>
-
-                <p>
-                    Responsável pela arquitetura técnica e desenvolvimento da plataforma.
-                </p>
-
-                <p>
-                    Diretor da{" "}
-                    <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-                        Iron Executions
-                    </a>
-                </p>
-
+                <ul>
+                    <li>Cadastro de usuários e missionários</li>
+                    <li>Publicação de atualizações e experiências</li>
+                    <li>Interação através de comentários e reações</li>
+                    <li>Organização centralizada das informações</li>
+                </ul>
             </div>
+            {/* 🔥 PERFIS */}
+            <Enya abrirModal={abrirModal} />
+            <Andy abrirModal={abrirModal} />
 
             {/* MODAL */}
             {modalFotos && (
@@ -133,7 +90,7 @@ export default function Direcao() {
                     </button>
 
                     <div className="direcao-galeria">
-                        {imagensAtuais.map((img, i) => (
+                        {imagensModal.map((img, i) => (
                             <img key={i} src={img} alt="foto" />
                         ))}
                     </div>

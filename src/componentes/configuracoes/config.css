@@ -1,0 +1,228 @@
+/* =========================
+   CONTAINER
+========================= */
+.cfg-container {
+    width: 95%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.cfg-header {
+    text-align: center;
+
+    background: #ffffff;
+
+    padding: 22px;
+    border-radius: 18px;
+
+    border: 1px solid #f1f5f9;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.cfg-header h1 {
+    margin: 0;
+
+    font-size: 26px;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.cfg-header p {
+    margin-top: 6px;
+
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* =========================
+   GRID PRINCIPAL
+========================= */
+.cfg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+/* =========================
+   SECTION
+========================= */
+.cfg-section {
+    background: #ffffff;
+
+    border-radius: 18px;
+    padding: 20px;
+
+    border: 1px solid #f1f5f9;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    transition: 0.2s;
+}
+
+.cfg-section:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cfg-section h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #0f172a;
+}
+
+/* =========================
+   INFO
+========================= */
+.cfg-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cfg-label {
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #64748b;
+}
+
+.cfg-value {
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #0f172a;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 900px) {
+    .cfg-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .cfg-container {
+        padding: 24px 16px;
+    }
+
+    .cfg-header {
+        padding: 18px;
+    }
+
+    .cfg-header h1 {
+        font-size: 22px;
+    }
+
+    .cfg-header p {
+        font-size: 13px;
+    }
+
+    .cfg-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .cfg-section {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .cfg-container {
+        padding: 16px 12px;
+        gap: 18px;
+    }
+
+    .cfg-header {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .cfg-header h1 {
+        font-size: 20px;
+    }
+
+    .cfg-header p {
+        font-size: 12px;
+    }
+
+    .cfg-section {
+        padding: 16px;
+        border-radius: 14px;
+        gap: 12px;
+    }
+
+    .cfg-section h2 {
+        font-size: 16px;
+    }
+
+    .cfg-value {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .cfg-container {
+        padding: 12px 10px;
+    }
+
+    .cfg-header h1 {
+        font-size: 18px;
+    }
+
+    .cfg-section h2 {
+        font-size: 15px;
+    }
+
+    .cfg-label {
+        font-size: 11px;
+    }
+
+    .cfg-value {
+        font-size: 12px;
+    }
+
+}

@@ -1,45 +1,228 @@
-.reacoes-comentario-container {
-    display: flex;
-    gap: 8px;
-    margin-top: 5px;
-}
-
-.reacoes-comentario-container button {
-    background: #eef2f7;
-    border: none;
-    padding: 4px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.reacoes-comentario-container button:hover {
-    background: #dbeafe;
-}
-
+/* =========================
+   CONTAINER
+========================= */
 .reacoes-comentario-container {
     display: flex;
     gap: 10px;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
+/* =========================
+   BOTÃO
+========================= */
 .reacao-comentario-btn {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
+
+    background: #cacaca4d;
     border: none;
-    background: transparent;
+
     cursor: pointer;
+
     padding: 4px 6px;
     border-radius: 8px;
+
     transition: 0.2s;
 }
 
-.reacao-comentario-btn:hover {
-    background: #f1f5f9;
-}
-
+/* =========================
+   IMAGEM
+========================= */
 .reacao-comentario-btn img {
     width: 18px;
     height: 18px;
+    background-color: transparent !important;
+    transition: 0.2s;
+}
+
+/* TEXTO */
+.reacao-comentario-btn span {
+    font-size: 12px;
+    color: #000000;
+    font-weight: bolder;
+    transition: 0.2s;
+}
+
+/* =========================
+   HOVER (AUMENTA)
+========================= */
+.reacao-comentario-btn:hover img {
+    transform: scale(2.0) translateY(-2px);
+}
+
+.reacao-comentario-btn:hover span {
+    color: #111827;
+}
+
+/* =========================
+   CLICK (EFEITO BOUNCE)
+========================= */
+.reacao-comentario-btn:active img {
+    animation: bounceReaction 0.25s ease;
+}
+
+@keyframes bounceReaction {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.6);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* =========================
+   FEEDBACK AO PASSAR
+========================= */
+.reacao-comentario-btn:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* =========================
+   RESPONSIVO COMPLETO REAÇÕES COMENTÁRIOS
+========================= */
+
+/* 🔥 BASE AJUSTES */
+.reacoes-comentario-container {
+    flex-wrap: wrap;
+}
+
+.reacao-comentario-btn {
+    min-height: 30px;
+    flex-shrink: 0;
+}
+
+.reacao-comentario-btn:active {
+    transform: scale(0.95);
+}
+
+.reacao-comentario-btn img {
+    transition: transform 0.15s ease;
+}
+
+.reacao-comentario-btn:active img {
+    transform: scale(1.2);
+}
+
+
+/* =========================
+   MOBILE PEQUENO (até 400px)
+========================= */
+@media (max-width: 400px) {
+
+    .reacoes-comentario-container {
+        gap: 6px;
+    }
+
+    .reacao-comentario-btn {
+        padding: 3px 5px;
+        font-size: 11px;
+        border-radius: 6px;
+    }
+
+    .reacao-comentario-btn img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .reacao-comentario-btn span {
+        font-size: 10px;
+    }
+
+    /* 🔥 CORREÇÃO DO ZOOM EXAGERADO */
+    .reacao-comentario-btn:hover img {
+        transform: scale(1.3);
+    }
+}
+
+
+/* =========================
+   MOBILE NORMAL (até 600px)
+========================= */
+@media (max-width: 600px) {
+
+    .reacoes-comentario-container {
+        justify-content: flex-start;
+    }
+
+    .reacao-comentario-btn {
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+
+    .reacao-comentario-btn img {
+        width: 17px;
+        height: 17px;
+    }
+
+    .reacao-comentario-btn span {
+        font-size: 11px;
+    }
+
+    .reacao-comentario-btn:hover img {
+        transform: scale(1.4);
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .reacoes-comentario-container {
+        gap: 8px;
+    }
+
+    .reacao-comentario-btn {
+        padding: 4px 7px;
+        font-size: 12px;
+    }
+
+    .reacao-comentario-btn img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
+/* =========================
+   DESKTOP (901px+)
+========================= */
+@media (min-width: 901px) {
+
+    .reacao-comentario-btn {
+        padding: 5px 8px;
+    }
+
+    .reacao-comentario-btn img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES (1400px+)
+========================= */
+@media (min-width: 1400px) {
+
+    .reacoes-comentario-container {
+        gap: 12px;
+    }
+
+    .reacao-comentario-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .reacao-comentario-btn img {
+        width: 20px;
+        height: 20px;
+    }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../config";
 import "./perfil.css";
-
+import Aviso from "./aviso";
 export default function Perfil() {
 
     const navigate = useNavigate();
@@ -147,114 +147,129 @@ export default function Perfil() {
     return (
         <div className="perfil-container-geral">
 
-            <div className="perfil-card-login">
-
-                <h2 className="perfil-titulo-login">
-                    {modoCadastro ? "Criar conta" : "Entrar"}
-                </h2>
-
-                {!modoCadastro && (
-                    <form onSubmit={handleLogin} className="perfil-formulario-login">
-
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="perfil-input-email"
-                        />
-
-                        <input
-                            type="password"
-                            placeholder="Senha"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                            className="perfil-input-senha"
-                        />
-
-                        {erro && <p className="perfil-erro-login">{erro}</p>}
-
-                        <button className="perfil-botao-login">
-                            {loading ? "Entrando..." : "Entrar"}
-                        </button>
-
-                        <p
-                            className="perfil-link-alternar"
-                            onClick={() => {
-                                setModoCadastro(true);
-                                setErro("");
-                            }}
-                        >
-                            Criar conta
-                        </p>
-
-                    </form>
-                )}
-
-                {modoCadastro && (
-                    <form onSubmit={handleCadastro} className="perfil-formulario-login">
-
-                        <input
-                            type="text"
-                            placeholder="Nome completo"
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                            className="perfil-input-nome"
-                        />
-
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="perfil-input-email"
-                        />
-
-                        <input
-                            type="password"
-                            placeholder="Senha"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                            className="perfil-input-senha"
-                        />
-
-                        <input
-                            type="password"
-                            placeholder="Confirmar senha"
-                            value={confirmarSenha}
-                            onChange={(e) => setConfirmarSenha(e.target.value)}
-                            className="perfil-input-confirmar"
-                        />
-
-                        <label className="perfil-termos-box">
-                            <input
-                                type="checkbox"
-                                checked={aceitou}
-                                onChange={() => setAceitou(!aceitou)}
-                            />
-                            Aceito os termos de uso
-                        </label>
-
-                        {erro && <p className="perfil-erro-login">{erro}</p>}
-
-                        <button className="perfil-botao-login">
-                            {loading ? "Criando..." : "Criar conta"}
-                        </button>
-
-                        <p
-                            className="perfil-link-alternar"
-                            onClick={() => {
-                                setModoCadastro(false);
-                                setErro("");
-                            }}
-                        >
-                            Já tenho conta
-                        </p>
-
-                    </form>
-                )}
-
+            {/* LADO ESQUERDO */}
+            <div className="perfil-lado-esquerdo">
+                <div className="perfil-wrapper-aviso">
+                    <Aviso />
+                </div>
             </div>
+
+            {/* LADO DIREITO */}
+            <div className="perfil-lado-direito">
+                <div className="perfil-card-login">
+
+                    <h2 className="perfil-titulo-login">
+                        {modoCadastro ? "Criar conta" : "Entrar"}
+                    </h2>
+
+                    {!modoCadastro && (
+                        <form onSubmit={handleLogin} className="perfil-formulario-login">
+
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="perfil-input-email"
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Senha"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                                className="perfil-input-senha"
+                            />
+
+                            {erro && <p className="perfil-erro-login">{erro}</p>}
+
+                            <button className="perfil-botao-login">
+                                {loading ? "Entrando..." : "Entrar"}
+                            </button>
+
+                            <p
+                                className="perfil-link-alternar"
+                                onClick={() => {
+                                    setModoCadastro(true);
+                                    setErro("");
+                                }}
+                            >
+                                Criar conta
+                            </p>
+
+                        </form>
+                    )}
+
+                    {modoCadastro && (
+                        <form onSubmit={handleCadastro} className="perfil-formulario-login">
+
+                            <input
+                                type="text"
+                                placeholder="Nome completo"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                                className="perfil-input-nome"
+                            />
+
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="perfil-input-email"
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Senha"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                                className="perfil-input-senha"
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Confirmar senha"
+                                value={confirmarSenha}
+                                onChange={(e) => setConfirmarSenha(e.target.value)}
+                                className="perfil-input-confirmar"
+                            />
+
+                            <label className="perfil-termos-box">
+                                <input
+                                    type="checkbox"
+                                    checked={aceitou}
+                                    onChange={() => setAceitou(!aceitou)}
+                                />
+                                Aceito os termos de uso
+                            </label>
+
+                            {erro && <p className="perfil-erro-login">{erro}</p>}
+
+                            <button className="perfil-botao-login">
+                                {loading ? "Criando..." : "Criar conta"}
+                            </button>
+
+                            <p
+                                className="perfil-link-alternar"
+                                onClick={() => {
+                                    setModoCadastro(false);
+                                    setErro("");
+                                }}
+                            >
+                                Já tenho conta
+                            </p>
+
+                        </form>
+                    )}
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     );
 }

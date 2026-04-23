@@ -31,7 +31,6 @@
     width: 42px !important;
     height: 42px;
     border-radius: 50% !important;
-    object-fit: cover;
 }
 
 /* CONTAINER DO SLIDER */
@@ -54,7 +53,6 @@
 .postagens-slider-track img,
 .postagens-slider-track video {
     min-width: 100%;
-    height: 320px;
     object-fit: cover;
     border-radius: 14px;
     scroll-snap-align: start;
@@ -86,16 +84,92 @@
 
 .postagens-nome {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 25px;
     color: #111827;
 }
 
 /* 🔥 CONTEÚDO */
-.postagens-conteudo {
+.postagens-conteudoo {
     margin: 12px 0;
-    font-size: 15px;
+    font-size: 17px !important;
     line-height: 1.5;
     color: #374151;
+}
+
+/* 🔥 FOTO DO USUÁRIO */
+.postagens-foto {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+/* HOVER FOTO */
+.postagens-foto:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* 🔥 PLACEHOLDER (quando não tem foto) */
+.postagens-foto-placeholder {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, #caa500, #7a5a00);
+    color: #fff;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* HOVER PLACEHOLDER */
+.postagens-foto-placeholder:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* HOVER NOME */
+.postagens-nome:hover {
+    color: #1e00ca;
+    text-decoration: underline;
+}
+
+
+/* 🔥 TOP HEADER AJUSTE (alinhamento melhor) */
+.postagens-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+}
+
+
+/* 🔥 CONTAINER DO NOME */
+.postagens-topo>div {
+    display: flex;
+    align-items: center;
+}
+
+
+/* 🔥 MELHOR UX NO CARD */
+.postagens-card {
+    transition: all 0.2s ease;
+}
+
+.postagens-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* 🔥 IMAGEM */
@@ -236,7 +310,6 @@
 /* 🔥 IMAGENS */
 .postagens-slider-track img {
     width: 100% !important;
-    height: 320px;
     object-fit: cover;
     border-radius: 12px;
 }
@@ -244,7 +317,6 @@
 /* 🔥 VIDEOS */
 .postagens-slider-track video {
     width: 100% !important;
-    height: 320px;
     border-radius: 12px;
     object-fit: cover;
 }
@@ -280,7 +352,6 @@
 .postagens-slide-item {
     width: 100%;
     min-width: 100%;
-    height: 320px;
     object-fit: cover;
     flex-shrink: 0;
     scroll-snap-align: start;
@@ -312,12 +383,122 @@
     cursor: pointer;
 }
 
+/* 🔥 CLASSE TOTALMENTE ISOLADA */
+.FIX_VIDEO {
+    width: 100% !important;
+    height: auto !important;
+
+    max-height: 400px !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    background: #bbbbbb !important;
+
+    display: block !important;
+}
+
+/* =========================
+   PREVIEW MULTI MIDIA
+========================= */
+
+.postagens-preview {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* PRINCIPAL */
+.postagens-preview-main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* SEGUNDO (SOMBRA) */
+.postagens-preview-second {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+    opacity: 0.4;
+    transform: scale(0.96);
+}
+
+/* MIDIA */
+.preview-midia {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    /* 🔥 SEM ZOOM */
+    background: #000;
+
+    border-radius: 12px;
+}
+
+/* OVERLAY +X */
+.postagens-preview-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+
+    z-index: 3;
+    border-radius: 12px;
+}
+
+/* NÃO USA HEIGHT FIXO */
+.preview-wrap {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* overlay */
+.preview-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    border-radius: 12px;
+}
+
 /* IMG / VIDEO */
 .postagens-grid-item img,
 .postagens-grid-item video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    /* 🔥 ESSENCIAL */
+    max-height: 320px;
+    /* controla tamanho */
+    object-fit: contain;
+    /* 🔥 NÃO CORTA */
+    background: #000;
 }
 
 /* =========================
@@ -328,7 +509,17 @@
 }
 
 .postagens-grid.total-1 .postagens-grid-item {
-    height: 320px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    /* 🔥 NÃO FORÇA ALTURA */
+    min-height: 160px;
+    /* mantém visual */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: 12px;
 }
 
 /* =========================
@@ -388,4 +579,291 @@
     font-weight: bold;
     color: #fff;
     z-index: 2;
+}
+
+/* 🔥 CORREÇÃO FULLSCREEN VIDEO */
+video:fullscreen {
+    width: 100vw;
+    min-height: 100dvh;
+    object-fit: contain;
+    /* 🔥 MOSTRA COMPLETO */
+    background: #000;
+}
+
+/* 🔥 PARA CHROME / EDGE */
+video:-webkit-full-screen {
+    width: 100vw;
+    min-height: 100dvh;
+    object-fit: contain;
+    background: #000;
+}
+
+/* 🔥 PARA FIREFOX */
+video:-moz-full-screen {
+    width: 100vw;
+    min-height: 100dvh;
+    object-fit: contain;
+    background: #000;
+}
+
+/* =========================
+   MENU 3 PONTINHOS
+========================= */
+
+.postagens-menu-container {
+    margin-left: auto;
+    position: relative;
+}
+
+.postagens-menu-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.postagens-menu-btn:hover {
+    background: #f1f5f9;
+}
+
+.postagens-menu-box {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 100;
+    min-width: 120px;
+}
+
+.postagens-menu-box button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.postagens-menu-box button:hover {
+    background: #f1f5f9;
+}
+
+/* APAGAR */
+.postagens-menu-box button:last-child {
+    color: #dc2626;
+}
+
+.postagens-menu-box button:last-child:hover {
+    background: #fee2e2;
+}
+
+/* =========================
+   EDIÇÃO POST
+========================= */
+
+.postagens-editar-box {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.postagens-editar-box textarea {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+}
+
+.postagens-editar-box textarea:focus {
+    border-color: #2563eb;
+}
+
+.postagens-editar-box button {
+    align-self: flex-end;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.postagens-editar-box button:hover {
+    background: #1d4ed8;
+}
+
+.postagens-arquivos {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 🔥 REGRA PRINCIPAL */
+.postagens-midia {
+    width: 100%;
+    max-height: 400px;
+
+    object-fit: contain;
+    /* 🔥 NÃO CORTA, NÃO ZOOMA */
+    object-position: center;
+
+    display: block;
+    background: #000;
+    border-radius: 12px;
+}
+
+/* 🔥 REMOVE QUALQUER ZOOM FORÇADO */
+.postagens-midia img,
+.postagens-midia video {
+    width: 100%;
+    height: auto;
+}
+
+/* 🔥 FULLSCREEN CORRETO */
+video:fullscreen {
+    width: 100vw;
+    min-height: 100dvh;
+    object-fit: contain;
+    background: #000;
+}
+
+/* =========================
+   RESPONSIVO GERAL
+========================= */
+
+/* 🔥 MOBILE (até 600px) */
+@media (max-width: 600px) {
+
+    .postagens-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .postagens-card {
+        padding: 12px;
+        border-radius: 12px;
+        margin-bottom: 18px;
+    }
+
+    .postagens-topo {
+        gap: 10px;
+    }
+
+    .postagens-nome {
+        font-size: 16px !important;
+    }
+
+    .postagens-conteudoo {
+        font-size: 14px !important;
+        line-height: 1.4;
+    }
+
+    .postagens-foto,
+    .postagens-foto-placeholder {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* 🔥 MÍDIA AJUSTADA */
+    .FIX_VIDEO {
+        max-height: 260px !important;
+    }
+
+    .postagens-grid-item img,
+    .postagens-grid-item video {
+        max-height: 220px;
+    }
+
+    .preview-overlay {
+        font-size: 22px;
+    }
+
+    .postagens-menu-box {
+        right: 0;
+        top: 35px;
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .postagens-container {
+        max-width: 700px;
+        padding: 15px;
+    }
+
+    .postagens-card {
+        padding: 14px;
+    }
+
+    .postagens-nome {
+        font-size: 18px;
+    }
+
+    .postagens-conteudoo {
+        font-size: 15px;
+    }
+
+    .FIX_VIDEO {
+        max-height: 320px !important;
+    }
+}
+
+
+/* =========================
+   DESKTOP (acima de 900px)
+========================= */
+@media (min-width: 901px) {
+
+    .postagens-container {
+        max-width: 750px;
+        padding: 20px;
+    }
+
+    .postagens-card {
+        padding: 18px;
+    }
+
+    .postagens-nome {
+        font-size: 20px;
+    }
+
+    .postagens-conteudoo {
+        font-size: 16px;
+    }
+
+    .FIX_VIDEO {
+        max-height: 400px !important;
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES (1400px+)
+========================= */
+@media (min-width: 1400px) {
+
+    .postagens-container {
+        max-width: 850px;
+    }
+
+    .postagens-card {
+        border-radius: 20px;
+    }
 }

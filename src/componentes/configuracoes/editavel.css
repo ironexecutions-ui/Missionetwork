@@ -1,0 +1,138 @@
+.cfg-editable-container {
+    margin-bottom: 15px;
+}
+
+.cfg-editable-label {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.cfg-editable-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+
+    /* =========================
+   CONTAINER
+========================= */
+    .edit-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    /* =========================
+   LABEL
+========================= */
+    .edit-label {
+        font-size: 12px;
+        font-weight: 600;
+
+        color: #64748b;
+    }
+
+    /* =========================
+   DISPLAY (modo leitura)
+========================= */
+    .edit-display {
+        font-size: 14px;
+        color: #0f172a;
+
+        padding: 8px 10px;
+
+        border-radius: 8px;
+
+        background: #f8fafc;
+
+        border: 1px solid transparent;
+
+        cursor: pointer;
+
+        transition: all 0.2s ease;
+    }
+
+    .edit-display:hover {
+        background: #eef2ff;
+        border-color: #6366f1;
+    }
+
+    /* =========================
+   INPUT
+========================= */
+    .edit-input {
+        width: 100%;
+
+        padding: 8px 10px;
+
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+
+        font-size: 14px;
+        color: #0f172a;
+
+        background: #ffffff;
+
+        outline: none;
+
+        transition: 0.2s;
+    }
+
+    .edit-input:focus {
+        border-color: #6366f1;
+
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+    }
+
+    /* =========================
+   SELECT
+========================= */
+    .edit-select {
+        width: 100%;
+
+        padding: 8px 10px;
+
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+
+        font-size: 14px;
+
+        background: #ffffff;
+
+        cursor: pointer;
+
+        outline: none;
+
+        transition: 0.2s;
+    }
+
+    .edit-select:focus {
+        border-color: #6366f1;
+
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+    }
+
+    padding: 10px;
+    cursor: pointer;
+}
+
+.cfg-editable-text {
+    color: #fff;
+}
+
+.cfg-editable-placeholder {
+    color: #64748b;
+}
+
+.cfg-editable-edit {
+    font-size: 12px;
+    color: #2563eb;
+}
+
+.cfg-editable-input {
+    width: 100%;
+}

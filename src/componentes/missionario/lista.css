@@ -1,136 +1,370 @@
-/* 🔥 COLUNA */
+/* =========================
+   COLUNA ESQUERDA
+========================= */
 .coluna-esquerda {
-    flex: 0 0 20%;
-    padding: 18px 14px;
-    border-right: 1px solid #e2e8f0;
+    width: 95%;
+    height: 100%;
+    background-color: #fcfcfc;
     display: flex;
+    border-radius: 20px;
     flex-direction: column;
+    padding: 20px;
+    gap: 18px;
 }
 
-/* 🔥 FOTO REAL */
-.avatar-img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e2e8f0;
+/* =========================
+   LOGO
+========================= */
+/* base suave pra transição */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: all 0.25s ease;
 }
 
-/* 🔥 TÍTULO */
-.titulo-coluna {
-    font-size: 16px;
-    font-weight: 700;
+/* hover principal */
+.logo-container:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* imagem */
+.logo-img {
+    width: 44px;
+    height: 44px;
+
+    object-fit: contain;
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
+}
+
+/* efeito na imagem */
+.logo-container:hover .logo-img {
+    transform: rotate(-6deg) scale(1.08);
+
+    box-shadow:
+        0 8px 20px rgba(99, 102, 241, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* texto */
+.logo-texto {
+    font-size: 26px;
+    font-weight: 600;
+
     color: #0f172a;
-    margin-bottom: 12px;
+
+    transition: all 0.3s ease;
 }
 
-/* 🔥 LISTA */
+/* efeito no texto */
+.logo-container:hover .logo-texto {
+    color: #4f46e5;
+
+    text-shadow:
+        0 2px 8px rgba(99, 102, 241, 0.25);
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.titulo-coluna {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #64748b;
+
+    margin: 0;
+}
+
+/* =========================
+   LISTA
+========================= */
 .lista-missionarios {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+
     overflow-y: auto;
+    padding-right: 4px;
 }
 
-/* 🔥 ITEM */
+/* =========================
+   ITEM
+========================= */
 .item-missionario {
     width: 100%;
-    border: 1px solid transparent;
-    cursor: pointer;
+
+    border: none;
+    background: transparent;
+
     border-radius: 12px;
-    padding: 8px;
-    transition: 0.2s;
+    padding: 10px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
 }
 
-/* 🔥 CONTEÚDO */
+/* hover */
+.item-missionario:hover {
+    background: #f8fafc;
+}
+
+/* ativo */
+.item-missionario.ativo {
+    background: linear-gradient(180deg, #eef2ff, #ffffff);
+    border: 1px solid #6366f1;
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
 .item-conteudo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* 🔥 AVATAR */
+/* =========================
+   AVATAR IMG
+========================= */
+.avatar-img {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid #ffffff;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================
+   AVATAR FAKE
+========================= */
 .avatar-fake {
     width: 38px;
     height: 38px;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
     border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    color: white;
-    font-weight: 700;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+
+    color: #ffffff;
+    font-weight: 600;
     font-size: 14px;
 }
 
-/* 🔥 NOME */
+/* =========================
+   NOME
+========================= */
 .nome-missionario {
-    color: #1e293b;
     font-size: 14px;
     font-weight: 500;
+
+    color: #0f172a;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* 🔥 HOVER */
-.item-missionario:hover {
-    background: #e2e8f0;
+/* =========================
+   VAZIO
+========================= */
+.lista-vazio {
+    font-size: 13px;
+    color: #94a3b8;
+
+    text-align: center;
+    padding: 20px 10px;
 }
 
-/* 🔥 ATIVO */
-.item-missionario.ativo {
-    background: #2563eb;
-    border-color: #2563eb;
-}
-
-.item-missionario.ativo .nome-missionario {
-    color: #ffffff;
-}
-
-.item-missionario.ativo .avatar-fake {
-    background: #ffffff;
-    color: #2563eb;
-}
-
-/* 🔥 SCROLL BONITO */
+/* =========================
+   SCROLL
+========================= */
 .lista-missionarios::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 .lista-missionarios::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #e2e8f0;
     border-radius: 10px;
 }
 
-/* 🔥 HEADER LOGO */
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    text-decoration: none;
-    margin-bottom: 18px;
-
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e2e8f0;
+.lista-missionarios::-webkit-scrollbar-thumb:hover {
+    background: #cbd5f5;
 }
 
-/* 🔥 IMAGEM */
-.logo-img {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-    border-radius: 12px;
+/* =========================
+   UPGRADES SIDEBAR
+========================= */
+
+/* posição base */
+.item-missionario {
+    position: relative;
+
+    /* animação entrada */
+    opacity: 0;
+    transform: translateY(6px);
+    animation: aparecerItem 0.3s ease forwards;
 }
 
-/* 🔥 TEXTO */
-.logo-texto {
-    font-size: 16px;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: 0.3px;
+/* animação */
+@keyframes aparecerItem {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* 🔥 HOVER */
-.logo-container:hover .logo-texto {
-    color: #2563eb;
+/* hover melhorado */
+.item-missionario:hover {
+    background: #f1f5f9;
+    transform: translateX(4px);
+}
+
+/* clique */
+.item-missionario:active {
+    transform: scale(0.97);
+}
+
+/* ativo com barra lateral */
+.item-missionario.ativo::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+
+    width: 4px;
+    border-radius: 4px;
+
+    background: #6366f1;
+}
+
+/* nome não quebrar layout */
+.nome-missionario {
+    flex: 1;
+}
+
+/* scroll moderno */
+.lista-missionarios::-webkit-scrollbar {
+    width: 4px;
+}
+
+.lista-missionarios::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.3);
+}
+
+.lista-missionarios::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.6);
+}
+
+/* avatar com status */
+.avatar-img,
+.avatar-fake {
+    position: relative;
+}
+
+.avatar-img::after,
+.avatar-fake::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+    border: 2px solid #fff;
+
+    background: #22c55e;
+}
+
+/* status pendente */
+.status-pendente::after {
+    background: #f59e0b;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .logo-texto {
+        font-size: 20px;
+    }
+
+    .avatar-img,
+    .avatar-fake {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nome-missionario {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .coluna-esquerda {
+        height: auto;
+        padding: 12px;
+    }
+
+    /* 🔥 MANTÉM VERTICAL */
+    .lista-missionarios {
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .item-missionario {
+        padding: 10px;
+    }
+
+    .item-conteudo {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
+
+    .nome-missionario {
+        white-space: nowrap;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .logo-texto {
+        font-size: 16px;
+    }
+
+    .avatar-img,
+    .avatar-fake {
+        width: 32px;
+        height: 32px;
+    }
+
 }

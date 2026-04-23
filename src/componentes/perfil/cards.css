@@ -1,0 +1,466 @@
+/* =========================
+   CARD POST
+========================= */
+.postagens-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   HEADER
+========================= */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-user-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+    background-color: #f3f4f6;
+
+    display: block;
+}
+
+.post-acoes {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+.post-acoes button {
+    margin-left: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #374151;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.post-acoes button:hover {
+    background: #f3f4f6;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.postagens-conteudo {
+    margin-top: 10px;
+    font-size: 24px !important;
+    color: #111827;
+}
+
+/* CONTAINER */
+.post-acoes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* BASE BOTÕES */
+.post-acoes button {
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #374151;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* HOVER GERAL */
+.post-acoes button:hover {
+    background: #f3f4f6;
+}
+
+/* 🔵 EDITAR */
+.post-acoes button:first-child {
+    border-color: #dbeafe;
+    color: #2563eb;
+}
+
+.post-acoes button:first-child:hover {
+    background: #eff6ff;
+}
+
+/* 🔴 APAGAR */
+.post-acoes button:last-child {
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.post-acoes button:last-child:hover {
+    background: #fee2e2;
+}
+
+/* CLICK (efeito pressionado) */
+.post-acoes button:active {
+    transform: scale(0.96);
+}
+
+/* =========================
+   GRID
+========================= */
+.post-grid {
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+    position: relative;
+}
+
+/* 1 */
+.post-grid-1 {
+    grid-template-columns: 1fr;
+}
+
+/* 2 */
+.post-grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* 3 */
+.post-grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* 4 */
+.post-grid-4 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.post-grid img,
+.post-grid video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #000;
+}
+
+/* OVERLAY */
+.post-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+}
+
+/* =========================
+   COMENTÁRIOS
+========================= */
+.comentarios-area {
+    margin-top: 12px;
+}
+
+.comentario-item {
+    margin-bottom: 8px;
+}
+
+.comentario-item strong {
+    color: #111827;
+    font-size: 13px;
+}
+
+.comentario-item p {
+    font-size: 13px;
+    color: #4b5563;
+}
+
+.ver-mais {
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* AREA DE EDIÇÃO */
+.post-editar-area {
+    margin-top: 10px;
+}
+
+/* TEXTAREA */
+.post-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+
+    font-size: 14px;
+    resize: none;
+}
+
+/* BOTÕES */
+.post-editar-botoes {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.post-editar-botoes button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.post-editar-botoes button:first-child {
+    background: #2563eb;
+    color: white;
+}
+
+.post-editar-botoes button:last-child {
+    background: #e5e7eb;
+}
+
+/* =========================
+   MELHORIAS VISUAIS (SAFE)
+   NÃO CONFLITA
+========================= */
+
+/* card mais vivo */
+.postagens-card {
+    transition: all 0.25s ease;
+}
+
+.postagens-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* header mais alinhado */
+.post-header {
+    margin-bottom: 8px;
+}
+
+/* imagem usuário mais interativa */
+.post-user-img {
+    transition: all 0.25s ease;
+}
+
+.post-user-img:hover {
+    transform: scale(1.05);
+}
+
+/* botões com feedback melhor */
+.post-acoes button {
+    transition: all 0.2s ease;
+}
+
+.post-acoes button:hover {
+    transform: translateY(-1px);
+}
+
+/* clique mais natural */
+.post-acoes button:active {
+    transform: scale(0.95);
+}
+
+/* texto mais confortável */
+.postagens-conteudo {
+    line-height: 1.5;
+}
+
+/* mídia mais suave */
+.post-grid img,
+.post-grid video {
+    transition: transform 0.3s ease;
+}
+
+.post-grid img:hover,
+.post-grid video:hover {
+    transform: scale(1.02);
+}
+
+/* overlay mais elegante */
+.post-overlay {
+    backdrop-filter: blur(2px);
+}
+
+/* comentários mais organizados */
+.comentario-item {
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.comentario-item:hover {
+    background: #f9fafb;
+}
+
+/* botão ver mais mais elegante */
+.ver-mais {
+    margin-top: 5px;
+    transition: 0.2s;
+}
+
+.ver-mais:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+/* textarea foco melhor */
+.post-textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* botões edição mais vivos */
+.post-editar-botoes button {
+    transition: all 0.2s ease;
+}
+
+.post-editar-botoes button:hover {
+    transform: translateY(-1px);
+}
+
+.post-editar-botoes button:active {
+    transform: scale(0.95);
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .postagens-card {
+        padding: 14px;
+    }
+
+    .postagens-conteudo {
+        font-size: 20px !important;
+    }
+
+    .post-grid img,
+    .post-grid video {
+        height: 180px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 800px) {
+
+    .postagens-card {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .postagens-conteudo {
+        font-size: 18px !important;
+    }
+
+    /* 🔥 BOTÕES */
+    .post-acoes {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .post-acoes button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    /* 🔥 MÍDIA */
+    .post-grid img,
+    .post-grid video {
+        height: 160px;
+    }
+
+    /* 🔥 COMENTÁRIOS */
+    .comentario-item strong {
+        font-size: 12px;
+    }
+
+    .comentario-item p {
+        font-size: 12px;
+    }
+
+    .ver-mais {
+        font-size: 12px;
+    }
+
+    /* 🔥 TEXTAREA */
+    .post-textarea {
+        font-size: 13px;
+        min-height: 70px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .postagens-card {
+        padding: 10px;
+    }
+
+    .postagens-conteudo {
+        font-size: 16px !important;
+    }
+
+    .post-grid img,
+    .post-grid video {
+        height: 140px;
+    }
+
+    .post-acoes button {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+
+    .comentario-item {
+        padding: 4px 6px;
+    }
+
+}

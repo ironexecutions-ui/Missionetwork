@@ -1,0 +1,208 @@
+.aviso-container {
+    width: 100%;
+    color: #1a1a1a;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+    padding: 40px;
+
+    border: 1px solid #e8e8e8;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.03);
+
+    transition: all 0.25s ease;
+}
+
+/* leve interação */
+.aviso-container:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.9),
+        0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* =========================
+   TITULO
+========================= */
+.aviso-titulo {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    color: #111;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.aviso-texto {
+    font-size: 16px;
+    line-height: 1.6;
+
+    color: #444;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   BLOCO
+========================= */
+.aviso-bloco {
+    background: #f8f8f8;
+
+    padding: 25px;
+    border-radius: 16px;
+
+    border: 1px solid #e5e5e5;
+
+    margin-bottom: 25px;
+}
+
+/* =========================
+   SUBTITULO
+========================= */
+.aviso-subtitulo {
+    font-size: 20px;
+    margin-bottom: 15px;
+
+    color: #b88a2a;
+}
+
+/* =========================
+   LISTA
+========================= */
+.aviso-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.aviso-lista li {
+    margin-bottom: 12px;
+    font-size: 15px;
+
+    color: #555;
+
+    position: relative;
+    padding-left: 20px;
+}
+
+/* bolinha */
+.aviso-lista li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+    background: #c89b3c;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+.aviso-rodape {
+    font-size: 14px;
+    color: #777;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 900px) {
+
+    .aviso-container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .aviso-titulo {
+        font-size: 28px;
+    }
+
+    .aviso-texto {
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+
+    .aviso-container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 22px;
+        border-radius: 16px;
+    }
+
+    .aviso-titulo {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .aviso-texto {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .aviso-bloco {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .aviso-subtitulo {
+        font-size: 18px;
+    }
+
+    .aviso-lista li {
+        font-size: 14px;
+        padding-left: 18px;
+    }
+
+    .aviso-rodape {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 400px) {
+
+    .aviso-container {
+        padding: 16px;
+    }
+
+    .aviso-titulo {
+        font-size: 20px;
+    }
+
+    .aviso-texto {
+        font-size: 13px;
+    }
+
+    .aviso-subtitulo {
+        font-size: 16px;
+    }
+
+    .aviso-lista li {
+        font-size: 13px;
+    }
+
+    .aviso-rodape {
+        font-size: 12px;
+    }
+
+}

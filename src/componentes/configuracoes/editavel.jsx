@@ -36,15 +36,16 @@ export default function EditableField({ label, value, onSave, sexo }) {
         : ["Solteira", "Casada", "Viúva"];
 
     return (
-        <div style={{ marginBottom: 15 }}>
+        <div className="edit-field">
 
-            <label>{label}</label>
+            <label className="edit-label">{label}</label>
 
             {editando ? (
 
                 label === "Sexo" || label === "Estado civil" ? (
 
                     <select
+                        className="edit-select"
                         value={valor}
                         onChange={(e) => {
                             setValor(e.target.value);
@@ -59,6 +60,7 @@ export default function EditableField({ label, value, onSave, sexo }) {
 
                 ) : (
                     <input
+                        className="edit-input"
                         value={valor}
                         onChange={handleChange}
                         onBlur={salvar}
@@ -67,7 +69,10 @@ export default function EditableField({ label, value, onSave, sexo }) {
                 )
 
             ) : (
-                <div onClick={() => setEditando(true)} style={{ cursor: "pointer" }}>
+                <div
+                    className="edit-display"
+                    onClick={() => setEditando(true)}
+                >
                     {value || "Clique para editar"}
                 </div>
             )}

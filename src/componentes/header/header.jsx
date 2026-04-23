@@ -1,38 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
-import logo from "../../logo.png";
-//import
+import logo from "../../icon.png";
+
 export default function Header() {
 
     const navigate = useNavigate();
 
-    const irPerfil = () => {
-        const user = localStorage.getItem("usuario");
+    const [logado, setLogado] = useState(false);
 
-        if (!user) {
+    useEffect(() => {
+        const user = localStorage.getItem("usuario");
+        setLogado(!!user);
+    }, []);
+
+    const irPerfil = () => {
+        if (!logado) {
             navigate("/perfil");
         } else {
             navigate("/perfilusuario");
         }
     };
+    const [esconderLogo, setEsconderLogo] = useState(false);
+
 
     return (
         <header className="hdr-container-geral">
 
-            {/* 🔥 ESQUERDA */}
-            <div className="hdr-area-esquerda">
+            {/* ESQUERDA (CLICÁVEL) */}
+            <div
+                className="hdr-area-esquerda"
+                onClick={() => navigate("/")}
+            >
                 <img
                     src={logo}
-                    alt="logo"
-                    className="hdr-logo-imagem"
+                    className={`hdr-logo-imagem ${esconderLogo ? "logo-hidden" : ""}`}
                 />
                 <h1 className="hdr-titulo-principal">
                     MissioNetwork
                 </h1>
             </div>
 
-            {/* 🔥 DIREITA */}
+            {/* DIREITA (SOME NO MOBILE) */}
             <div className="hdr-area-direita">
 
                 <button
@@ -42,27 +51,30 @@ export default function Header() {
                     Perfil
                 </button>
 
-                <button
-                    className="hdr-btn-nav hdr-btn-missionario"
-                    onClick={() => navigate("/meu-missionario/0")}
-                >
-                    Missionário
-                </button>
+                {logado && (
+                    <>
+                        <button
+                            className="hdr-btn-nav hdr-btn-missionario"
+                            onClick={() => navigate("/meu-missionario/0")}
+                        >
+                            Missionário
+                        </button>
 
-                <button
-                    className="hdr-btn-nav hdr-btn-direcao"
-                    onClick={() => navigate("/direcao")}
-                >
-                    Direção
-                </button>
+                        <button
+                            className="hdr-btn-nav hdr-btn-direcao"
+                            onClick={() => navigate("/direcao")}
+                        >
+                            Direção
+                        </button>
 
-                {/* 🔥 NOVO BOTÃO CONFIG */}
-                <button
-                    className="hdr-btn-nav hdr-btn-config"
-                    onClick={() => navigate("/config")}
-                >
-                    Configurações
-                </button>
+                        <button
+                            className="hdr-btn-nav hdr-btn-config"
+                            onClick={() => navigate("/config")}
+                        >
+                            Configurações
+                        </button>
+                    </>
+                )}
 
             </div>
 

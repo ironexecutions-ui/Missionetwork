@@ -1,0 +1,444 @@
+/* =========================
+   PERFIL
+========================= */
+.direcao-perfil {
+    background: #ffffff;
+
+    border-radius: 18px;
+    padding: 22px;
+
+    border: 1px solid #f1f5f9;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    text-align: center;
+
+    transition: all 0.25s ease;
+}
+
+.direcao-perfil:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 16px 32px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   FOTO
+========================= */
+.direcao-foto {
+    width: 500px;
+    height: 210px;
+
+    object-fit: cover;
+
+    cursor: pointer;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.3s ease;
+}
+
+/* hover foto */
+.direcao-foto:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 10px 22px rgba(99, 102, 241, 0.35),
+        0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   NOME
+========================= */
+.direcao-nome {
+    font-size: 48px;
+    font-weight: 700;
+
+    color: #0f172a;
+
+    margin: 6px 0 0;
+}
+
+/* =========================
+   CARGO
+========================= */
+.direcao-cargo {
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #6366f1;
+
+    margin: 0;
+}
+
+/* =========================
+   DIVISOR
+========================= */
+.direcao-divider {
+    width: 60%;
+    height: 1px;
+
+    background: #e2e8f0;
+
+    margin: 6px 0;
+}
+
+/* =========================
+   LABELS
+========================= */
+.direcao-label {
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #64748b;
+
+    margin-top: 6px;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.direcao-texto {
+    font-size: 14px;
+    color: #334155;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+/* =========================
+   LINKS
+========================= */
+.direcao-link {
+    color: #6366f1;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.direcao-link:hover {
+    color: #4f46e5;
+
+    text-decoration: underline;
+}
+
+/* =========================
+   BORDA GRADIENTE PREMIUM
+========================= */
+.direcao-perfil {
+    position: relative;
+    overflow: hidden;
+}
+
+.direcao-perfil::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 18px;
+    padding: 1px;
+
+    background: linear-gradient(135deg, #6366f1, transparent, #6366f1);
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+}
+
+/* =========================
+   FOTO COM ANEL ANIMADO
+========================= */
+.direcao-foto {
+    position: relative;
+}
+
+.direcao-foto::after {
+    content: "";
+
+    position: absolute;
+    inset: -4px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #6366f1, #4f46e5, #6366f1);
+
+    z-index: -1;
+
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.direcao-foto:hover::after {
+    opacity: 1;
+}
+
+/* =========================
+   NOME COM DESTAQUE
+========================= */
+.direcao-nome {
+    position: relative;
+}
+
+.direcao-nome::after {
+    content: "";
+
+    width: 0%;
+    height: 2px;
+
+    background: #6366f1;
+
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+
+    transform: translateX(-50%);
+    transition: 0.3s;
+}
+
+.direcao-perfil:hover .direcao-nome::after {
+    width: 40%;
+}
+
+/* =========================
+   LABEL COM BARRA LATERAL
+========================= */
+.direcao-label {
+    position: relative;
+    padding-left: 10px;
+}
+
+.direcao-label::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 4px;
+    height: 60%;
+
+    border-radius: 4px;
+
+    background: #6366f1;
+}
+
+/* =========================
+   TEXTO COM APARECER SUAVE
+========================= */
+.direcao-texto {
+    opacity: 0;
+    transform: translateY(6px);
+
+    animation: textoAparecer 0.4s ease forwards;
+}
+
+@keyframes textoAparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   LINK COM LINHA ANIMADA
+========================= */
+.direcao-link {
+    position: relative;
+}
+
+.direcao-link::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #6366f1;
+
+    transition: 0.3s;
+}
+
+.direcao-link:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   HOVER GERAL MAIS FORTE
+========================= */
+.direcao-perfil:hover {
+    transform: translateY(-6px) scale(1.01);
+}
+
+/* =========================
+   RESPONSIVO COMPLETO PERFIL DIREÇÃO
+========================= */
+
+/* 🔥 BASE AJUSTES */
+.direcao-perfil {
+    box-sizing: border-box;
+}
+
+/* =========================
+   MOBILE PEQUENO (até 400px)
+========================= */
+@media (max-width: 400px) {
+
+    .direcao-perfil {
+        padding: 14px;
+        border-radius: 14px;
+        gap: 10px;
+    }
+
+    /* 🔥 FOTO */
+    .direcao-foto {
+        width: 100%;
+        height: 160px;
+        border-radius: 12px;
+    }
+
+    /* 🔥 REMOVE ZOOM EXAGERADO */
+    .direcao-foto:hover {
+        transform: scale(1.02);
+    }
+
+    /* 🔥 NOME */
+    .direcao-nome {
+        font-size: 22px;
+    }
+
+    /* 🔥 CARGO */
+    .direcao-cargo {
+        font-size: 12px;
+    }
+
+    /* 🔥 LABEL */
+    .direcao-label {
+        font-size: 14px;
+    }
+
+    /* 🔥 TEXTO */
+    .direcao-texto {
+        font-size: 13px;
+    }
+
+    .direcao-divider {
+        width: 80%;
+    }
+}
+
+
+/* =========================
+   MOBILE NORMAL (até 600px)
+========================= */
+@media (max-width: 600px) {
+
+    .direcao-perfil {
+        padding: 16px;
+    }
+
+    .direcao-foto {
+        width: 100%;
+        height: 180px;
+    }
+
+    .direcao-nome {
+        font-size: 26px;
+    }
+
+    .direcao-label {
+        font-size: 15px;
+    }
+
+    .direcao-texto {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .direcao-perfil {
+        padding: 18px;
+    }
+
+    .direcao-foto {
+        width: 100%;
+        height: 200px;
+    }
+
+    .direcao-nome {
+        font-size: 32px;
+    }
+
+    .direcao-label {
+        font-size: 16px;
+    }
+}
+
+
+/* =========================
+   DESKTOP (901px+)
+========================= */
+@media (min-width: 901px) {
+
+    .direcao-foto {
+        width: 100%;
+        max-width: 500px;
+        height: 210px;
+    }
+
+    .direcao-nome {
+        font-size: 42px;
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES (1400px+)
+========================= */
+@media (min-width: 1400px) {
+
+    .direcao-perfil {
+        padding: 26px;
+    }
+
+    .direcao-nome {
+        font-size: 52px;
+    }
+
+    .direcao-texto {
+        font-size: 15px;
+    }
+}

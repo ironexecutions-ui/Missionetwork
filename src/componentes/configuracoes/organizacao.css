@@ -1,0 +1,67 @@
+/* =========================
+   CONTAINER
+========================= */
+.org-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.org-header h3 {
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #0f172a;
+}
+
+.org-header p {
+    margin-top: 4px;
+
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* =========================
+   GRID
+========================= */
+.org-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+/* =========================
+   ITEM
+========================= */
+.org-item {
+    background: #ffffff;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.org-item:hover {
+    border-color: #6366f1;
+
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 700px) {
+    .org-grid {
+        grid-template-columns: 1fr;
+    }
+}

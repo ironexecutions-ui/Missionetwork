@@ -1,98 +1,545 @@
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
 .postar-container {
-    background: #fff;
-    border-radius: 16px;
-    padding: 15px;
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(12px);
+
+    border-radius: 18px;
+    padding: 18px;
     margin-bottom: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.06),
+        inset 0 0 10px rgba(255, 255, 255, 0.4);
+
+    transition: 0.3s;
 }
 
-/* 🔥 TEXTAREA */
+.postar-container:hover {
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.08),
+        inset 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+/* =========================
+   TEXTAREA
+========================= */
 .postar-textarea {
-    width: 100%;
-    min-height: 80px;
-    border: none;
+    width: 95%;
+    min-height: 90px;
+
+    border: 1px solid transparent;
     outline: none;
     resize: none;
+
     font-size: 15px;
-    padding: 10px;
-    background: #f9fafb;
-    border-radius: 10px;
+    padding: 12px;
+
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #3b82f6;
+
+    transition: 0.25s;
 }
 
-/* 🔥 MARCADOS */
+.postar-textarea:focus {
+    border: 1px solid #010b1c;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* =========================
+   MARCADOS
+========================= */
 .postar-marcados {
-    margin-top: 10px;
+    margin-top: 12px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+
+    gap: 8px;
 }
 
 .postar-marcados span {
-    background: #dbeafe;
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
     color: #1d4ed8;
-    padding: 4px 8px;
-    border-radius: 8px;
+
+    padding: 5px 10px;
+    border-radius: 10px;
+
     font-size: 12px;
+    font-weight: 500;
+
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
-/* 🔥 BUSCA */
+.postar-marcados span:hover {
+    background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+    transform: translateY(-1px);
+}
+
+/* =========================
+   BUSCA
+========================= */
 .postar-busca {
-    margin-top: 10px;
-    width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+    margin-top: 12px;
+    width: 95%;
+    border: 1px solid #3b82f6;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    background: #fff;
+
+    transition: 0.2s;
 }
 
-/* 🔥 LISTA */
+.postar-busca:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* =========================
+   LISTA USUÁRIOS
+========================= */
 .postar-lista {
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    max-height: 150px;
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+    max-height: 180px;
     overflow-y: auto;
-    margin-top: 5px;
+
+    margin-top: 6px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .postar-lista div {
-    padding: 8px;
+    padding: 10px 12px;
     cursor: pointer;
+    font-size: 14px;
+    transition: 0.15s;
 }
 
 .postar-lista div:hover {
     background: #f1f5f9;
+    padding-left: 16px;
 }
 
-/* 🔥 PREVIEW */
+/* =========================
+   UPLOAD PROFISSIONAL
+========================= */
+.postar-input-hidden {
+    display: none;
+}
+
+.postar-upload-area {
+    margin-top: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 120px;
+
+    border-radius: 14px;
+
+    border: 2px dashed #cbd5f5;
+    background: linear-gradient(145deg, #f8fafc, #eef2ff);
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.postar-upload-area:hover {
+    border-color: #3b82f6;
+    background: linear-gradient(145deg, #eef2ff, #e0e7ff);
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}
+
+.postar-upload-area::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.postar-upload-area:hover::before {
+    opacity: 1;
+}
+
+.postar-upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+}
+
+.postar-upload-icon {
+    font-size: 28px;
+    color: #3b82f6;
+    transition: 0.3s;
+}
+
+.postar-upload-area:hover .postar-upload-icon {
+    transform: scale(1.1);
+}
+
+.postar-upload-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.postar-upload-sub {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* =========================
+   PREVIEW
+========================= */
 .postar-preview {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 12px;
     flex-wrap: wrap;
 }
 
 .postar-preview img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
+    width: 90px;
+    height: 90px;
+
+    border-radius: 12px;
     object-fit: cover;
+
+    transition: 0.25s;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* 🔥 BOTÃO */
+.postar-preview img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   BOTÃO
+========================= */
 .postar-container button {
-    margin-top: 12px;
+    margin-top: 14px;
     width: 100%;
-    padding: 10px;
-    background: #2563eb;
+    padding: 12px;
+
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
     color: #fff;
+
     border: none;
-    border-radius: 10px;
-    font-weight: bold;
+    border-radius: 12px;
+
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
     cursor: pointer;
-    transition: 0.2s;
+
+    transition: 0.25s;
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
 .postar-container button:hover {
-    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+}
+
+.postar-container button:active {
+    transform: scale(0.98);
+}
+
+.postar-container button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* =========================
+   SCROLL
+========================= */
+.postar-lista::-webkit-scrollbar {
+    width: 6px;
+}
+
+.postar-lista::-webkit-scrollbar-thumb {
+    background: #cbd5f5;
+    border-radius: 10px;
+}
+
+/* ÁREA NORMAL */
+.postar-upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 16px;
+    padding: 25px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fafafa;
+
+    transition: all 0.3s ease;
+}
+
+/* CONTEÚDO INTERNO */
+.postar-upload-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+.postar-upload-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.postar-upload-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.postar-upload-sub {
+    font-size: 13px;
+    color: #888;
+}
+
+/* 🔥 EFEITO AO PASSAR MOUSE */
+.postar-upload-area:hover {
+    border-color: #caa500;
+    background: #fffbea;
+}
+
+/* 🔥 ESTADO ARRASTANDO */
+.postar-upload-area.drag-ativo {
+    border-color: #ff9800;
+    background: linear-gradient(135deg, #fff3cd, #ffe08a);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 152, 0, 0.2),
+        0 10px 25px rgba(255, 152, 0, 0.25);
+
+    transform: scale(1.02);
+}
+
+/* ÍCONE ANIMADO */
+.postar-upload-area.drag-ativo .postar-upload-icon {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* TEXTO MAIS FORTE */
+.postar-upload-area.drag-ativo .postar-upload-title {
+    color: #e65100;
+}
+
+/* 🔥 ANIMAÇÃO PULSO */
+@keyframes pulseUpload {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 152, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+    }
+}
+
+.postar-upload-area.drag-ativo {
+    animation: pulseUpload 1.2s infinite;
+}
+
+/* =========================
+   MOBILE PEQUENO (até 400px)
+========================= */
+@media (max-width: 400px) {
+
+    .postar-container {
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    .postar-textarea {
+        width: 100%;
+        font-size: 13px;
+        min-height: 70px;
+    }
+
+    .postar-busca {
+        width: 100%;
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .postar-upload-area {
+        height: 90px;
+        padding: 15px;
+    }
+
+    .postar-upload-icon {
+        font-size: 24px;
+    }
+
+    .postar-upload-title {
+        font-size: 13px;
+    }
+
+    .postar-upload-sub {
+        font-size: 11px;
+    }
+
+    .postar-preview img,
+    .postar-preview video {
+        width: 70px;
+        height: 70px;
+    }
+
+    .postar-container button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .postar-marcados span {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .postar-textarea,
+    .postar-busca {
+        width: 82% !important;
+    }
+}
+
+
+/* =========================
+   MOBILE NORMAL (até 600px)
+========================= */
+@media (max-width: 600px) {
+
+    .postar-container {
+        padding: 14px;
+    }
+
+    .postar-textarea,
+    .postar-busca {
+        width: 92%;
+    }
+
+    .postar-upload-area {
+        height: 100px;
+    }
+
+    .postar-preview img,
+    .postar-preview video {
+        width: 80px;
+        height: 80px;
+    }
+
+    .postar-lista {
+        max-height: 150px;
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .postar-container {
+        padding: 16px;
+    }
+
+    .postar-textarea {
+        font-size: 14px;
+    }
+
+    .postar-upload-area {
+        height: 110px;
+    }
+
+    .postar-preview img,
+    .postar-preview video {
+        width: 85px;
+        height: 85px;
+    }
+}
+
+
+/* =========================
+   DESKTOP (901px+)
+========================= */
+@media (min-width: 901px) {
+
+    .postar-container {
+        max-width: 650px;
+        margin: auto;
+    }
+
+    .postar-upload-area {
+        height: 120px;
+    }
+
+    .postar-preview img,
+    .postar-preview video {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES (1400px+)
+========================= */
+@media (min-width: 1400px) {
+
+    .postar-container {
+        max-width: 720px;
+        padding: 22px;
+    }
+}
+
+/* 🔥 GARANTE QUE VIDEO NÃO QUEBRA */
+.postar-preview video {
+    width: 90px;
+    height: 90px;
+
+    object-fit: cover;
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔥 evita cortar layout no mobile */
+.postar-container {
+    width: 100%;
+    box-sizing: border-box;
 }

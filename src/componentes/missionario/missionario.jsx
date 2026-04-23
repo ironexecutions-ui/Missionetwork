@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
 import "./missionario.css";
-
+import BottomNav from "../header/nav";
 import ListaMissionarios from "./lista";
 import FeedMissionario from "./feed";
 import BuscaMissionario from "./busca";
 import { useParams } from "react-router-dom";
-
+import Header from "../header/header";
 export default function Missionario() {
 
     const [missionarios, setMissionarios] = useState([]);
@@ -14,9 +14,28 @@ export default function Missionario() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const { id } = useParams(); // 🔥 vem da URL
+    const [abaAtiva, setAbaAtiva] = useState("feed");
+    const [mobile, setMobile] = useState(false);
 
-    // 🔥 CARREGAR MISSIONÁRIOS
+    const { id } = useParams();
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+    useEffect(() => {
+        const handleResize = () => {
+            setMobile(window.innerWidth < 1000);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    /* =========================
+       CARREGAR MISSIONÁRIOS
+    ========================= */
     const carregarMissionarios = async () => {
         try {
             const userLocal = localStorage.getItem("usuario");
@@ -29,20 +48,17 @@ export default function Missionario() {
 
             setMissionarios(data);
 
-            // 🔥 se tem id na URL → usa ele
             if (id) {
                 const encontrado = data.find(
                     m => Number(m.missionario_id || m.id) === Number(id)
                 );
 
                 if (encontrado) {
-                    console.log("ENCONTRADO:", encontrado); // 👈 debug
                     setMissionarioAtivo(encontrado);
                     return;
                 }
             }
 
-            // 🔥 fallback
             if (data.length > 0) {
                 setMissionarioAtivo(data[0]);
             }
@@ -52,7 +68,9 @@ export default function Missionario() {
         }
     };
 
-    // 🔥 CARREGAR POSTS
+    /* =========================
+       CARREGAR POSTS
+    ========================= */
     const carregarPosts = async () => {
 
         if (!missionarioAtivo || !missionarioAtivo.email || missionarioAtivo.auth === 0) {
@@ -77,38 +95,97 @@ export default function Missionario() {
         }
     };
 
-    // 🔥 QUANDO CARREGA OU MUDA ID
     useEffect(() => {
         carregarMissionarios();
     }, [id]);
 
-    // 🔥 QUANDO MUDA ATIVO
     useEffect(() => {
         if (missionarioAtivo) {
             carregarPosts();
         }
     }, [missionarioAtivo]);
 
+    /* =========================
+       RENDER
+    ========================= */
     return (
-        <div className="layout-missionario">
+        <div className="missionario-container">
+            <Header />
+            {/* HEADER MOBILE */}
+            {mobile && (
+                <div className="missionario-header">
 
-            {/* 🔥 ESQUERDA */}
-            <ListaMissionarios
-                missionarios={missionarios}
-                ativo={missionarioAtivo}
-                setAtivo={setMissionarioAtivo}
-            />
+                    <div className="missionario-tabs">
+                        <button
+                            className={abaAtiva === "lista" ? "ativo" : ""}
+                            onClick={() => setAbaAtiva("lista")}
+                        >
+                            Lista
+                        </button>
 
-            {/* 🔥 CENTRO */}
-            <FeedMissionario
-                posts={posts}
-                loading={loading}
-                missionarioAtivo={missionarioAtivo}
-            />
+                        <button
+                            className={abaAtiva === "busca" ? "ativo" : ""}
+                            onClick={() => setAbaAtiva("busca")}
+                        >
+                            Buscar
+                        </button>
 
-            {/* 🔥 DIREITA */}
-            <BuscaMissionario atualizarLista={carregarMissionarios} />
+                        <button
+                            className={abaAtiva === "feed" ? "ativo" : ""}
+                            onClick={() => setAbaAtiva("feed")}
+                        >
+                            Feed
+                        </button>
+                    </div>
 
+                </div>
+            )}
+
+            {/* CONTEÚDO */}
+            <div className="missionario-body">
+
+                {mobile ? (
+                    <>
+                        {abaAtiva === "lista" && (
+                            <ListaMissionarios
+                                missionarios={missionarios}
+                                ativo={missionarioAtivo}
+                                setAtivo={setMissionarioAtivo}
+                            />
+                        )}
+
+                        {abaAtiva === "busca" && (
+                            <BuscaMissionario atualizarLista={carregarMissionarios} />
+                        )}
+
+                        {abaAtiva === "feed" && (
+                            <FeedMissionario
+                                posts={posts}
+                                loading={loading}
+                                missionarioAtivo={missionarioAtivo}
+                            />
+                        )}
+                    </>
+                ) : (
+                    <>
+                        <ListaMissionarios
+                            missionarios={missionarios}
+                            ativo={missionarioAtivo}
+                            setAtivo={setMissionarioAtivo}
+                        />
+
+                        <FeedMissionario
+                            posts={posts}
+                            loading={loading}
+                            missionarioAtivo={missionarioAtivo}
+                        />
+
+                        <BuscaMissionario atualizarLista={carregarMissionarios} />
+                    </>
+                )}
+
+            </div>
+            <BottomNav />
         </div>
     );
 }

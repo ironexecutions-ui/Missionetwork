@@ -1,25 +1,296 @@
-/* 🔥 CONTAINER PRINCIPAL */
+/* =========================
+   LAYOUT PRINCIPAL
+========================= */
 .layout-missionario {
-    display: flex;
     width: 100%;
-    background-color: rgba(235, 157, 55, 0.623);
-    min-height: 100vh;
-    border-radius: 20px;
+    min-height: 100dvh;
+    /* 🔥 corrigido */
+
+    display: flex;
+    flex-wrap: wrap;
+    /* 🔥 ESSENCIAL para tabs */
+
+    gap: 20px;
+    padding: 20px;
+
+    background: transparent;
+    box-sizing: border-box;
 }
 
-/* 🔥 ESQUERDA */
-.coluna-esquerda {
-    flex: 0 0 20%;
+
+/* =========================
+   TABS (FICA EM CIMA)
+========================= */
+.missionario-tabs {
+    width: 100%;
+    flex-basis: 100%;
+    /* 🔥 força linha inteira */
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    margin-bottom: 14px;
 }
 
-/* 🔥 CENTRO */
-.coluna-centro {
-    flex: 0 0 54%;
+/* BOTÕES */
+.missionario-tabs button {
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e2e8f0;
+    color: #0f172a;
+
+    font-weight: 600;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
-/* 🔥 DIREITA */
-.coluna-direita {
-    flex: 0 0 20%;
-    margin-top: 20px;
-    /* 🔥 baixa só ela */
+/* ATIVO */
+.missionario-tabs button.ativo {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #fff;
+}
+
+/* HOVER */
+.missionario-tabs button:hover {
+    transform: translateY(-1px);
+}
+
+/* CLICK */
+.missionario-tabs button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   BASE DAS COLUNAS
+========================= */
+.layout-missionario>* {
+    border-radius: 18px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================
+   ESQUERDA
+========================= */
+.layout-missionario> :nth-child(1) {
+    width: 260px;
+    min-width: 260px;
+    padding: 16px;
+}
+
+
+/* =========================
+   CENTRO
+========================= */
+.layout-missionario> :nth-child(2) {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+
+/* =========================
+   DIREITA
+========================= */
+.layout-missionario> :nth-child(3) {
+    width: 300px;
+    min-width: 280px;
+    padding: 16px;
+}
+
+
+/* =========================
+   SCROLL
+========================= */
+.layout-missionario ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.layout-missionario ::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.layout-missionario ::-webkit-scrollbar-thumb:hover {
+    background: #cbd5f5;
+}
+
+
+/* =========================
+   CARD PADRÃO
+========================= */
+.msn-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 14px;
+
+    border: 1px solid #f1f5f9;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+
+    transition: all 0.2s ease;
+}
+
+.msn-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   ESTADO ATIVO
+========================= */
+.msn-ativo {
+    border: 1px solid #6366f1;
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+.msn-titulo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.msn-subtitulo {
+    font-size: 13px;
+    color: #64748b;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+/* 🔥 MOBILE */
+@media (max-width: 1000px) {
+
+    .layout-missionario {
+        padding: 12px;
+        gap: 14px;
+    }
+
+    /* 🔥 REMOVE LARGURAS FIXAS */
+    .layout-missionario>* {
+        width: 100% !important;
+        min-width: unset !important;
+    }
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.missionario-container {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER (TABS)
+========================= */
+.missionario-header {
+    top: 0;
+    z-index: 100;
+
+    padding: 10px;
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* TABS */
+.missionario-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+.missionario-tabs button {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    background: #e2e8f0;
+    color: #475569;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.missionario-tabs button:hover {
+    background: #cbd5f5;
+}
+
+.missionario-tabs button.ativo {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #fff;
+
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+}
+
+/* =========================
+   BODY
+========================= */
+.missionario-body {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* COLUNAS DESKTOP */
+.missionario-body> :nth-child(1) {
+    width: 260px;
+}
+
+.missionario-body> :nth-child(2) {
+    flex: 1;
+}
+
+.missionario-body> :nth-child(3) {
+    width: 300px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 1000px) {
+
+    .missionario-body {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .missionario-body>* {
+        width: 100% !important;
+    }
 }

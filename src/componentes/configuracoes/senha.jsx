@@ -55,13 +55,14 @@ export default function SenhaConfig() {
     };
 
     return (
-        <div className="cfg-senha-container">
+        <div className="senha-container">
 
-            <h3 className="cfg-senha-title">Senha</h3>
+            <h3 className="senha-titulo">Alterar senha</h3>
 
-            <div className="cfg-senha-box">
+            <div className="senha-box">
 
                 <input
+                    className="senha-input"
                     type="password"
                     placeholder="Senha atual"
                     value={senhaAtual}
@@ -69,6 +70,7 @@ export default function SenhaConfig() {
                 />
 
                 <input
+                    className="senha-input"
                     type="password"
                     placeholder="Nova senha"
                     value={novaSenha}
@@ -76,21 +78,22 @@ export default function SenhaConfig() {
                 />
 
                 <input
+                    className="senha-input"
                     type="password"
                     placeholder="Confirmar nova senha"
                     value={confirmarSenha}
                     onChange={(e) => setConfirmarSenha(e.target.value)}
                 />
 
-                <button onClick={salvar}>
+                <button className="senha-botao" onClick={salvar}>
                     Salvar senha
                 </button>
 
                 {msg && (
                     <div className={
                         msg.includes("sucesso")
-                            ? "cfg-senha-success"
-                            : "cfg-senha-error"
+                            ? "senha-msg sucesso"
+                            : "senha-msg erro"
                     }>
                         {msg}
                     </div>

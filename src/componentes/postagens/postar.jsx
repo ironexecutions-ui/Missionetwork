@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../../config";
-import supabase from "./supabase";
 import "./postar.css";
 
-export default function Postar({ onPostado }) {
-    const userLocal = localStorage.getItem("usuario");
+// 🔥 MODAIS
+import ModalLogin from "./modallogin";
+import ModalPerfilIncompleto from "./modalincompleto";
 
-    if (!userLocal) {
-        return null; // 🔥 não mostra nada
-    }
+export default function Postar({ onPostado }) {
+
     const [conteudo, setConteudo] = useState("");
     const [arquivos, setArquivos] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
     const [busca, setBusca] = useState("");
     const [marcados, setMarcados] = useState([]);
     const [enviando, setEnviando] = useState(false);
+    const [dragAtivo, setDragAtivo] = useState(false);
+    // 🔥 MODAIS
+    const [abrirModalLogin, setAbrirModalLogin] = useState(false);
+    const [abrirModalPerfil, setAbrirModalPerfil] = useState(false);
 
     useEffect(() => {
         carregarUsuarios();
@@ -30,9 +33,32 @@ export default function Postar({ onPostado }) {
         }
     };
 
+    // 🔥 VALIDAÇÃO GLOBAL
+    const validarUsuario = () => {
+        const userLocal = localStorage.getItem("usuario");
+
+        if (!userLocal) {
+            setAbrirModalLogin(true);
+            return false;
+        }
+
+        const user = JSON.parse(userLocal);
+
+        if (
+            !user.ala ||
+            !user.estaca ||
+            !user.bispo ||
+            !user.chamado
+        ) {
+            setAbrirModalPerfil(true);
+            return false;
+        }
+
+        return true;
+    };
+
     const selecionarArquivos = (e) => {
         const files = Array.from(e.target.files);
-        console.log("ARQUIVOS SELECIONADOS:", files);
         setArquivos(prev => [...prev, ...files]);
     };
 
@@ -47,63 +73,38 @@ export default function Postar({ onPostado }) {
         setMarcados(prev => prev.filter(u => u.id !== id));
     };
 
-    // 🔥 UPLOAD SUPABASE COM LOG
-    const uploadParaSupabase = async (file, usuario_id) => {
+    // 🔥 UPLOAD R2
+    const uploadParaR2 = async (file) => {
         try {
-            console.log("ENVIANDO PARA SUPABASE:", file);
+            const formData = new FormData();
+            formData.append("file", file);
 
-            const extensao = file.name.split(".").pop().toLowerCase();
-            const mimeType = file.type || "image/jpeg";
+            const res = await fetch(`${API_URL}/upload-r2`, {
+                method: "POST",
+                body: formData
+            });
 
-            const nome = `MissioNetwork/postagens/${usuario_id}-${Date.now()}-${Math.floor(Math.random() * 100000)}.${extensao}`;
-            const { error } = await supabase.storage
-                .from("produtos")
-                .upload(nome, file, {
-                    contentType: mimeType,
-                    upsert: false,
-                });
-
-            if (error) {
-                console.log("ERRO SUPABASE:", error);
-                return null;
-            }
-
-            console.log("UPLOAD OK:", nome);
-
-            const { data: urlData } = supabase.storage
-                .from("produtos")
-                .getPublicUrl(nome);
-
-            const url = urlData?.publicUrl;
-
-            console.log("URL GERADA:", url);
-
-            return url || null;
+            const data = await res.json();
+            return data.url || null;
 
         } catch (err) {
-            console.log("ERRO GERAL UPLOAD:", err);
+            console.log("ERRO UPLOAD:", err);
             return null;
         }
     };
 
+    // 🔥 PUBLICAR
     const publicar = async () => {
         try {
-            console.log("INICIO PUBLICAR");
-
             if (!conteudo && arquivos.length === 0) return;
 
-            const userLocal = localStorage.getItem("usuario");
-            if (!userLocal) {
-                alert("Faça login");
-                return;
-            }
+            // 🔥 VALIDA
+            if (!validarUsuario()) return;
 
-            const user = JSON.parse(userLocal);
-            console.log("USUARIO:", user);
+            const user = JSON.parse(localStorage.getItem("usuario"));
 
             setEnviando(true);
 
-            // 🔥 CRIA POST
             const res = await fetch(`${API_URL}/postagens/criar`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -115,23 +116,14 @@ export default function Postar({ onPostado }) {
             });
 
             const data = await res.json();
-            console.log("POST CRIADO:", data);
-
             const postagem_id = data.postagem_id;
 
-            // 🔥 UPLOAD PARA SUPABASE
+            // 🔥 UPLOAD ARQUIVOS
             for (const file of arquivos) {
+                const url = await uploadParaR2(file);
+                if (!url) continue;
 
-                const url = await uploadParaSupabase(file, user.id);
-
-                if (!url) {
-                    console.log("ERRO AO GERAR URL");
-                    continue;
-                }
-
-                console.log("ENVIANDO PRO BACK:", url);
-
-                const resArquivo = await fetch(`${API_URL}/postagens/arquivos`, {
+                await fetch(`${API_URL}/postagens/arquivos`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -139,12 +131,9 @@ export default function Postar({ onPostado }) {
                         arquivo: url
                     })
                 });
-
-                const dataArquivo = await resArquivo.json();
-                console.log("SALVO NO BACK:", dataArquivo);
             }
 
-            // 🔥 MARCADOS
+            // 🔥 MARCAR USUÁRIOS
             for (const m of marcados) {
                 await fetch(`${API_URL}/postagens/marcados`, {
                     method: "POST",
@@ -155,8 +144,6 @@ export default function Postar({ onPostado }) {
                     })
                 });
             }
-
-            console.log("FINALIZADO");
 
             setConteudo("");
             setArquivos([]);
@@ -170,6 +157,15 @@ export default function Postar({ onPostado }) {
         } finally {
             setEnviando(false);
         }
+    }; const handleDrop = (e) => {
+        e.preventDefault();
+
+        const files = Array.from(e.dataTransfer.files);
+        setArquivos(prev => [...prev, ...files]);
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
     };
 
     const usuariosFiltrados = usuarios.filter(u =>
@@ -179,9 +175,15 @@ export default function Postar({ onPostado }) {
     return (
         <div className="postar-container">
 
+            {/* 🔥 TEXTAREA BLOQUEADO */}
             <textarea
                 placeholder="No que você está pensando?"
                 value={conteudo}
+                onFocus={(e) => {
+                    if (!validarUsuario()) {
+                        e.target.blur();
+                    }
+                }}
                 onChange={(e) => setConteudo(e.target.value)}
                 className="postar-textarea"
             />
@@ -197,6 +199,11 @@ export default function Postar({ onPostado }) {
             <input
                 placeholder="Marcar pessoas..."
                 value={busca}
+                onFocus={(e) => {
+                    if (!validarUsuario()) {
+                        e.target.blur();
+                    }
+                }}
                 onChange={(e) => setBusca(e.target.value)}
                 className="postar-busca"
             />
@@ -211,17 +218,77 @@ export default function Postar({ onPostado }) {
                 </div>
             )}
 
-            <input type="file" multiple onChange={selecionarArquivos} />
+            <label
+                className={`postar-upload-area ${dragAtivo ? "drag-ativo" : ""}`}
+                onClick={(e) => {
+                    if (!validarUsuario()) {
+                        e.preventDefault();
+                    }
+                }}
+                onDrop={(e) => {
+                    handleDrop(e);
+                    setDragAtivo(false);
+                }}
+                onDragOver={(e) => {
+                    handleDragOver(e);
+                    setDragAtivo(true);
+                }}
+                onDragLeave={() => setDragAtivo(false)}
+            >
+
+                <input
+                    type="file"
+                    multiple
+                    onChange={selecionarArquivos}
+                    className="postar-input-hidden"
+                />
+
+                <div className="postar-upload-content">
+                    <div className="postar-upload-icon">📤</div>
+
+                    <p className="postar-upload-title">
+                        Arraste arquivos ou clique para enviar
+                    </p>
+
+                    <span className="postar-upload-sub">
+                        Imagens ou vídeos
+                    </span>
+                </div>
+
+            </label>
 
             <div className="postar-preview">
-                {arquivos.map((f, i) => (
-                    <img key={i} src={URL.createObjectURL(f)} />
-                ))}
+                {arquivos.map((f, i) => {
+                    const url = URL.createObjectURL(f);
+
+                    if (f.type.startsWith("video")) {
+                        return (
+                            <video key={i} src={url} controls />
+                        );
+                    }
+
+                    return <img key={i} src={url} />;
+                })}
             </div>
 
-            <button onClick={publicar} disabled={enviando}>
+            <button
+                onClick={() => {
+                    if (!validarUsuario()) return;
+                    publicar();
+                }}
+                disabled={enviando}
+            >
                 {enviando ? "Postando..." : "Publicar"}
             </button>
+
+            {/* 🔥 MODAIS */}
+            {abrirModalLogin && (
+                <ModalLogin fechar={() => setAbrirModalLogin(false)} />
+            )}
+
+            {abrirModalPerfil && (
+                <ModalPerfilIncompleto fechar={() => setAbrirModalPerfil(false)} />
+            )}
 
         </div>
     );

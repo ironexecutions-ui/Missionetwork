@@ -1,0 +1,239 @@
+/* 🔥 OVERLAY */
+.modalLogin-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    min-height: 100dvh;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999999;
+
+    animation: fadeOverlay 0.2s ease;
+}
+
+@keyframes fadeOverlay {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 🔥 BOX */
+.modalLogin-box {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    padding: 28px;
+    border-radius: 18px;
+    max-width: 80% !important;
+
+    text-align: center;
+
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+
+    animation: scaleIn 0.25s ease;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 🔥 ÍCONE */
+.modalLogin-icone {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* 🔥 TÍTULO */
+.modalLogin-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* 🔥 TEXTO */
+.modalLogin-texto {
+    margin-top: 10px;
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* 🔥 DESTAQUE DAS INFORMAÇÕES */
+.modalLogin-info-box {
+    margin-top: 15px;
+    padding: 14px;
+
+    background: linear-gradient(135deg, #e0f2fe, #f1f5f9);
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+
+    border: 1px solid #bae6fd;
+
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+/* 🔥 BOTÕES */
+.modalLogin-botoes {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
+}
+
+/* 🔥 BOTÃO BASE */
+.modalLogin-btn {
+    flex: 1;
+    padding: 11px;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* 🔹 CANCELAR */
+.modalLogin-btn.cancelar {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.modalLogin-btn.cancelar:hover {
+    background: #cbd5f5;
+}
+
+/* 🔹 ACEITAR */
+.modalLogin-btn.aceitar {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+}
+
+.modalLogin-btn.aceitar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* 🔥 BLOQUEIA SCROLL */
+body.modal-aberto {
+    overflow: hidden;
+}
+
+/* =========================
+   RESPONSIVO MODAL LOGIN
+========================= */
+
+/* 🔥 MOBILE PEQUENO (até 400px) */
+@media (max-width: 400px) {
+
+    .modalLogin-box {
+        width: 92%;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .modalLogin-titulo {
+        font-size: 18px;
+    }
+
+    .modalLogin-texto {
+        font-size: 13px;
+    }
+
+    .modalLogin-icone {
+        font-size: 32px;
+    }
+
+    /* 🔥 BOTÕES UM EMBAIXO DO OUTRO */
+    .modalLogin-botoes {
+        flex-direction: column;
+    }
+
+    .modalLogin-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+
+/* =========================
+   MOBILE NORMAL (até 600px)
+========================= */
+@media (max-width: 600px) {
+
+    .modalLogin-box {
+        width: 90%;
+        max-width: 320px;
+        padding: 22px;
+    }
+
+    .modalLogin-titulo {
+        font-size: 20px;
+    }
+
+    .modalLogin-texto {
+        font-size: 14px;
+    }
+
+    .modalLogin-botoes {
+        gap: 8px;
+    }
+}
+
+
+/* =========================
+   TABLET (601px até 900px)
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .modalLogin-box {
+        max-width: 380px;
+        padding: 26px;
+    }
+
+    .modalLogin-titulo {
+        font-size: 21px;
+    }
+
+    .modalLogin-texto {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================
+   TELAS GRANDES
+========================= */
+@media (min-width: 1200px) {
+
+    .modalLogin-box {
+        max-width: 420px;
+        padding: 32px;
+        border-radius: 20px;
+    }
+
+    .modalLogin-titulo {
+        font-size: 24px;
+    }
+
+    .modalLogin-texto {
+        font-size: 16px;
+    }
+}

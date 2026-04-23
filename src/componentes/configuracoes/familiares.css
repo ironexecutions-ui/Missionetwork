@@ -1,0 +1,301 @@
+/* =========================
+   CONTAINER
+========================= */
+.fam-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.fam-titulo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* =========================
+   INPUT
+========================= */
+.fam-input {
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.fam-input:focus {
+    border-color: #6366f1;
+    background: #ffffff;
+
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+.fam-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fam-item-resultado {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.fam-item-resultado:hover {
+    background: #eef2ff;
+}
+
+/* =========================
+   SELECIONADO
+========================= */
+.fam-selecionado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(180deg, #eef2ff, #ffffff);
+    border: 1px solid #6366f1;
+
+    font-weight: 600;
+}
+
+/* =========================
+   SELECT
+========================= */
+.fam-select {
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+
+    font-size: 14px;
+
+    background: #ffffff;
+
+    outline: none;
+}
+
+.fam-select:focus {
+    border-color: #6366f1;
+
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+/* =========================
+   BOTÃO ADICIONAR
+========================= */
+.fam-btn-adicionar {
+    padding: 10px;
+
+    border-radius: 10px;
+    border: none;
+
+    background: #6366f1;
+    color: #ffffff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.fam-btn-adicionar:hover {
+    background: #4f46e5;
+}
+
+/* =========================
+   LISTA
+========================= */
+.fam-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* =========================
+   ITEM
+========================= */
+.fam-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+}
+
+/* =========================
+   INFO
+========================= */
+.fam-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.fam-info strong {
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.fam-info span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* =========================
+   BOTÃO REMOVER
+========================= */
+.fam-btn-remover {
+    background: #fee2e2;
+    color: #b91c1c;
+
+    border: none;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.fam-btn-remover:hover {
+    background: #fecaca;
+}
+
+
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .fam-input,
+    .fam-select {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    .fam-item-resultado {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .fam-selecionado {
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    .fam-info strong {
+        font-size: 13px;
+    }
+
+    .fam-info span {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .fam-container {
+        gap: 10px;
+    }
+
+    .fam-input,
+    .fam-select {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .fam-btn-adicionar {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .fam-item {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .fam-info strong {
+        font-size: 13px;
+    }
+
+    .fam-info span {
+        font-size: 11px;
+    }
+
+    .fam-btn-remover {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .fam-input,
+    .fam-select {
+        font-size: 12px;
+    }
+
+    .fam-info strong {
+        font-size: 12px;
+    }
+
+    .fam-info span {
+        font-size: 10px;
+    }
+
+    .fam-btn-adicionar {
+        font-size: 12px;
+    }
+
+    .fam-btn-remover {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+}

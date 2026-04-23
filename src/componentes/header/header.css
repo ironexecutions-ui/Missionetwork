@@ -1,71 +1,281 @@
+/* =========================
+   CONTAINER HEADER
+========================= */
 .hdr-container-geral {
     width: 95%;
     height: 80px;
-    background: #0b1a2b;
+    margin: 20px auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
-    margin: auto auto;
-    border-radius: 30px;
 
+    padding: 0 30px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(135deg, #0427c6, #0336af);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+
+    transition: all 0.3s ease;
 }
 
+.hdr-container-geral:hover {
+    box-shadow:
+        0 12px 50px rgba(0, 0, 0, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+@keyframes logoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(2.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes logoFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+}
+
+
+/* =========================
+   ÁREA ESQUERDA
+========================= */
 .hdr-area-esquerda {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .hdr-logo-imagem {
-    width: 45px;
-    height: 45px;
+    width: 46px;
+    height: 46px;
     object-fit: cover;
+
+    border-radius: 18px;
+
+
+    transition: all 0.3s ease;
+}
+
+.hdr-area-esquerda {
+    cursor: pointer;
+
+}
+
+.hdr-logo-imagem:hover {
+    transform: scale(1.05) rotate(2deg);
 }
 
 .hdr-titulo-principal {
-    color: white;
-    font-size: 22px;
+    color: #e2e8f0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-.hdr-area-centro {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
 
-.hdr-input-busca {
-    width: 300px;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-}
-
+/* =========================
+   ÁREA DIREITA
+========================= */
 .hdr-area-direita {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
+/* =========================
+   BOTÕES BASE (ESCURO PROFISSIONAL)
+========================= */
 .hdr-btn-nav {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
+    padding: 9px 16px;
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
     cursor: pointer;
-    font-weight: bold;
+
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+
+    transition: all 0.25s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    /* 🔥 FUNDO MAIS ESCURO (COMBINA COM O AZUL) */
+    background: linear-gradient(135deg, rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.9));
+    color: #e2e8f0;
+
+    backdrop-filter: blur(6px);
+
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
 }
 
-.hdr-btn-inicio {
-    background: #1e90ff;
-    color: white;
+
+/* HOVER BASE */
+.hdr-btn-nav:hover {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 1));
+    color: #ffffff;
+
+    transform: translateY(-2px) scale(1.02);
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 12px rgba(255, 255, 255, 0.04);
 }
 
-.hdr-btn-perfil {
-    background: #28a745;
-    color: white;
+
+/* LINHA DE DESTAQUE */
+.hdr-btn-nav::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 0%;
+    height: 2px;
+
+    transition: all 0.3s ease;
 }
 
-.hdr-btn-missionario {
-    background: #ffc107;
-    color: black;
+.hdr-btn-nav:hover::before {
+    width: 100%;
+}
+
+
+/* =========================
+   CORES DE DESTAQUE (SUTIL)
+========================= */
+
+/* PERFIL */
+.hdr-btn-perfil::before {
+    background: #22c55e;
+}
+
+/* MISSIONÁRIO */
+.hdr-btn-missionario::before {
+    background: #eab308;
+}
+
+/* DIREÇÃO */
+.hdr-btn-direcao::before {
+    background: #38bdf8;
+}
+
+/* CONFIG */
+.hdr-btn-config::before {
+    background: #a855f7;
+}
+
+/* =========================
+   BOTÃO MENU MOBILE
+========================= */
+.hdr-menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: #e2e8f0;
+    cursor: pointer;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 900px) {
+
+    .hdr-container-geral {
+        padding: 0 20px;
+        height: 70px;
+    }
+
+    .hdr-titulo-principal {
+        font-size: 18px;
+    }
+
+    .hdr-btn-nav {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+    .hdr-logo-imagem {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* =========================
+   MOBILE - LOGO ANIMADO
+========================= */
+@media (max-width: 700px) {
+
+    .hdr-container-geral {
+        position: static !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        padding: 0;
+        margin: 0;
+        height: 0;
+    }
+
+    .hdr-area-direita,
+    .hdr-titulo-principal {
+        display: none !important;
+    }
+
+    .hdr-area-esquerda {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 99999;
+    }
+
+    .hdr-logo-imagem {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        border-radius: 10px !important;
+        width: 42px;
+        height: 42px;
+
+        z-index: 99999;
+
+        border-radius: 0;
+        box-shadow: none;
+
+        /* 👇 ANIMAÇÃO PADRÃO */
+        animation: logoFadeIn 0.35s ease;
+    }
+
+    /* 👇 classe para esconder */
+    .logo-hidden {
+        animation: logoFadeOut 0.25s ease forwards;
+        pointer-events: none;
+    }
 }

@@ -1,0 +1,274 @@
+/* =========================
+   CONTAINER
+========================= */
+.msn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.msn-titulo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* =========================
+   INPUT
+========================= */
+.msn-input {
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.msn-input:focus {
+    border-color: #6366f1;
+    background: #ffffff;
+
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+.msn-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.msn-item-resultado {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.msn-item-resultado:hover {
+    background: #eef2ff;
+}
+
+/* =========================
+   SELECIONADO
+========================= */
+.msn-selecionado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(180deg, #eef2ff, #ffffff);
+    border: 1px solid #6366f1;
+
+    font-weight: 600;
+}
+
+/* =========================
+   BOTÃO ADICIONAR
+========================= */
+.msn-btn-adicionar {
+    padding: 10px;
+
+    border-radius: 10px;
+    border: none;
+
+    background: #6366f1;
+    color: #ffffff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.msn-btn-adicionar:hover {
+    background: #4f46e5;
+}
+
+/* =========================
+   LISTA
+========================= */
+.msn-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* =========================
+   ITEM
+========================= */
+.msn-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+}
+
+/* =========================
+   INFO
+========================= */
+.msn-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.msn-info strong {
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.msn-info span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* =========================
+   BOTÃO REMOVER
+========================= */
+.msn-btn-remover {
+    background: #fee2e2;
+    color: #b91c1c;
+
+    border: none;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.msn-btn-remover:hover {
+    background: #fecaca;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .msn-input {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    .msn-item-resultado {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .msn-selecionado {
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    .msn-info strong {
+        font-size: 13px;
+    }
+
+    .msn-info span {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .msn-container {
+        gap: 10px;
+    }
+
+    .msn-input {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .msn-btn-adicionar {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .msn-item {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .msn-info strong {
+        font-size: 13px;
+    }
+
+    .msn-info span {
+        font-size: 11px;
+    }
+
+    .msn-btn-remover {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .msn-input {
+        font-size: 12px;
+    }
+
+    .msn-info strong {
+        font-size: 12px;
+    }
+
+    .msn-info span {
+        font-size: 10px;
+    }
+
+    .msn-btn-adicionar {
+        font-size: 12px;
+    }
+
+    .msn-btn-remover {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+}

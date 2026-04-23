@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
-
+import "./missionarios.css"
 export default function MissionarioConfig() {
 
     const [busca, setBusca] = useState("");
@@ -70,53 +70,81 @@ export default function MissionarioConfig() {
     };
 
     return (
-        <div className="cfg-secao">
+        <div className="msn-container">
 
-            <h2>Missionários</h2>
 
+            {/* 🔍 BUSCA */}
             {!selecionado && (
                 <input
+                    className="msn-input"
                     placeholder="Buscar missionário..."
                     value={busca}
                     onChange={(e) => setBusca(e.target.value)}
                 />
             )}
 
-            {resultados.map(r => (
-                <div key={r.id} onClick={() => setSelecionado(r)}>
-                    {r.nome}
-                </div>
-            ))}
+            {/* RESULTADOS */}
+            <div className="msn-resultados">
+                {resultados.map(r => (
+                    <div
+                        key={r.id}
+                        className="msn-item-resultado"
+                        onClick={() => setSelecionado(r)}
+                    >
+                        {r.nome}
+                    </div>
+                ))}
+            </div>
 
+            {/* SELECIONADO */}
             {selecionado && (
-                <div>
-                    {selecionado.nome}
-                    <button onClick={() => setSelecionado(null)}>X</button>
+                <div className="msn-selecionado">
+                    <span>{selecionado.nome}</span>
+
+                    <button
+                        className="msn-btn-remover"
+                        onClick={() => setSelecionado(null)}
+                    >
+                        ✕
+                    </button>
                 </div>
             )}
 
+            {/* TIPO */}
             <input
+                className="msn-input"
                 placeholder="Tipo (amigo, filho, etc)"
                 value={tipo}
                 onChange={(e) => setTipo(e.target.value)}
             />
 
-            <button onClick={adicionar}>Adicionar</button>
+            <button
+                className="msn-btn-adicionar"
+                onClick={adicionar}
+            >
+                Adicionar
+            </button>
 
-            {lista.map(m => (
-                <div key={m.id} className="cfg-item">
+            {/* LISTA */}
+            <div className="msn-lista">
+                {lista.map(m => (
+                    <div key={m.id} className="msn-item">
 
-                    <div>
-                        <strong>{m.nome}</strong>
-                        <div>{m.tipo}</div>
+                        <div className="msn-info">
+                            <strong>{m.nome}</strong>
+                            <span>{m.tipo}</span>
+                        </div>
+
+                        <button
+                            className="msn-btn-remover"
+                            onClick={() => remover(m.id)}
+                        >
+                            Remover
+                        </button>
+
                     </div>
-
-                    <button onClick={() => remover(m.id)}>
-                        Remover
-                    </button>
-
-                </div>
-            ))}
+                ))}
+            </div>
 
         </div>
     );

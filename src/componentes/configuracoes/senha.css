@@ -1,0 +1,184 @@
+/* =========================
+   CONTAINER
+========================= */
+.senha-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.senha-titulo {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #0f172a;
+}
+
+/* =========================
+   BOX
+========================= */
+.senha-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* =========================
+   INPUT
+========================= */
+.senha-input {
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.senha-input:focus {
+    background: #ffffff;
+    border-color: #6366f1;
+
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+/* =========================
+   BOTÃO
+========================= */
+.senha-botao {
+    margin-top: 4px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+    border: none;
+
+    background: #6366f1;
+    color: #ffffff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.senha-botao:hover {
+    background: #4f46e5;
+}
+
+.senha-botao:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   MENSAGENS
+========================= */
+.senha-msg {
+    margin-top: 6px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* sucesso */
+.senha-msg.sucesso {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* erro */
+.senha-msg.erro {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .senha-input {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    .senha-botao {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    .senha-msg {
+        font-size: 12px;
+        padding: 9px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .senha-container {
+        gap: 8px;
+    }
+
+    .senha-titulo {
+        font-size: 15px;
+    }
+
+    .senha-input {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .senha-botao {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .senha-msg {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 480px) {
+
+    .senha-titulo {
+        font-size: 14px;
+    }
+
+    .senha-input {
+        font-size: 12px;
+    }
+
+    .senha-botao {
+        font-size: 12px;
+    }
+
+    .senha-msg {
+        font-size: 11px;
+    }
+
+}
