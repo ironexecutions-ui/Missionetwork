@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
-import "./modalLogin.css";
+import "./modallogin.css";
 
 export default function ModalLogin({ fechar }) {
 
