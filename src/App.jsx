@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-import "./app.css";
+import "./App.css";
 
 // COMPONENTES
 import Header from "./componentes/header/header";
