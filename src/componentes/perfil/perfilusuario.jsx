@@ -130,7 +130,7 @@ export default function PerfilUsuario() {
                         className="perfil-btn-voltar"
                         onClick={(e) => {
                             e.stopPropagation();
-                            navigate(-1);
+                            navigate("/");
                         }}
                     >
                         ←
