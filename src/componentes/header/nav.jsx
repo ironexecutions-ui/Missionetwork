@@ -13,11 +13,43 @@ export default function BottomNav() {
     const location = useLocation();
 
     const [logado, setLogado] = useState(false);
+    const [aceitouTermos, setAceitouTermos] = useState(true);
 
-    // 🔥 SEMPRE ATUALIZA AO MUDAR ROTA
+    // 🔥 NOVO: CONTROLE DE CARREGAMENTO
+    const [carregado, setCarregado] = useState(false);
+
     useEffect(() => {
-        const user = localStorage.getItem("usuario");
-        setLogado(!!user);
+        const userLocal = localStorage.getItem("usuario");
+
+        if (!userLocal || userLocal === "undefined" || userLocal === "null") {
+            setLogado(false);
+            setAceitouTermos(true);
+            setCarregado(true); // 🔥 IMPORTANTE
+            return;
+        }
+
+        try {
+            const user = JSON.parse(userLocal);
+
+            setLogado(true);
+
+            if (user?.termos === 0) {
+                setAceitouTermos(false);
+            } else {
+                setAceitouTermos(true);
+            }
+
+        } catch (err) {
+            console.log("Erro ao ler localStorage:", err);
+
+            localStorage.removeItem("usuario");
+
+            setLogado(false);
+            setAceitouTermos(true);
+        }
+
+        setCarregado(true); // 🔥 IMPORTANTE
+
     }, [location.pathname]);
 
     const irPerfil = () => {
@@ -29,6 +61,16 @@ export default function BottomNav() {
             navigate("/perfilusuario");
         }
     };
+
+    // 🔥 BLOQUEIA ATÉ SABER O ESTADO REAL
+    if (!carregado) {
+        return null;
+    }
+
+    // 🔥 SUA REGRA ORIGINAL (mantida)
+    if (logado && aceitouTermos === false) {
+        return null;
+    }
 
     return (
         <div className="btm-container-geral">
