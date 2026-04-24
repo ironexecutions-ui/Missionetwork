@@ -27,7 +27,36 @@ export default function FeedMissionario({ posts, loading, missionarioAtivo }) {
         } catch (err) {
             console.log("erro curtidas:", err);
         }
+
     };
+    const formatarImagem = (url) => {
+        if (!url) return "https://i.imgur.com/6VBx3io.png";
+
+        try {
+            // 🔥 CASO DO SEU LINK (lh3)
+            if (url.includes("googleusercontent.com/d/")) {
+                const id = url.split("/d/")[1].split("/")[0];
+                return `https://lh3.googleusercontent.com/d/${id}=s400`;
+            }
+
+            // 🔥 outros formatos drive
+            if (url.includes("/d/")) {
+                const id = url.split("/d/")[1].split("/")[0];
+                return `https://lh3.googleusercontent.com/d/${id}=s400`;
+            }
+
+            if (url.includes("id=")) {
+                const id = url.split("id=")[1].split("&")[0];
+                return `https://lh3.googleusercontent.com/d/${id}=s400`;
+            }
+
+            return url;
+
+        } catch {
+            return "https://i.imgur.com/6VBx3io.png";
+        }
+    };
+
 
     return (
         <div className="coluna-centro">
@@ -50,7 +79,7 @@ export default function FeedMissionario({ posts, loading, missionarioAtivo }) {
 
                     <div className="post-header">
                         <img
-                            src={p.foto_perfil || "https://i.imgur.com/6VBx3io.png"}
+                            src={formatarImagem(p.foto_perfil)}
                             className="post-avatar"
                             onError={(e) => {
                                 e.target.src = "https://i.imgur.com/6VBx3io.png";

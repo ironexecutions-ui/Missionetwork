@@ -1,0 +1,79 @@
+.modal-termos-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+}
+
+.modal-termos-card {
+    width: 90%;
+    max-width: 500px;
+
+    background: #ffffff;
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+    animation: modalFade 0.25s ease;
+}
+
+.modal-termos-titulo {
+    margin-bottom: 10px;
+}
+
+.modal-termos-texto {
+    max-height: 220px;
+    overflow-y: auto;
+
+    font-size: 14px;
+    color: #444;
+
+    margin-bottom: 20px;
+}
+
+.modal-termos-btn-aceitar {
+    width: 100%;
+    padding: 10px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #1e3a8a;
+    color: white;
+
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.modal-termos-btn-fechar {
+    width: 100%;
+    padding: 10px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e5e7eb;
+
+    cursor: pointer;
+}
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

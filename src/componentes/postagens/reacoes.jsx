@@ -12,6 +12,7 @@ import ModalLogin from "./modallogin";
 
 export default function Reacoes({ postId, curtidasInicial }) {
     const [abrirModalLogin, setAbrirModalLogin] = useState(false);
+    const [animando, setAnimando] = useState(null);
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
         love: curtidasInicial?.love || 0,
@@ -48,6 +49,10 @@ export default function Reacoes({ postId, curtidasInicial }) {
 
             const user = JSON.parse(userLocal);
 
+            // 🔥 ATIVA ANIMAÇÃO
+            setAnimando(tipo);
+            setTimeout(() => setAnimando(null), 400);
+
             await fetch(`${API_URL}/curtidas/reagir`, {
                 method: "POST",
                 headers: {
@@ -69,12 +74,11 @@ export default function Reacoes({ postId, curtidasInicial }) {
             console.log("erro reagir:", err);
         }
     };
-
     return (
         <div className="reacoes-container">
 
             <button
-                className="reacao-btn"
+                className={`reacao-btn ${animando === "like" ? "animar" : ""}`}
                 onClick={() => reagir("like")}
             >
                 <img src={likeImg} alt="like" className="reacao-img" />
@@ -82,7 +86,7 @@ export default function Reacoes({ postId, curtidasInicial }) {
             </button>
 
             <button
-                className="reacao-btn"
+                className={`reacao-btn ${animando === "love" ? "animar" : ""}`}
                 onClick={() => reagir("love")}
             >
                 <img src={loveImg} alt="love" className="reacao-img" />
@@ -90,7 +94,7 @@ export default function Reacoes({ postId, curtidasInicial }) {
             </button>
 
             <button
-                className="reacao-btn"
+                className={`reacao-btn ${animando === "sad" ? "animar" : ""}`}
                 onClick={() => reagir("sad")}
             >
                 <img src={sadImg} alt="sad" className="reacao-img" />

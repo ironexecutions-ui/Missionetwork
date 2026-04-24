@@ -7,6 +7,7 @@ import ReacoesComentario from "../postagens/reacoescomentarios";
 import Postar from "../postagens/postar";
 import { useNavigate } from "react-router-dom";
 import PostCard from "./cards";
+import LoaderPro from "../../carregando";
 export default function PerfilUsuario() {
 
     const [usuario, setUsuario] = useState(null);
@@ -76,6 +77,29 @@ export default function PerfilUsuario() {
 
         input.click();
     };
+    const aceitarEApagarConta = async () => {
+        try {
+            const userLocal = JSON.parse(localStorage.getItem("usuario"));
+
+            // 🔥 tenta deletar
+            await fetch(`${API_URL}/usuarios/${userLocal.id}`, {
+                method: "DELETE"
+            });
+
+        } catch (err) {
+            console.log("Erro ao apagar conta:", err);
+        } finally {
+            // 🔥 GARANTE LOGOUT SEMPRE
+            localStorage.removeItem("usuario");
+
+            // 🔥 limpa estados (evita bug visual)
+            setUsuario(null);
+            setPosts([]);
+
+            // 🔥 redireciona
+            navigate("/perfil");
+        }
+    };
     const carregarTudo = async () => {
         try {
             const userLocal = localStorage.getItem("usuario");
@@ -104,9 +128,40 @@ export default function PerfilUsuario() {
         }
     };
 
-    if (loading) return <div>Carregando...</div>;
+    if (loading) {
+        return (
+            <LoaderPro
+                texto="Carregando perfil"
+                subtitulo="Buscando seus dados"
+            />
+        );
+    }
+    if (usuario && usuario.termos === 0) {
+        return (
+            <div className="termos-bloqueio-root">
 
+                <div className="termos-bloqueio-card">
 
+                    <h2 className="termos-titulo">
+                        Atenção
+                    </h2>
+
+                    <p className="termos-texto">
+                        Esta conta não aceitou os termos de uso e será removida.
+                    </p>
+
+                    <button
+                        className="termos-btn-aceitar"
+                        onClick={aceitarEApagarConta}
+                    >
+                        Aceitar e apagar conta
+                    </button>
+
+                </div>
+
+            </div>
+        );
+    }
     return (
         <div className="perfil-layout">
 

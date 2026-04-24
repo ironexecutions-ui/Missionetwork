@@ -132,6 +132,11 @@
 
 }
 
+@media (max-width: 500px) {
+    .aviso-container {
+        transform: translateX(-10px);
+    }
+}
 
 /* =========================
    MOBILE

@@ -32,10 +32,10 @@ export default function Header() {
                 className="hdr-area-esquerda"
                 onClick={() => navigate("/")}
             >
-                <img
+                <a href="/">  <img
                     src={logo}
                     className={`hdr-logo-imagem ${esconderLogo ? "logo-hidden" : ""}`}
-                />
+                />  </a>
                 <h1 className="hdr-titulo-principal">
                     MissioNetwork
                 </h1>

@@ -7,7 +7,7 @@ import Comentarios from "../postagens/comentarios";
 import ReacoesComentario from "../postagens/reacoescomentarios";
 import icon from "../../icon.png"
 import "./postagem.css";
-
+import Header from "../header/header"
 export default function Postagem() {
 
     const { id } = useParams();
@@ -95,6 +95,7 @@ export default function Postagem() {
 
     return (
         <div className="postagem-container">
+            <Header />
             <div className="postagem-header-empresa">
 
                 <button
@@ -201,10 +202,6 @@ export default function Postagem() {
                 ))}
 
                 {/* INPUT */}
-                <Comentarios
-                    postId={post.id}
-                    onAtualizar={carregarComentarios}
-                />
 
             </div>
             {modalAberto && (

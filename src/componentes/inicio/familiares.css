@@ -333,3 +333,12 @@
     font-weight: 500;
     color: #0f172a;
 }
+
+.sidebar-loader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px 0;
+}

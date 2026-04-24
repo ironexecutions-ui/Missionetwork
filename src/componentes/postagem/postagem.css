@@ -8,6 +8,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
+    margin-bottom: 120px !important;
     gap: 16px;
 }
 
@@ -164,6 +165,8 @@
     top: 0;
     background: #22007e;
     z-index: 100;
+    border-radius: 20px !important;
+
     display: flex;
     align-items: center;
     gap: 10px;
@@ -171,7 +174,6 @@
     border-bottom: 1px solid #eee;
     cursor: pointer;
     transition: 0.2s;
-    border-radius: 30px;
 }
 
 .postagem-header-empresa:hover {
@@ -218,4 +220,136 @@
 
 .postagem-btn-voltar:hover {
     background: #e2e8f0d2;
+}
+
+/* =========================
+   RESPONSIVO GERAL
+========================= */
+
+/* MOBILE PEQUENO */
+@media (max-width: 480px) {
+
+    .postagem-container {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding: 12px;
+    }
+
+    .postagem-header-empresa {
+        padding: 10px;
+        border-radius: 0;
+        gap: 8px;
+    }
+
+    .postagem-logo-empresa {
+        width: 36px;
+        height: 36px;
+    }
+
+    .postagem-nome-empresa {
+        font-size: 15px;
+    }
+
+    .postagem-topo {
+        gap: 8px;
+    }
+
+    .postagem-foto,
+    .postagem-foto-placeholder {
+        width: 36px;
+        height: 36px;
+    }
+
+    .postagem-nome {
+        font-size: 14px;
+    }
+
+    .postagem-conteudo {
+        font-size: 13px;
+    }
+
+    .postagem-arquivos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .postagem-img {
+        height: 100px;
+    }
+
+    .postagem-video {
+        max-height: 180px;
+    }
+
+    .modal-btn.left {
+        left: 5px;
+    }
+
+    .modal-btn.right {
+        right: 5px;
+    }
+}
+
+
+/* MOBILE NORMAL */
+@media (max-width: 768px) {
+
+    .postagem-container {
+        width: 95%;
+        padding: 14px;
+    }
+
+    .postagem-arquivos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .postagem-img {
+        height: 110px;
+    }
+
+    .postagem-video {
+        max-height: 200px;
+    }
+
+    .modal-btn {
+        font-size: 24px;
+    }
+}
+
+
+/* TABLET */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .postagem-container {
+        max-width: 700px;
+    }
+
+    .postagem-arquivos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .postagem-img {
+        height: 130px;
+    }
+}
+
+
+/* DESKTOP GRANDE */
+@media (min-width: 1025px) {
+
+    .postagem-container {
+        max-width: 750px;
+    }
+
+    .postagem-arquivos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .postagem-img {
+        height: 140px;
+    }
+
+    .postagem-video {
+        max-height: 260px;
+    }
 }

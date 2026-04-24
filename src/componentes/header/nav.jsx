@@ -13,11 +13,21 @@ export default function BottomNav() {
     const location = useLocation();
 
     const [logado, setLogado] = useState(false);
+    const [aceitouTermos, setAceitouTermos] = useState(false);
 
-    // 🔥 SEMPRE ATUALIZA AO MUDAR ROTA
     useEffect(() => {
-        const user = localStorage.getItem("usuario");
-        setLogado(!!user);
+        const userLocal = localStorage.getItem("usuario");
+
+        if (!userLocal) {
+            setLogado(false);
+            setAceitouTermos(false);
+            return;
+        }
+
+        const user = JSON.parse(userLocal);
+
+        setLogado(true);
+        setAceitouTermos(user.termos === 1);
     }, [location.pathname]);
 
     const irPerfil = () => {
@@ -29,6 +39,12 @@ export default function BottomNav() {
             navigate("/perfilusuario");
         }
     };
+
+    // 🔥 SE NÃO ACEITOU, NÃO MOSTRA NADA
+    // 🔥 só bloqueia se estiver logado E não aceitou
+    if (logado && !aceitouTermos) {
+        return null;
+    }
 
     return (
         <div className="btm-container-geral">

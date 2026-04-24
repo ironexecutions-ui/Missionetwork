@@ -7,9 +7,10 @@ import OrganizacaoConfig from "./organizacao";
 import SenhaConfig from "./senha";
 import FamiliaresConfig from "./familiares";
 import MissionarioConfig from "./missionarios";
+import LoaderPro from "../../carregando";
 
 export default function Config() {
-
+    const [loading, setLoading] = useState(true);
     const [dados, setDados] = useState(null);
 
     useEffect(() => {
@@ -27,6 +28,8 @@ export default function Config() {
 
         } catch (err) {
             console.log(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -47,8 +50,15 @@ export default function Config() {
         }
     };
 
-    if (!dados) return <div>Carregando...</div>;
-
+    if (loading) {
+        return (
+            <LoaderPro
+                texto="Carregando Configurações"
+                subtitulo="Buscando seus dados"
+            />
+        );
+    }
+    if (!dados) return null;
     return (
         <div className="cfg-container">
 

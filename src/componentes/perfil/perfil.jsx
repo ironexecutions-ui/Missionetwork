@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../config";
 import "./perfil.css";
 import Aviso from "./aviso";
+import ModalTermos from "./termos";
+
+
+
 export default function Perfil() {
 
     const navigate = useNavigate();
-
+    const [abrirModalTermos, setAbrirModalTermos] = useState(false);
     const [modoCadastro, setModoCadastro] = useState(false);
 
     // 🔐 LOGIN
@@ -89,6 +93,7 @@ export default function Perfil() {
         try {
             setLoading(true);
 
+            // 🔥 1. CRIA USUÁRIO
             const res = await fetch(`${API_URL}/usuarios/`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -96,6 +101,9 @@ export default function Perfil() {
                     email,
                     nome_completo: nome,
                     senha,
+
+                    // pode até deixar, mas backend ignora
+                    termos: aceitou ? 1 : 0,
 
                     data_nascimento: null,
                     sexo: null,
@@ -120,7 +128,14 @@ export default function Perfil() {
                 return;
             }
 
-            // 🔥 LOGIN AUTOMÁTICO
+            // 🔥 2. SALVA TERMOS (AQUI ESTÁ O QUE FALTAVA)
+            if (aceitou && data.id) {
+                await fetch(`${API_URL}/usuarios/aceitar-termos/${data.id}`, {
+                    method: "PUT"
+                });
+            }
+
+            // 🔥 3. LOGIN AUTOMÁTICO
             const loginAuto = await fetch(`${API_URL}/usuarios/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -207,8 +222,13 @@ export default function Perfil() {
                                 type="text"
                                 placeholder="Nome completo"
                                 value={nome}
-                                onChange={(e) => setNome(e.target.value)}
-                                className="perfil-input-nome"
+                                onChange={(e) => {
+                                    const valor = e.target.value
+                                        .toLowerCase()
+                                        .replace(/\b\w/g, (letra) => letra.toUpperCase());
+
+                                    setNome(valor);
+                                }} className="perfil-input-nome"
                             />
 
                             <input
@@ -235,11 +255,14 @@ export default function Perfil() {
                                 className="perfil-input-confirmar"
                             />
 
-                            <label className="perfil-termos-box">
+                            <label
+                                className="perfil-termos-box"
+                                onClick={() => setAbrirModalTermos(true)}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={aceitou}
-                                    onChange={() => setAceitou(!aceitou)}
+                                    readOnly
                                 />
                                 Aceito os termos de uso
                             </label>
@@ -265,11 +288,14 @@ export default function Perfil() {
 
                 </div>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <ModalTermos
+                abrir={abrirModalTermos}
+                fechar={() => setAbrirModalTermos(false)}
+                aceitar={() => {
+                    setAceitou(true);
+                    setAbrirModalTermos(false);
+                }}
+            />
         </div>
     );
 }
