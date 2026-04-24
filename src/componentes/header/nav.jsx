@@ -13,37 +13,38 @@ export default function BottomNav() {
     const location = useLocation();
 
     const [logado, setLogado] = useState(false);
-    const [aceitouTermos, setAceitouTermos] = useState(true); // começa true pra não sumir
-    const [verificado, setVerificado] = useState(false);
+    const [aceitouTermos, setAceitouTermos] = useState(true); // default seguro
 
     useEffect(() => {
+        const userLocal = localStorage.getItem("usuario");
+
+        // 🔥 NÃO LOGADO
+        if (!userLocal || userLocal === "undefined" || userLocal === "null") {
+            setLogado(false);
+            setAceitouTermos(true); // visitante pode ver nav
+            return;
+        }
+
         try {
-            const userLocal = localStorage.getItem("usuario");
-
-            if (!userLocal) {
-                setLogado(false);
-                setAceitouTermos(true); // visitante pode ver
-                setVerificado(true);
-                return;
-            }
-
             const user = JSON.parse(userLocal);
 
             setLogado(true);
 
-            // 🔥 fallback seguro
-            if (user?.termos === undefined) {
-                setAceitouTermos(true);
+            // 🔥 regra segura
+            if (user?.termos === 0) {
+                setAceitouTermos(false);
             } else {
-                setAceitouTermos(user.termos === 1);
+                setAceitouTermos(true);
             }
 
         } catch (err) {
-            console.log("Erro ao ler usuário:", err);
+            console.log("Erro ao ler localStorage:", err);
+
+            // 🔥 limpa dado corrompido
+            localStorage.removeItem("usuario");
+
             setLogado(false);
             setAceitouTermos(true);
-        } finally {
-            setVerificado(true);
         }
 
     }, [location.pathname]);
@@ -58,11 +59,8 @@ export default function BottomNav() {
         }
     };
 
-    // 🔥 evita bug de render inicial (principal no celular)
-    if (!verificado) return null;
-
-    // 🔥 bloqueia somente usuário logado sem termos
-    if (logado && !aceitouTermos) {
+    // 🔥 BLOQUEIA SÓ SE LOGADO E NÃO ACEITOU
+    if (logado && aceitouTermos === false) {
         return null;
     }
 
