@@ -21,11 +21,26 @@ export default function EditableField({ label, value, onSave, sexo }) {
         return `${n.slice(0, 2)}/${n.slice(2, 4)}/${n.slice(4)}`;
     };
 
+    const formatarNome = (texto) => {
+        return texto
+            .toLowerCase()
+            .split(" ")
+            .filter(p => p.length > 0)
+            .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+            .join(" ");
+    };
+
     const handleChange = (e) => {
         let v = e.target.value;
+
         if (label === "Data de nascimento") {
             v = formatarData(v);
         }
+
+        if (label === "Nome completo") {
+            v = formatarNome(v);
+        }
+
         setValor(v);
     };
 
