@@ -18,7 +18,6 @@ export default function BottomNav() {
     useEffect(() => {
         const userLocal = localStorage.getItem("usuario");
 
-        // 🔥 NÃO LOGADO
         if (!userLocal || userLocal === "undefined" || userLocal === "null") {
             setLogado(false);
             setAceitouTermos(true);
@@ -28,14 +27,9 @@ export default function BottomNav() {
         try {
             const user = JSON.parse(userLocal);
 
-            // 🔥 valida objeto
-            if (!user || typeof user !== "object") {
-                throw new Error("Usuário inválido");
-            }
-
             setLogado(true);
 
-            // 🔥 CORREÇÃO CRÍTICA AQUI
+            // 🔥 CORREÇÃO: força número
             const termos = Number(user?.termos);
 
             if (termos === 0) {
@@ -65,11 +59,6 @@ export default function BottomNav() {
         }
     };
 
-    // 🔥 BLOQUEIA SÓ SE LOGADO E NÃO ACEITOU
-    if (logado && aceitouTermos === false) {
-        return null;
-    }
-
     return (
         <div className="btm-container-geral">
 
@@ -91,7 +80,8 @@ export default function BottomNav() {
                 <img src={perfil} alt="" />
             </button>
 
-            {logado && (
+            {/* 🔥 só esconde as opções, não o componente inteiro */}
+            {logado && aceitouTermos !== false && (
                 <>
                     <button
                         onClick={() => navigate("/meu-missionario/0")}
