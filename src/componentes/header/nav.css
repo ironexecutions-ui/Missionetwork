@@ -29,6 +29,11 @@
 
 }
 
+.btm-container-geral {
+    position: fixed !important;
+
+}
+
 /* ESCONDE NO DESKTOP */
 @media (min-width: 701px) {
     .btm-container-geral {
