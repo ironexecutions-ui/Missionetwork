@@ -15,25 +15,30 @@ export default function BottomNav() {
     const [logado, setLogado] = useState(false);
     const [aceitouTermos, setAceitouTermos] = useState(true);
 
-    // 🔥 NOVO: CONTROLE DE CARREGAMENTO
-    const [carregado, setCarregado] = useState(false);
-
     useEffect(() => {
         const userLocal = localStorage.getItem("usuario");
 
+        // 🔥 NÃO LOGADO
         if (!userLocal || userLocal === "undefined" || userLocal === "null") {
             setLogado(false);
             setAceitouTermos(true);
-            setCarregado(true); // 🔥 IMPORTANTE
             return;
         }
 
         try {
             const user = JSON.parse(userLocal);
 
+            // 🔥 valida objeto
+            if (!user || typeof user !== "object") {
+                throw new Error("Usuário inválido");
+            }
+
             setLogado(true);
 
-            if (user?.termos === 0) {
+            // 🔥 CORREÇÃO CRÍTICA AQUI
+            const termos = Number(user?.termos);
+
+            if (termos === 0) {
                 setAceitouTermos(false);
             } else {
                 setAceitouTermos(true);
@@ -48,26 +53,19 @@ export default function BottomNav() {
             setAceitouTermos(true);
         }
 
-        setCarregado(true); // 🔥 IMPORTANTE
-
     }, [location.pathname]);
 
     const irPerfil = () => {
         const user = localStorage.getItem("usuario");
 
-        if (!user) {
+        if (!user || user === "undefined" || user === "null") {
             navigate("/perfil");
         } else {
             navigate("/perfilusuario");
         }
     };
 
-    // 🔥 BLOQUEIA ATÉ SABER O ESTADO REAL
-    if (!carregado) {
-        return null;
-    }
-
-    // 🔥 SUA REGRA ORIGINAL (mantida)
+    // 🔥 BLOQUEIA SÓ SE LOGADO E NÃO ACEITOU
     if (logado && aceitouTermos === false) {
         return null;
     }
