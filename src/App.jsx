@@ -47,7 +47,6 @@ function AppRoutes() {
 
   return (
     <>
-      {carregando && <Loader />}
 
       <Routes>
 
