@@ -13,40 +13,11 @@ export default function BottomNav() {
     const location = useLocation();
 
     const [logado, setLogado] = useState(false);
-    const [aceitouTermos, setAceitouTermos] = useState(true); // default seguro
 
+    // 🔥 SEMPRE ATUALIZA AO MUDAR ROTA
     useEffect(() => {
-        const userLocal = localStorage.getItem("usuario");
-
-        // 🔥 NÃO LOGADO
-        if (!userLocal || userLocal === "undefined" || userLocal === "null") {
-            setLogado(false);
-            setAceitouTermos(true); // visitante pode ver nav
-            return;
-        }
-
-        try {
-            const user = JSON.parse(userLocal);
-
-            setLogado(true);
-
-            // 🔥 regra segura
-            if (user?.termos === 0) {
-                setAceitouTermos(false);
-            } else {
-                setAceitouTermos(true);
-            }
-
-        } catch (err) {
-            console.log("Erro ao ler localStorage:", err);
-
-            // 🔥 limpa dado corrompido
-            localStorage.removeItem("usuario");
-
-            setLogado(false);
-            setAceitouTermos(true);
-        }
-
+        const user = localStorage.getItem("usuario");
+        setLogado(!!user);
     }, [location.pathname]);
 
     const irPerfil = () => {
@@ -58,11 +29,6 @@ export default function BottomNav() {
             navigate("/perfilusuario");
         }
     };
-
-    // 🔥 BLOQUEIA SÓ SE LOGADO E NÃO ACEITOU
-    if (logado && aceitouTermos === false) {
-        return null;
-    }
 
     return (
         <div className="btm-container-geral">
