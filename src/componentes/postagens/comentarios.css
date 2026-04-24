@@ -282,3 +282,129 @@
 .comentarios-ver-mais:hover {
     text-decoration: underline;
 }
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+
+    .postagens-comentario {
+        padding: 12px;
+    }
+
+    .postagens-comentario strong {
+        font-size: 16px !important;
+    }
+
+    .postagens-comentario p {
+        font-size: 15px !important;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 700px) {
+
+    .comentarios-container {
+        margin-top: 10px;
+    }
+
+    /* CARD */
+    .postagens-comentario {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    /* TOPO */
+    .comentario-topo {
+        gap: 6px;
+    }
+
+    /* NOME */
+    .postagens-comentario strong {
+        font-size: 14px !important;
+    }
+
+    /* TEXTO */
+    .postagens-comentario p {
+        font-size: 14px !important;
+        line-height: 1.4;
+    }
+
+    /* MENU */
+    .comentario-menu button {
+        font-size: 14px;
+    }
+
+    .comentario-dropdown {
+        min-width: 110px;
+        top: 22px;
+    }
+
+    .comentario-dropdown button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    /* INPUT ÁREA */
+    .comentarios-input-area {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .comentarios-input {
+        font-size: 13px;
+        padding: 9px 10px;
+    }
+
+    .comentarios-botao {
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    /* EDITAR */
+    .comentario-editar {
+        flex-direction: column;
+    }
+
+    .comentario-editar input {
+        font-size: 13px;
+    }
+
+    .comentario-editar button {
+        width: 100%;
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    /* VER MAIS */
+    .comentarios-ver-mais {
+        font-size: 12px;
+    }
+
+}
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+@media (max-width: 400px) {
+
+    .postagens-comentario strong {
+        font-size: 13px !important;
+    }
+
+    .postagens-comentario p {
+        font-size: 13px !important;
+    }
+
+    .comentarios-input {
+        font-size: 12px;
+    }
+
+    .comentarios-botao {
+        font-size: 12px;
+    }
+
+}
