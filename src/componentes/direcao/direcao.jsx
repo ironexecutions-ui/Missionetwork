@@ -64,16 +64,7 @@ export default function Direcao() {
                     visualize apenas o que é necessário.
                 </p>
             </div>
-            <div className="direcao-card">
-                <h2>Como Funciona</h2>
 
-                <ul>
-                    <li>Cadastro de usuários e missionários</li>
-                    <li>Publicação de atualizações e experiências</li>
-                    <li>Interação através de comentários e reações</li>
-                    <li>Organização centralizada das informações</li>
-                </ul>
-            </div>
             {/* 🔥 PERFIS */}
             <Enya abrirModal={abrirModal} />
             <Andy abrirModal={abrirModal} />
