@@ -13,21 +13,39 @@ export default function BottomNav() {
     const location = useLocation();
 
     const [logado, setLogado] = useState(false);
-    const [aceitouTermos, setAceitouTermos] = useState(false);
+    const [aceitouTermos, setAceitouTermos] = useState(true); // começa true pra não sumir
+    const [verificado, setVerificado] = useState(false);
 
     useEffect(() => {
-        const userLocal = localStorage.getItem("usuario");
+        try {
+            const userLocal = localStorage.getItem("usuario");
 
-        if (!userLocal) {
+            if (!userLocal) {
+                setLogado(false);
+                setAceitouTermos(true); // visitante pode ver
+                setVerificado(true);
+                return;
+            }
+
+            const user = JSON.parse(userLocal);
+
+            setLogado(true);
+
+            // 🔥 fallback seguro
+            if (user?.termos === undefined) {
+                setAceitouTermos(true);
+            } else {
+                setAceitouTermos(user.termos === 1);
+            }
+
+        } catch (err) {
+            console.log("Erro ao ler usuário:", err);
             setLogado(false);
-            setAceitouTermos(false);
-            return;
+            setAceitouTermos(true);
+        } finally {
+            setVerificado(true);
         }
 
-        const user = JSON.parse(userLocal);
-
-        setLogado(true);
-        setAceitouTermos(user.termos === 1);
     }, [location.pathname]);
 
     const irPerfil = () => {
@@ -40,8 +58,10 @@ export default function BottomNav() {
         }
     };
 
-    // 🔥 SE NÃO ACEITOU, NÃO MOSTRA NADA
-    // 🔥 só bloqueia se estiver logado E não aceitou
+    // 🔥 evita bug de render inicial (principal no celular)
+    if (!verificado) return null;
+
+    // 🔥 bloqueia somente usuário logado sem termos
     if (logado && !aceitouTermos) {
         return null;
     }
