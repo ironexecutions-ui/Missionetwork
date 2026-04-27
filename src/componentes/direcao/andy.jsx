@@ -32,7 +32,7 @@ export default function Andy({ abrirModal }) {
             <div className="direcao-divider"></div>
 
             {/* RESPONSABILIDADE */}
-            <p className="direcao-label">Responsabilidade</p>
+            <p className="direcao-label">Responsabilidades</p>
 
             <p className="direcao-texto">
                 Responsável por toda a arquitetura técnica do aplicativo, desenvolvimento de funcionalidades,

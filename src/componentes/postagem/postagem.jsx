@@ -96,32 +96,11 @@ export default function Postagem() {
     return (
         <div className="postagem-container">
             <Header />
-            <div className="postagem-header-empresa">
 
-                <button
-                    className="postagem-btn-voltar"
-                    onClick={() => {
-                        if (window.history.length > 1) {
-                            navigate(-1);
-                        } else {
-                            navigate("/");
-                        }
-                    }}                >
-                    ←
-                </button>
 
-                <div
-                    className="postagem-empresa-click"
-                    onClick={() => navigate("/")}
-                >
-                    <img src={icon} className="postagem-logo-empresa" />
 
-                    <span className="postagem-nome-empresa">
-                        MissioNetwork
-                    </span>
-                </div>
 
-            </div>
+
             {/* TOPO */}
             <div className="postagem-topo">
                 {post.foto ? (

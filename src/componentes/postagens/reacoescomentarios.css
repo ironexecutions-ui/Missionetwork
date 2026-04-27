@@ -44,6 +44,80 @@
     transition: 0.2s;
 }
 
+.reacao-comentario-btn.ativo {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+    transform: scale(1.05);
+}
+
+@keyframes popComentario {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+
+    30% {
+        transform: scale(2.2) translateY(-14px);
+    }
+
+    60% {
+        transform: scale(1.6) translateY(-8px);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes pulseComentario {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+.reacao-comentario-btn.animar {
+    animation: pulseComentario 0.5s ease;
+}
+
+.reacao-comentario-btn.animar::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #60a5fa, transparent);
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    animation: explodeComentario 0.5s ease-out forwards;
+}
+
+@keyframes explodeComentario {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -110%) scale(2.5);
+    }
+}
+
+/* aplica no clique controlado pelo React */
+.reacao-comentario-btn.animar img {
+    animation: popComentario 0.6s ease;
+}
+
 /* =========================
    HOVER (AUMENTA)
 ========================= */

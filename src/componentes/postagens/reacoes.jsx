@@ -2,34 +2,38 @@ import React, { useState } from "react";
 import { API_URL } from "../../config";
 import "./reacoes.css";
 
-// 🔥 IMPORTA AS IMAGENS
+// 🔥 IMAGENS
 import likeImg from "../imagens/emojis/like.png";
 import loveImg from "../imagens/emojis/love.png";
 import sadImg from "../imagens/emojis/sad.png";
 import shareImg from "../imagens/emojis/compartilhar.png";
 import ModalLogin from "./modallogin";
 
-
 export default function Reacoes({ postId, curtidasInicial }) {
+
+    const [selecionado, setSelecionado] = useState(null);
     const [abrirModalLogin, setAbrirModalLogin] = useState(false);
     const [animando, setAnimando] = useState(null);
+
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
         love: curtidasInicial?.love || 0,
         sad: curtidasInicial?.sad || 0
     });
+
+    // =========================
+    // 🔥 COMPARTILHAR
+    // =========================
     const compartilhar = async () => {
         try {
             const url = `${window.location.origin}/postagem/${postId}`;
 
-            // 📱 se suportar (celular principalmente)
             if (navigator.share) {
                 await navigator.share({
                     title: "Veja esta postagem",
                     url
                 });
             } else {
-                // 💻 fallback (PC)
                 await navigator.clipboard.writeText(url);
                 alert("Link copiado!");
             }
@@ -38,6 +42,10 @@ export default function Reacoes({ postId, curtidasInicial }) {
             console.log("erro compartilhar:", err);
         }
     };
+
+    // =========================
+    // 🔥 REAGIR
+    // =========================
     const reagir = async (tipo) => {
         try {
             const userLocal = localStorage.getItem("usuario");
@@ -49,9 +57,11 @@ export default function Reacoes({ postId, curtidasInicial }) {
 
             const user = JSON.parse(userLocal);
 
-            // 🔥 ATIVA ANIMAÇÃO
+            // 🔥 animação + estado visual
             setAnimando(tipo);
-            setTimeout(() => setAnimando(null), 400);
+            setSelecionado(tipo);
+
+            setTimeout(() => setAnimando(null), 600);
 
             await fetch(`${API_URL}/curtidas/reagir`, {
                 method: "POST",
@@ -74,41 +84,55 @@ export default function Reacoes({ postId, curtidasInicial }) {
             console.log("erro reagir:", err);
         }
     };
+
     return (
         <div className="reacoes-container">
 
+            {/* LIKE */}
             <button
-                className={`reacao-btn ${animando === "like" ? "animar" : ""}`}
+                className={`reacao-btn 
+                    ${animando === "like" ? "animar" : ""} 
+                    ${selecionado === "like" ? "ativo" : ""}`}
                 onClick={() => reagir("like")}
             >
                 <img src={likeImg} alt="like" className="reacao-img" />
                 <span>{curtidas.likes}</span>
             </button>
 
+            {/* LOVE */}
             <button
-                className={`reacao-btn ${animando === "love" ? "animar" : ""}`}
+                className={`reacao-btn 
+                    ${animando === "love" ? "animar" : ""} 
+                    ${selecionado === "love" ? "ativo" : ""}`}
                 onClick={() => reagir("love")}
             >
                 <img src={loveImg} alt="love" className="reacao-img" />
                 <span>{curtidas.love}</span>
             </button>
 
+            {/* SAD */}
             <button
-                className={`reacao-btn ${animando === "sad" ? "animar" : ""}`}
+                className={`reacao-btn 
+                    ${animando === "sad" ? "animar" : ""} 
+                    ${selecionado === "sad" ? "ativo" : ""}`}
                 onClick={() => reagir("sad")}
             >
                 <img src={sadImg} alt="sad" className="reacao-img" />
                 <span>{curtidas.sad}</span>
             </button>
+
+            {/* SHARE */}
             <button
                 className="reacao-btn"
                 onClick={compartilhar}
             >
                 <img src={shareImg} alt="share" className="reacao-img" />
             </button>
+
             {abrirModalLogin && (
                 <ModalLogin fechar={() => setAbrirModalLogin(false)} />
             )}
+
         </div>
     );
 }

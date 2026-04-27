@@ -1,6 +1,6 @@
 /* CONTAINER PRINCIPAL */
 .postagem-container {
-    max-width: 650px;
+    max-width: 950px !important;
     margin: 30px auto;
     background: #ffffff;
     border-radius: 18px;

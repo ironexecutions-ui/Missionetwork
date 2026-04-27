@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { API_URL } from "../../config";
 import "./reacoescomentarios.css";
 
-// 🔥 IMPORTA AS MESMAS IMAGENS
 import likeImg from "../imagens/emojis/like.png";
 import loveImg from "../imagens/emojis/love.png";
 import sadImg from "../imagens/emojis/sad.png";
 
 export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
+
+    const [selecionado, setSelecionado] = useState(null);
+    const [animando, setAnimando] = useState(null);
 
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
@@ -25,6 +27,11 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
             }
 
             const user = JSON.parse(userLocal);
+
+            // 🔥 ativa efeito visual
+            setSelecionado(tipo);
+            setAnimando(tipo);
+            setTimeout(() => setAnimando(null), 600);
 
             await fetch(`${API_URL}/curtidas_comentarios/reagir`, {
                 method: "POST",
@@ -51,24 +58,33 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
     return (
         <div className="reacoes-comentario-container">
 
+            {/* LIKE */}
             <button
-                className="reacao-comentario-btn"
+                className={`reacao-comentario-btn 
+                    ${animando === "like" ? "animar" : ""} 
+                    ${selecionado === "like" ? "ativo" : ""}`}
                 onClick={() => reagir("like")}
             >
                 <img src={likeImg} alt="like" />
                 <span>{curtidas.likes}</span>
             </button>
 
+            {/* LOVE */}
             <button
-                className="reacao-comentario-btn"
+                className={`reacao-comentario-btn 
+                    ${animando === "love" ? "animar" : ""} 
+                    ${selecionado === "love" ? "ativo" : ""}`}
                 onClick={() => reagir("love")}
             >
                 <img src={loveImg} alt="love" />
                 <span>{curtidas.love}</span>
             </button>
 
+            {/* SAD */}
             <button
-                className="reacao-comentario-btn"
+                className={`reacao-comentario-btn 
+                    ${animando === "sad" ? "animar" : ""} 
+                    ${selecionado === "sad" ? "ativo" : ""}`}
                 onClick={() => reagir("sad")}
             >
                 <img src={sadImg} alt="sad" />

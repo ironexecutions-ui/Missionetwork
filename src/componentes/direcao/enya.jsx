@@ -32,7 +32,7 @@ export default function Enya({ abrirModal }) {
             <div className="direcao-divider"></div>
 
             {/* RESPONSABILIDADE */}
-            <p className="direcao-label">Responsabilidade</p>
+            <p className="direcao-label">Responsabilidades</p>
 
             <p className="direcao-texto">
                 Responsável pela gestão operacional do aplicativo, organização dos processos internos
@@ -63,7 +63,7 @@ export default function Enya({ abrirModal }) {
             <p className="direcao-label">Servi em</p>
 
             <p className="direcao-texto">
-                (Adicionar missão, local e período)
+                Na Missão Brasil São Paulo Oeste Centro de visitantes entre 2022 ate 2023 com <a href="">david Hunt</a> Presidindo e <a href="">Amy Hunt</a> como Sister.
             </p>
 
         </div>
