@@ -35,17 +35,30 @@ export default function Config() {
 
     const salvarCampo = async (campo, valor) => {
         try {
-            const user = JSON.parse(localStorage.getItem("usuario"));
+            const userLocal = JSON.parse(localStorage.getItem("usuario"));
 
-            await fetch(`${API_URL}/config/usuarios/${user.id}`, {
+            await fetch(`${API_URL}/config/usuarios/${userLocal.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ [campo]: valor })
             });
 
-            setDados(prev => ({ ...prev, [campo]: valor }));
+            // 🔥 atualiza state da tela
+            setDados(prev => ({
+                ...prev,
+                [campo]: valor
+            }));
 
-        } catch {
+            // 🔥 atualiza localStorage (ESSENCIAL)
+            const atualizado = {
+                ...userLocal,
+                [campo]: valor
+            };
+
+            localStorage.setItem("usuario", JSON.stringify(atualizado));
+
+        } catch (err) {
+            console.log(err);
             alert("Erro ao salvar");
         }
     };

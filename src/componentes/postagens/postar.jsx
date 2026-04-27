@@ -7,6 +7,7 @@ import ModalLogin from "./modallogin";
 import ModalPerfilIncompleto from "./modalincompleto";
 
 export default function Postar({ onPostado }) {
+    const user = JSON.parse(localStorage.getItem("usuario") || "{ }");
 
     const [conteudo, setConteudo] = useState("");
     const [arquivos, setArquivos] = useState([]);
@@ -45,10 +46,12 @@ export default function Postar({ onPostado }) {
         const user = JSON.parse(userLocal);
 
         if (
-            !user.ala ||
-            !user.estaca ||
-            !user.bispo ||
-            !user.chamado
+            !user.ala || user.ala.trim() === "" ||
+            !user.estaca || user.estaca.trim() === "" ||
+            !user.bispo || user.bispo.trim() === "" ||
+            !user.chamado || user.chamado.trim() === "" ||
+            !user.foto || user.foto.trim() === "" ||
+            !user.foto_capa || user.foto_capa.trim() === ""
         ) {
             setAbrirModalPerfil(true);
             return false;
@@ -271,12 +274,21 @@ export default function Postar({ onPostado }) {
                 })}
             </div>
 
+
             <button
                 onClick={() => {
                     if (!validarUsuario()) return;
                     publicar();
                 }}
-                disabled={enviando}
+                disabled={
+                    enviando ||
+                    !user.ala ||
+                    !user.estaca ||
+                    !user.bispo ||
+                    !user.chamado ||
+                    !user.foto ||
+                    !user.foto_capa
+                }
             >
                 {enviando ? "Postando..." : "Publicar"}
             </button>

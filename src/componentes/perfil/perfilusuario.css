@@ -7,6 +7,7 @@
     background-color: transparent !important;
     padding: 30px;
     max-width: 1200px;
+    min-width: 80%;
     margin: 0 auto;
 }
 
@@ -188,6 +189,29 @@
 
 .termos-btn-aceitar:hover {
     background: #dc2626;
+}
+
+.perfil-input-inline {
+    width: 70% !important;
+    padding: 6px 8px;
+
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+
+    font-size: 15px;
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.perfil-root {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-input-inline:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 /* FRASE */

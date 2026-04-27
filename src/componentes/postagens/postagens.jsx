@@ -14,7 +14,7 @@ export default function Postagens() {
     const [editandoPost, setEditandoPost] = useState(null);
     const [textoEdit, setTextoEdit] = useState("");
     const [denunciaPostId, setDenunciaPostId] = useState(null);
-
+    const [pagina, setPagina] = useState(1);
     const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
 
     const [posts, setPosts] = useState([]);
@@ -41,7 +41,11 @@ export default function Postagens() {
     };
     const carregarPostsInicial = async () => {
         try {
-            const res = await fetch(`${API_URL}/postagens/feed`);
+            const user = JSON.parse(localStorage.getItem("usuario"));
+
+            const res = await fetch(
+                `${API_URL}/postagens/feed?usuario_id=${user?.id}&pagina=1`
+            );
             const data = await res.json();
             setPosts(data);
         } catch (err) {
@@ -53,7 +57,11 @@ export default function Postagens() {
 
     const atualizarPosts = async () => {
         try {
-            const res = await fetch(`${API_URL}/postagens/feed`);
+            const user = JSON.parse(localStorage.getItem("usuario"));
+
+            const res = await fetch(
+                `${API_URL}/postagens/feed?usuario_id=${user?.id}&pagina=1`
+            );
             const data = await res.json();
             setPosts(data);
         } catch (err) {
@@ -86,7 +94,25 @@ export default function Postagens() {
 
     if (loading) {
         return <div className="postagens-loading">Carregando...</div>;
-    }
+    } const carregarMais = async () => {
+        try {
+            const user = JSON.parse(localStorage.getItem("usuario"));
+
+            const novaPagina = pagina + 1;
+
+            const res = await fetch(
+                `${API_URL}/postagens/feed?usuario_id=${user?.id}&pagina=${novaPagina}`
+            );
+
+            const data = await res.json();
+
+            setPosts((prev) => [...prev, ...data]);
+            setPagina(novaPagina);
+
+        } catch (err) {
+            console.log("erro carregar mais:", err);
+        }
+    };
 
     return (
         <div className="postagens-container">
@@ -279,7 +305,9 @@ export default function Postagens() {
                     fechar={() => setDenunciaPostId(null)}
                 />
             )}
-
+            <button onClick={carregarMais} className="postagens-loadmore">
+                Carregar mais
+            </button>
         </div>
     );
 }
