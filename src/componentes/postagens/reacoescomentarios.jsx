@@ -5,11 +5,13 @@ import "./reacoescomentarios.css";
 import likeImg from "../imagens/emojis/like.png";
 import loveImg from "../imagens/emojis/love.png";
 import sadImg from "../imagens/emojis/sad.png";
+import ModalLogin from "./modallogin";
 
 export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
 
     const [selecionado, setSelecionado] = useState(null);
     const [animando, setAnimando] = useState(null);
+    const [abrirModalLogin, setAbrirModalLogin] = useState(false);
 
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
@@ -21,14 +23,15 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
         try {
             const userLocal = localStorage.getItem("usuario");
 
+            // 🔥 AQUI FOI CORRIGIDO
             if (!userLocal) {
-                alert("Faça login");
+                setAbrirModalLogin(true);
                 return;
             }
 
             const user = JSON.parse(userLocal);
 
-            // 🔥 ativa efeito visual
+            // 🔥 efeito visual
             setSelecionado(tipo);
             setAnimando(tipo);
             setTimeout(() => setAnimando(null), 600);
@@ -90,6 +93,11 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
                 <img src={sadImg} alt="sad" />
                 <span>{curtidas.sad}</span>
             </button>
+
+            {/* 🔥 MODAL LOGIN */}
+            {abrirModalLogin && (
+                <ModalLogin fechar={() => setAbrirModalLogin(false)} />
+            )}
 
         </div>
     );

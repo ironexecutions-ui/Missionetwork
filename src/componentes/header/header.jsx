@@ -50,7 +50,12 @@ export default function Header() {
                 >
                     Perfil
                 </button>
-
+                <button
+                    className="hdr-btn-nav hdr-btn-direcao"
+                    onClick={() => navigate("/direcao")}
+                >
+                    Direção
+                </button>
                 {logado && (
                     <>
                         <button
@@ -60,12 +65,7 @@ export default function Header() {
                             Missionário
                         </button>
 
-                        <button
-                            className="hdr-btn-nav hdr-btn-direcao"
-                            onClick={() => navigate("/direcao")}
-                        >
-                            Direção
-                        </button>
+
 
                         <button
                             className="hdr-btn-nav hdr-btn-config"

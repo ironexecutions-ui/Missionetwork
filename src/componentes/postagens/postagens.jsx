@@ -15,15 +15,29 @@ export default function Postagens() {
     const [textoEdit, setTextoEdit] = useState("");
     const [denunciaPostId, setDenunciaPostId] = useState(null);
     const [pagina, setPagina] = useState(1);
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [carregandoMais, setCarregandoMais] = useState(false);
+
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
     const navigate = useNavigate();
+
+    // 🔥 URL INTELIGENTE (SEM UNDEFINED)
+    const getUrlFeed = (pagina) => {
+        const user = JSON.parse(localStorage.getItem("usuario"));
+
+        if (user?.id) {
+            return `${API_URL}/postagens/feed?usuario_id=${user.id}&pagina=${pagina}`;
+        }
+
+        return `${API_URL}/postagens/feed?pagina=${pagina}`;
+    };
 
     useEffect(() => {
         carregarPostsInicial();
     }, []);
+
     const deletarPost = async (id) => {
         const confirmar = confirm("Apagar postagem?");
         if (!confirmar) return;
@@ -39,15 +53,13 @@ export default function Postagens() {
             console.log("erro deletar:", err);
         }
     };
+
     const carregarPostsInicial = async () => {
         try {
-            const user = JSON.parse(localStorage.getItem("usuario"));
-
-            const res = await fetch(
-                `${API_URL}/postagens/feed?usuario_id=${user?.id}&pagina=1`
-            );
+            const res = await fetch(getUrlFeed(1));
             const data = await res.json();
             setPosts(data);
+
         } catch (err) {
             console.log("erro posts:", err);
         } finally {
@@ -57,13 +69,10 @@ export default function Postagens() {
 
     const atualizarPosts = async () => {
         try {
-            const user = JSON.parse(localStorage.getItem("usuario"));
-
-            const res = await fetch(
-                `${API_URL}/postagens/feed?usuario_id=${user?.id}&pagina=1`
-            );
+            const res = await fetch(getUrlFeed(1));
             const data = await res.json();
             setPosts(data);
+
         } catch (err) {
             console.log("erro atualizar:", err);
         }
@@ -92,18 +101,15 @@ export default function Postagens() {
         setDenunciaPostId(id);
     };
 
-    if (loading) {
-        return <div className="postagens-loading">Carregando...</div>;
-    } const carregarMais = async () => {
-        try {
-            const user = JSON.parse(localStorage.getItem("usuario"));
+    const carregarMais = async () => {
+        if (carregandoMais) return;
 
+        setCarregandoMais(true);
+
+        try {
             const novaPagina = pagina + 1;
 
-            const res = await fetch(
-                `${API_URL}/postagens/feed?usuario_id=${user?.id}&pagina=${novaPagina}`
-            );
-
+            const res = await fetch(getUrlFeed(novaPagina));
             const data = await res.json();
 
             setPosts((prev) => [...prev, ...data]);
@@ -111,9 +117,14 @@ export default function Postagens() {
 
         } catch (err) {
             console.log("erro carregar mais:", err);
+        } finally {
+            setCarregandoMais(false);
         }
     };
 
+    if (loading) {
+        return <div className="postagens-loading">Carregando...</div>;
+    }
     return (
         <div className="postagens-container">
 

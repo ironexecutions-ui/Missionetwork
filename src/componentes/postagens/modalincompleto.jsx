@@ -39,7 +39,7 @@ export default function ModalPerfilIncompleto({ fechar }) {
                 {/* 🔥 DESTAQUE PRINCIPAL */}
                 <div className="modalLogin-info-box">
                     <strong>
-                        Ala, Estaca, Bispo e Chamado
+                        Ala, Estaca, Bispo, Chamado, Fotos de Capa e perfil
                     </strong>
                 </div>
 
