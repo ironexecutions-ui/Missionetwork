@@ -9,7 +9,7 @@ export default function ModalPerfilIncompleto({ fechar }) {
 
     const irParaPerfil = () => {
         fechar();
-        navigate("/config");
+        navigate("/perfilusuario");
     };
 
     useEffect(() => {
