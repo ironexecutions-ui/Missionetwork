@@ -67,6 +67,7 @@ export default function BottomNav() {
                 className={location.pathname === "/" ? "btm-active" : ""}
             >
                 <img src={inicio} alt="" />
+                <span className="sub" >Inicio</span>
             </button>
 
             <button
@@ -78,8 +79,15 @@ export default function BottomNav() {
                 }
             >
                 <img src={perfil} alt="" />
+                <span className="sub" >Perfil</span>
             </button>
-
+            <button
+                onClick={() => navigate("/direcao")}
+                className={location.pathname === "/direcao" ? "btm-active" : ""}
+            >
+                <img src={direcao} alt="" />
+                <span className="sub" >Sistema</span>
+            </button>
             {/* 🔥 só esconde as opções, não o componente inteiro */}
             {logado && aceitouTermos !== false && (
                 <>
@@ -88,20 +96,17 @@ export default function BottomNav() {
                         className={location.pathname.includes("/meu-missionario") ? "btm-active" : ""}
                     >
                         <img src={missionario} alt="" />
+                        <span className="sub" >Missionario</span>
                     </button>
 
-                    <button
-                        onClick={() => navigate("/direcao")}
-                        className={location.pathname === "/direcao" ? "btm-active" : ""}
-                    >
-                        <img src={direcao} alt="" />
-                    </button>
+
 
                     <button
                         onClick={() => navigate("/config")}
                         className={location.pathname === "/config" ? "btm-active" : ""}
                     >
                         <img src={config} alt="" />
+                        <span className="sub" >Configurações</span>
                     </button>
                 </>
             )}
