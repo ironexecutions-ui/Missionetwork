@@ -1,0 +1,30 @@
+.paineladmin-btn-root {
+    width: 100%;
+    padding: 12px;
+
+    border-radius: 10px;
+    border: none;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #214d0d, #036920);
+    color: white;
+
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+
+    transition: all 0.25s ease;
+}
+
+.paineladmin-btn-root:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+}
+
+@media (max-width: 600px) {
+    .paineladmin-btn-root {
+        display: none;
+    }
+}

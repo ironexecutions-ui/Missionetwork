@@ -15,6 +15,8 @@ import Config from "./componentes/configuracoes/config";
 import Visita from "./componentes/visita/visita";
 import Postagem from "./componentes/postagem/postagem";
 import BottomNav from "./componentes/header/nav";
+import Pedajo from "./componentes/verifica/verifica";
+import Painel from "./componentes/painel/painel";
 // LOADER
 import Loader from "./loader";
 
@@ -78,7 +80,17 @@ function AppRoutes() {
             </LayoutComHeader>
           }
         />
-
+        <Route
+          path="/perfilusuario/pedajo"
+          element={
+            <Pedajo />
+          }
+        /> <Route
+          path="/painel"
+          element={
+            <Painel />
+          }
+        />
         <Route
           path="/config"
           element={

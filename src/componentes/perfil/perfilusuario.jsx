@@ -8,6 +8,7 @@ import Postar from "../postagens/postar";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/header"
 import PostCard from "./cards";
+import PainelAdmin from "./botao";
 import LoaderPro from "../../carregando";
 export default function PerfilUsuario() {
     const [editandoCampo, setEditandoCampo] = useState(null);
@@ -354,6 +355,7 @@ export default function PerfilUsuario() {
 
                     {/* BOTÕES */}
                     <div className="perfil-acoes">
+                        <PainelAdmin usuario={usuario} />
 
                         <button
                             className="perfil-btn-config"
