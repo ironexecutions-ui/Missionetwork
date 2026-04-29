@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Postagens from "../postagens/postagens";
 import FamiliaresSidebar from "./familiares";
 import MissionariosSidebar from "./missionarios";
+import { API_URL } from "../../config";
 import "./inicio.css";
 
 export default function Inicio() {
@@ -18,12 +19,26 @@ export default function Inicio() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // 🔥 NOVO: registrar entrada
+    useEffect(() => {
+        registrarEntrada();
+    }, []);
+
+    const registrarEntrada = async () => {
+        try {
+            await fetch(`${API_URL}/entradas/registrar`, {
+                method: "POST"
+            });
+        } catch (err) {
+            console.error("Erro ao registrar entrada:", err);
+        }
+    };
+
     // 🔥 MOBILE (TABS)
     if (mobile) {
         return (
             <div className="inicio-container-mobile">
 
-                {/* BOTÕES */}
                 <div className="inicio-tabs">
                     <button
                         className={aba === "postagens" ? "tab-active" : ""}
@@ -47,7 +62,6 @@ export default function Inicio() {
                     </button>
                 </div>
 
-                {/* CONTEÚDO */}
                 <div className="inicio-mobile-content">
                     {aba === "postagens" && <Postagens />}
                     {aba === "familiares" && <FamiliaresSidebar />}
@@ -58,7 +72,7 @@ export default function Inicio() {
         );
     }
 
-    // 🔥 DESKTOP (NORMAL)
+    // 🔥 DESKTOP
     return (
         <div className="inicio-container">
 

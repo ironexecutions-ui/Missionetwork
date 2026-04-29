@@ -51,6 +51,11 @@
     /* amarelo elegante */
 }
 
+.relato-card.entradas {
+    border-left: 6px solid #2301cf;
+
+}
+
 .relato-botao-atualizar {
     padding: 12px 24px;
     border-radius: 12px;

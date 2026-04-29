@@ -7,7 +7,8 @@ export default function Relato() {
     const [dados, setDados] = useState({
         usuarios: 0,
         postagens: 0,
-        missionarios: 0
+        missionarios: 0,
+        entradas: 0
     });
 
     const [carregando, setCarregando] = useState(false);
@@ -23,7 +24,13 @@ export default function Relato() {
             const res = await fetch(`${API_URL}/relatorio/resumo`);
             const data = await res.json();
 
-            setDados(data);
+            setDados({
+                usuarios: data.usuarios || 0,
+                postagens: data.postagens || 0,
+                missionarios: data.missionarios || 0,
+                entradas: data.entradas || 0
+            });
+
         } catch (err) {
             console.error(err);
         } finally {
@@ -33,6 +40,7 @@ export default function Relato() {
 
     return (
         <div className="relato-container">
+
             <div className="relato-botao-area">
                 <button
                     onClick={buscarDados}
@@ -41,7 +49,10 @@ export default function Relato() {
                 >
                     {carregando ? "Atualizando..." : "Atualizar dados"}
                 </button>
-            </div><br />
+            </div>
+
+            <br />
+
             <div className="relato-grid">
 
                 <div className="relato-card usuarios">
@@ -59,9 +70,14 @@ export default function Relato() {
                     <span>{dados.missionarios}</span>
                 </div>
 
-            </div>
-            <br />
+                <div className="relato-card entradas">
+                    <h3>Entradas</h3>
+                    <span>{dados.entradas}</span>
+                </div>
 
+            </div>
+
+            <br />
 
         </div>
     );
