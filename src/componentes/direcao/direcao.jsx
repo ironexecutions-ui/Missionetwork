@@ -17,13 +17,13 @@ export default function Direcao() {
     return (
         <div className="direcao-container">
             <div className="direcao-header">
-                <h1>Direção do Aplicativo</h1>
+                <h1>Direção da Plataforma</h1>
                 <p>Conectando missionários, famílias e propósito em um só lugar</p>            </div>
 
             {/* HEADER */}
             <div className="direcao-header">
                 <p>
-                    Este não é um aplicativo oficial de A Igreja de Jesus Cristo dos Santos dos Últimos Dias
+                    Este não é uma Plataforma oficial de A Igreja de Jesus Cristo dos Santos dos Últimos Dias
                 </p>
             </div>
 
