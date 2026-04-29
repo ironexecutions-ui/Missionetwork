@@ -50,3 +50,33 @@
     border-left: 6px solid #f59e0b;
     /* amarelo elegante */
 }
+
+.relato-botao-atualizar {
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    transition: all 0.2s ease;
+}
+
+.relato-botao-atualizar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.relato-botao-atualizar:active {
+    transform: scale(0.97);
+}
+
+.relato-botao-atualizar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
