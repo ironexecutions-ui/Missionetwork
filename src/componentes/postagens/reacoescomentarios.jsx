@@ -12,6 +12,7 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
     const [selecionado, setSelecionado] = useState(null);
     const [animando, setAnimando] = useState(null);
     const [abrirModalLogin, setAbrirModalLogin] = useState(false);
+    const [loadingTipo, setLoadingTipo] = useState(null); // 🔥 NOVO
 
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
@@ -23,7 +24,6 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
         try {
             const userLocal = localStorage.getItem("usuario");
 
-            // 🔥 AQUI FOI CORRIGIDO
             if (!userLocal) {
                 setAbrirModalLogin(true);
                 return;
@@ -31,9 +31,11 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
 
             const user = JSON.parse(userLocal);
 
-            // 🔥 efeito visual
+            // 🔥 VISUAL
             setSelecionado(tipo);
             setAnimando(tipo);
+            setLoadingTipo(tipo);
+
             setTimeout(() => setAnimando(null), 600);
 
             await fetch(`${API_URL}/curtidas_comentarios/reagir`, {
@@ -55,46 +57,54 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
 
         } catch (err) {
             console.log("erro curtida comentario:", err);
+        } finally {
+            setLoadingTipo(null); // 🔥 FINALIZA LOADING
         }
+    };
+
+    const renderNumero = (tipo, valor) => {
+        if (loadingTipo === tipo) {
+            return <div className="loader-mini"></div>;
+        }
+        return <span>{valor}</span>;
     };
 
     return (
         <div className="reacoes-comentario-container">
 
-            {/* LIKE */}
             <button
                 className={`reacao-comentario-btn 
                     ${animando === "like" ? "animar" : ""} 
                     ${selecionado === "like" ? "ativo" : ""}`}
                 onClick={() => reagir("like")}
+                disabled={loadingTipo === "like"}
             >
                 <img src={likeImg} alt="like" />
-                <span>{curtidas.likes}</span>
+                {renderNumero("like", curtidas.likes)}
             </button>
 
-            {/* LOVE */}
             <button
                 className={`reacao-comentario-btn 
                     ${animando === "love" ? "animar" : ""} 
                     ${selecionado === "love" ? "ativo" : ""}`}
                 onClick={() => reagir("love")}
+                disabled={loadingTipo === "love"}
             >
                 <img src={loveImg} alt="love" />
-                <span>{curtidas.love}</span>
+                {renderNumero("love", curtidas.love)}
             </button>
 
-            {/* SAD */}
             <button
                 className={`reacao-comentario-btn 
                     ${animando === "sad" ? "animar" : ""} 
                     ${selecionado === "sad" ? "ativo" : ""}`}
                 onClick={() => reagir("sad")}
+                disabled={loadingTipo === "sad"}
             >
                 <img src={sadImg} alt="sad" />
-                <span>{curtidas.sad}</span>
+                {renderNumero("sad", curtidas.sad)}
             </button>
 
-            {/* 🔥 MODAL LOGIN */}
             {abrirModalLogin && (
                 <ModalLogin fechar={() => setAbrirModalLogin(false)} />
             )}

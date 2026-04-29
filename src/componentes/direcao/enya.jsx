@@ -63,7 +63,29 @@ export default function Enya({ abrirModal }) {
             <p className="direcao-label">Servi em</p>
 
             <p className="direcao-texto">
-                Na Missão Brasil São Paulo Oeste Centro de visitantes entre 2022 ate 2023 com <a href="">david Hunt</a> Presidindo e <a href="">Amy Hunt</a> como Sister.
+                Na Missão Brasil São Paulo Oeste, servindo no Centro de Visitantes entre 2022 e 2023, período marcado por experiências significativas de aprendizado, serviço e fortalecimento espiritual.
+            </p>
+
+            <p className="direcao-texto">
+                Durante esse tempo, tive a oportunidade de servir sob a liderança do{" "}
+                <a
+                    href="https://www.facebook.com/david.hunt.697043"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="direcao-link"
+                >
+                    Presidente David Hunt
+                </a>
+                , juntamente com{" "}
+                <a
+                    href="https://www.facebook.com/amy.f.hunt.37"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="direcao-link"
+                >
+                    Sister Amy Hunt
+                </a>
+                , cujo exemplo, dedicação e orientação foram essenciais durante esse período.
             </p>
 
         </div>

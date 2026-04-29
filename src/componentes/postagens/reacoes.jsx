@@ -14,6 +14,7 @@ export default function Reacoes({ postId, curtidasInicial }) {
     const [selecionado, setSelecionado] = useState(null);
     const [abrirModalLogin, setAbrirModalLogin] = useState(false);
     const [animando, setAnimando] = useState(null);
+    const [loadingTipo, setLoadingTipo] = useState(null); // 🔥 NOVO
 
     const [curtidas, setCurtidas] = useState({
         likes: curtidasInicial?.likes || 0,
@@ -21,9 +22,6 @@ export default function Reacoes({ postId, curtidasInicial }) {
         sad: curtidasInicial?.sad || 0
     });
 
-    // =========================
-    // 🔥 COMPARTILHAR
-    // =========================
     const compartilhar = async () => {
         try {
             const url = `${window.location.origin}/postagem/${postId}`;
@@ -43,9 +41,6 @@ export default function Reacoes({ postId, curtidasInicial }) {
         }
     };
 
-    // =========================
-    // 🔥 REAGIR
-    // =========================
     const reagir = async (tipo) => {
         try {
             const userLocal = localStorage.getItem("usuario");
@@ -57,9 +52,10 @@ export default function Reacoes({ postId, curtidasInicial }) {
 
             const user = JSON.parse(userLocal);
 
-            // 🔥 animação + estado visual
+            // 🔥 estados visuais
             setAnimando(tipo);
             setSelecionado(tipo);
+            setLoadingTipo(tipo);
 
             setTimeout(() => setAnimando(null), 600);
 
@@ -82,13 +78,21 @@ export default function Reacoes({ postId, curtidasInicial }) {
 
         } catch (err) {
             console.log("erro reagir:", err);
+        } finally {
+            setLoadingTipo(null); // 🔥 FINALIZA
         }
+    };
+
+    const renderNumero = (tipo, valor) => {
+        if (loadingTipo === tipo) {
+            return <div className="loader-mini"></div>;
+        }
+        return <span>{valor}</span>;
     };
 
     return (
         <div className="reacoes-container">
 
-            {/* LIKE */}
             <button
                 className={`reacao-btn 
                     ${animando === "like" ? "animar" : ""} 
@@ -96,10 +100,9 @@ export default function Reacoes({ postId, curtidasInicial }) {
                 onClick={() => reagir("like")}
             >
                 <img src={likeImg} alt="like" className="reacao-img" />
-                <span>{curtidas.likes}</span>
+                {renderNumero("like", curtidas.likes)}
             </button>
 
-            {/* LOVE */}
             <button
                 className={`reacao-btn 
                     ${animando === "love" ? "animar" : ""} 
@@ -107,10 +110,9 @@ export default function Reacoes({ postId, curtidasInicial }) {
                 onClick={() => reagir("love")}
             >
                 <img src={loveImg} alt="love" className="reacao-img" />
-                <span>{curtidas.love}</span>
+                {renderNumero("love", curtidas.love)}
             </button>
 
-            {/* SAD */}
             <button
                 className={`reacao-btn 
                     ${animando === "sad" ? "animar" : ""} 
@@ -118,10 +120,9 @@ export default function Reacoes({ postId, curtidasInicial }) {
                 onClick={() => reagir("sad")}
             >
                 <img src={sadImg} alt="sad" className="reacao-img" />
-                <span>{curtidas.sad}</span>
+                {renderNumero("sad", curtidas.sad)}
             </button>
 
-            {/* SHARE */}
             <button
                 className="reacao-btn"
                 onClick={compartilhar}

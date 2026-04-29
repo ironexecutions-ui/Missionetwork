@@ -52,14 +52,27 @@ export default function ModalTermos({ abrir, fechar, aceitar }) {
                     </p>
 
                     <h3>4. Regras de Uso</h3>
+
                     <p>É proibido:</p>
+
                     <ul>
                         <li>Discurso de ódio</li>
                         <li>Conteúdo adulto ou impróprio</li>
                         <li>Informações falsas</li>
-                        <li>Spam ou abuso</li>
-                        <li>Desrespeito a outros usuários ou valores da plataforma</li>
+                        <li>Spam ou comportamento abusivo</li>
+                        <li>Desrespeito a outros usuários ou aos valores da plataforma</li>
                     </ul>
+
+                    <p>
+                        Conteúdos que violem estas regras poderão ser denunciados por outros usuários
+                        de forma anônima por meio do sistema interno da plataforma.
+                    </p>
+
+                    <p>
+                        As denúncias são confidenciais e não revelam a identidade de quem denunciou.
+                        Todas as denúncias passam por análise da MissioNetwork antes da aplicação
+                        de qualquer penalidade.
+                    </p>
 
                     <h3>5. Publicações e Conteúdo</h3>
                     <ul>
@@ -72,15 +85,40 @@ export default function ModalTermos({ abrir, fechar, aceitar }) {
                     </p>
 
                     <h3>6. Sistema de Denúncias</h3>
-                    <p>Cada usuário possui 20 pontos:</p>
+
+                    <p>
+                        A MissioNetwork possui um sistema de denúncias para manter a qualidade,
+                        segurança e respeito dentro da plataforma.
+                    </p>
+
+                    <p>
+                        Cada usuário possui um limite de 20 pontos de reputação. Esses pontos podem
+                        ser reduzidos conforme denúncias recebidas e analisadas.
+                    </p>
+
+                    <p>As penalidades são aplicadas da seguinte forma:</p>
+
                     <ul>
                         <li>Leve: -2 pontos</li>
                         <li>Média: -4 pontos</li>
                         <li>Grave: -7 pontos</li>
                         <li>Gravíssima: -20 pontos (banimento imediato)</li>
                     </ul>
+
                     <p>
-                        A decisão final é sempre da plataforma.
+                        As denúncias passam por análise interna da plataforma antes de qualquer
+                        penalidade ser aplicada. Denúncias abusivas, falsas ou feitas com intenção
+                        de prejudicar outros usuários poderão ser desconsideradas.
+                    </p>
+
+                    <p>
+                        Caso o usuário atinja o limite de penalidade ou cometa uma infração grave,
+                        sua conta poderá ser suspensa ou encerrada permanentemente.
+                    </p>
+
+                    <p>
+                        A decisão final sobre denúncias, penalidades e remoções é de responsabilidade
+                        exclusiva da MissioNetwork.
                     </p>
 
                     <h3>7. Responsabilidade</h3>
