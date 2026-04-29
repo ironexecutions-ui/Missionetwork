@@ -24,7 +24,7 @@ export default function Perfil() {
 
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState("");
-
+    const [abrirConfirmacaoEmail, setAbrirConfirmacaoEmail] = useState(false);
     // 🔥 DETECTAR LOGIN AUTOMÁTICO
     useEffect(() => {
         const user = localStorage.getItem("usuario");
@@ -216,8 +216,13 @@ export default function Perfil() {
                     )}
 
                     {modoCadastro && (
-                        <form onSubmit={handleCadastro} className="perfil-formulario-login">
-
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                setAbrirConfirmacaoEmail(true);
+                            }}
+                            className="perfil-formulario-login"
+                        >
                             <input
                                 type="text"
                                 placeholder="Nome completo"
@@ -296,6 +301,33 @@ export default function Perfil() {
                     setAbrirModalTermos(false);
                 }}
             />
+            {abrirConfirmacaoEmail && (
+                <div className="modal-confirmacao-overlay">
+                    <div className="modal-confirmacao-box">
+
+                        <h3>Confirmar email</h3>
+
+                        <p>Seu email <b style={{ fontSize: "1.4rem" }} >{email}</b> está correto?</p>
+                        <p>Esse será o email oficial da conta.</p>
+
+                        <div className="modal-confirmacao-botoes">
+                            <button onClick={() => setAbrirConfirmacaoEmail(false)}>
+                                Não
+                            </button>
+
+                            <button
+                                onClick={(e) => {
+                                    setAbrirConfirmacaoEmail(false);
+                                    handleCadastro(e);
+                                }}
+                            >
+                                Sim
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

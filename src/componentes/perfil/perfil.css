@@ -138,6 +138,87 @@
     color: #000000;
 }
 
+.modal-confirmacao-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal-confirmacao-box {
+    width: 90%;
+    max-width: 380px;
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-confirmacao-box h3 {
+    color: #050505;
+    margin-bottom: 10px;
+}
+
+.modal-confirmacao-box p {
+    color: #040404;
+    margin-bottom: 8px;
+}
+
+.modal-confirmacao-box b {
+    display: block;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.modal-confirmacao-botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.modal-confirmacao-botoes button {
+    flex: 1;
+    padding: 10px;
+
+    border-radius: 8px;
+    border: none;
+
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* botão NÃO */
+.modal-confirmacao-botoes button:first-child {
+    background: #334155;
+    color: #fff;
+}
+
+/* botão SIM */
+.modal-confirmacao-botoes button:last-child {
+    background: #22c55e;
+    color: #fff;
+}
+
+/* hover */
+.modal-confirmacao-botoes button:hover {
+    opacity: 0.85;
+}
+
 /* =========================
    ERRO
 ========================= */

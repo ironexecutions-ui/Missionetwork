@@ -18,7 +18,7 @@ export default function PerfilUsuario() {
     const navigate = useNavigate();
     const [modalImagem, setModalImagem] = useState(null);
     // "foto" ou "capa"
-
+    const trocandoCampo = React.useRef(false);
     const [previewImagem, setPreviewImagem] = useState(null);
     const logout = () => {
         localStorage.removeItem("usuario");
@@ -189,7 +189,6 @@ export default function PerfilUsuario() {
                 })
             });
 
-            // 🔥 ATUALIZA LOCALSTORAGE (CORRETO)
             const atualizado = {
                 ...userLocal,
                 [campo]: valorTemp
@@ -197,14 +196,12 @@ export default function PerfilUsuario() {
 
             localStorage.setItem("usuario", JSON.stringify(atualizado));
 
-            // 🔥 ATUALIZA STATE LOCAL (SEM ESPERAR FETCH)
             setUsuario(prev => ({
                 ...prev,
                 [campo]: valorTemp
             }));
 
-            setEditandoCampo(null);
-            setValorTemp("");
+            // 🚫 NÃO FECHA MAIS O INPUT AQUI
 
         } catch (err) {
             console.log("erro ao salvar:", err);
@@ -326,7 +323,15 @@ export default function PerfilUsuario() {
                                         value={valorTemp}
                                         autoFocus
                                         onChange={(e) => setValorTemp(e.target.value)}
-                                        onBlur={() => salvarCampo(campo)}
+                                        onBlur={() => {
+                                            salvarCampo(campo);
+
+                                            // 👉 só fecha se NÃO estiver trocando de campo
+                                            if (!trocandoCampo.current) {
+                                                setEditandoCampo(null);
+                                                setValorTemp("");
+                                            }
+                                        }}
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") salvarCampo(campo);
                                         }}
