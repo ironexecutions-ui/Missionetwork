@@ -23,7 +23,7 @@ export default function Direcao() {
             {/* HEADER */}
             <div className="direcao-header">
                 <p>
-                    Este não é uma Plataforma oficial de A Igreja de Jesus Cristo dos Santos dos Últimos Dias
+                    <b> Esta Plataforma não é oficial de A Igreja de Jesus Cristo dos Santos dos Últimos Dias </b>
                 </p>
             </div>
 

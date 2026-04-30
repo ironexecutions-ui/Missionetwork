@@ -49,9 +49,7 @@ export default function Postar({ onPostado }) {
             !user.ala || user.ala.trim() === "" ||
             !user.estaca || user.estaca.trim() === "" ||
             !user.bispo || user.bispo.trim() === "" ||
-            !user.chamado || user.chamado.trim() === "" ||
-            !user.foto || user.foto.trim() === "" ||
-            !user.foto_capa || user.foto_capa.trim() === ""
+            !user.chamado || user.chamado.trim() === ""
         ) {
             setAbrirModalPerfil(true);
             return false;
