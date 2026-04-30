@@ -283,9 +283,8 @@ export default function Postar({ onPostado }) {
                     !user.ala ||
                     !user.estaca ||
                     !user.bispo ||
-                    !user.chamado ||
-                    !user.foto ||
-                    !user.foto_capa
+                    !user.chamado
+
                 }
             >
                 {enviando ? "Postando..." : "Publicar"}
