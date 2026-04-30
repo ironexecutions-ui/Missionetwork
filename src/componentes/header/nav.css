@@ -21,6 +21,29 @@
     z-index: 999999999 !important;
 }
 
+.btm-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    object-fit: cover;
+}
+
+/* avatar com letra */
+.btm-avatar {
+    background: #605e01;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
 .sub {
     margin-top: -10px !important;
     text-align: center !important;
@@ -97,12 +120,6 @@
         cursor: pointer;
     }
 
-    .btm-container-geral img {
-        width: 55px;
-        height: 55px;
-        margin-bottom: 4px;
-        margin-left: -7px;
-    }
 
     .btm-container-geral span {
         font-size: 11px;

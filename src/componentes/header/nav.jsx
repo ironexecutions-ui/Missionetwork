@@ -15,12 +15,17 @@ export default function BottomNav() {
     const [logado, setLogado] = useState(false);
     const [aceitouTermos, setAceitouTermos] = useState(true);
 
+    const [foto, setFoto] = useState(null);
+    const [nome, setNome] = useState("");
+
     useEffect(() => {
         const userLocal = localStorage.getItem("usuario");
 
         if (!userLocal || userLocal === "undefined" || userLocal === "null") {
             setLogado(false);
             setAceitouTermos(true);
+            setFoto(null);
+            setNome("");
             return;
         }
 
@@ -28,21 +33,14 @@ export default function BottomNav() {
             const user = JSON.parse(userLocal);
 
             setLogado(true);
+            setFoto(user?.foto || null);
+            setNome(user?.nome_completo || "");
 
-            // 🔥 CORREÇÃO: força número
             const termos = Number(user?.termos);
+            setAceitouTermos(termos !== 0);
 
-            if (termos === 0) {
-                setAceitouTermos(false);
-            } else {
-                setAceitouTermos(true);
-            }
-
-        } catch (err) {
-            console.log("Erro ao ler localStorage:", err);
-
+        } catch {
             localStorage.removeItem("usuario");
-
             setLogado(false);
             setAceitouTermos(true);
         }
@@ -59,6 +57,8 @@ export default function BottomNav() {
         }
     };
 
+    const inicial = nome ? nome.charAt(0).toUpperCase() : "";
+
     return (
         <div className="btm-container-geral">
 
@@ -66,8 +66,8 @@ export default function BottomNav() {
                 onClick={() => navigate("/")}
                 className={location.pathname === "/" ? "btm-active" : ""}
             >
-                <img src={inicio} alt="" />
-                <span className="sub" >Inicio</span>
+                <img src={inicio} alt="" className="btm-icon" />
+                <span className="sub">Inicio</span>
             </button>
 
             <button
@@ -78,35 +78,47 @@ export default function BottomNav() {
                         : ""
                 }
             >
-                <img src={perfil} alt="" />
-                <span className="sub" >Perfil</span>
+                {logado ? (
+                    foto ? (
+                        <img style={{ width: "40px", height: "40px" }} src={foto} alt="perfil" className="btm-icon" />
+                    ) : (
+                        <div className="btm-icon btm-avatar">
+                            {inicial}
+                        </div>
+                    )
+                ) : (
+                    <img src={perfil} alt="" className="btm-icon" />
+                )}
+
+                <span style={{ paddingTop: "10px" }} className="sub">
+                    {logado ? "Perfil" : "Login"}
+                </span>
             </button>
+
             <button
                 onClick={() => navigate("/direcao")}
                 className={location.pathname === "/direcao" ? "btm-active" : ""}
             >
-                <img src={direcao} alt="" />
-                <span className="sub" >Sistema</span>
+                <img src={direcao} alt="" className="btm-icon" />
+                <span className="sub">Sistema</span>
             </button>
-            {/* 🔥 só esconde as opções, não o componente inteiro */}
-            {logado && aceitouTermos !== false && (
+
+            {logado && aceitouTermos && (
                 <>
                     <button
                         onClick={() => navigate("/meu-missionario/0")}
                         className={location.pathname.includes("/meu-missionario") ? "btm-active" : ""}
                     >
-                        <img src={missionario} alt="" />
-                        <span className="sub" >Missionario</span>
+                        <img src={missionario} alt="" className="btm-icon" />
+                        <span className="sub">Missionario</span>
                     </button>
-
-
 
                     <button
                         onClick={() => navigate("/config")}
                         className={location.pathname === "/config" ? "btm-active" : ""}
                     >
-                        <img src={config} alt="" />
-                        <span className="sub" >Configurações</span>
+                        <img src={config} alt="" className="btm-icon" />
+                        <span className="sub">Configurações</span>
                     </button>
                 </>
             )}
