@@ -36,6 +36,8 @@ export default function PerfilUsuario() {
             const formData = new FormData();
             formData.append("file", file);
 
+            // ✅ CORRETO: token ANTES de usar
+            const token = localStorage.getItem("token");
 
             const res = await fetch(`${API_URL}/upload-perfil`, {
                 method: "POST",
@@ -47,14 +49,14 @@ export default function PerfilUsuario() {
 
             const data = await res.json();
 
+            console.log("UPLOAD RESPONSE:", data);
+
             if (!data.url) {
-                console.log("ERRO R2");
+                console.log("ERRO R2", data);
                 return;
             }
 
             const campo = tipo === "capa" ? "foto_capa" : "foto";
-
-            const token = localStorage.getItem("token");
 
             await fetch(`${API_URL}/usuarios/${userLocal.id}`, {
                 method: "PUT",
@@ -67,7 +69,6 @@ export default function PerfilUsuario() {
                 })
             });
 
-            // 🔥 ATUALIZA LOCALSTORAGE (ESSENCIAL)
             const atualizado = {
                 ...userLocal,
                 [campo]: data.url
@@ -75,7 +76,6 @@ export default function PerfilUsuario() {
 
             localStorage.setItem("usuario", JSON.stringify(atualizado));
 
-            // 🔥 ATUALIZA STATE LOCAL (SEM RECARREGAR)
             setUsuario(prev => ({
                 ...prev,
                 [campo]: data.url
