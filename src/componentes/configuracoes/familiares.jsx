@@ -34,7 +34,11 @@ export default function FamiliaresConfig() {
 
     // 📥 LISTAR
     const carregar = () => {
-        fetch(`${API_URL}/familiares/${user.id}`)
+        fetch(`${API_URL}/familiares/`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(r => r.json())
             .then(setLista);
     };

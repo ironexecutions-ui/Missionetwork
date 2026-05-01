@@ -21,8 +21,11 @@ export default function Config() {
         try {
             const user = JSON.parse(localStorage.getItem("usuario"));
 
-            const res = await fetch(`${API_URL}/config/usuarios/${user.id}`);
-            const data = await res.json();
+            const res = await fetch(`${API_URL}/config/usuarios`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            }); const data = await res.json();
 
             setDados(data);
 
@@ -37,9 +40,12 @@ export default function Config() {
         try {
             const userLocal = JSON.parse(localStorage.getItem("usuario"));
 
-            await fetch(`${API_URL}/config/usuarios/${userLocal.id}`, {
+            await fetch(`${API_URL}/config/usuarios`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                },
                 body: JSON.stringify({ [campo]: valor })
             });
 
