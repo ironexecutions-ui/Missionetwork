@@ -3,13 +3,13 @@
 ========================= */
 .pedajo-root {
     width: 100%;
-    height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+    padding: 20px;
+
 
     font-family: "Inter", sans-serif;
 }
@@ -18,14 +18,14 @@
    CARD
 ========================= */
 .pedajo-card {
-    width: 92%;
+    width: 80%;
     max-width: 420px;
 
-    padding: 32px 26px;
-
+    padding: 36px 28px;
+    margin: auto auto;
     border-radius: 20px;
 
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(3, 44, 103, 0.854);
     backdrop-filter: blur(14px);
 
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -36,80 +36,72 @@
         0 20px 50px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-    animation: aparecer 0.5s ease;
+    animation: pedajoFade 0.6s ease;
 }
 
 /* =========================
-   TITULO
+   TEXTOS
 ========================= */
 .pedajo-titulo {
-    font-size: 1.7rem;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 600;
 
     color: #ffffff;
 
-    margin-bottom: 14px;
-
-    letter-spacing: 0.5px;
+    margin-bottom: 16px;
 }
 
-/* =========================
-   MENSAGEM
-========================= */
 .pedajo-mensagem {
-    font-size: 0.95rem;
+    font-size: 15px;
+    line-height: 1.6;
+
     color: #cbd5f5;
 
-    line-height: 1.5;
-
     margin-bottom: 20px;
+}
+
+.pedajo-contador {
+    margin-top: 10px;
+
+    font-size: 14px;
+
+    color: #94a3b8;
 }
 
 /* =========================
    LOADER
 ========================= */
 .pedajo-loader {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
 
-    margin: 10px auto;
+    margin: 20px auto;
 
     border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #38bdf8;
 
-    border: 4px solid rgba(255, 255, 255, 0.1);
-    border-top: 4px solid #3b82f6;
-
-    animation: girar 0.8s linear infinite;
+    animation: pedajoSpin 0.8s linear infinite;
 }
 
 /* =========================
-   CONTADOR
-========================= */
-.pedajo-contador {
-    margin-top: 12px;
-
-    font-size: 0.95rem;
-    font-weight: 600;
-
-    color: #22c55e;
-}
-
-/* =========================
-   BOTÃO VOLTAR
+   BOTÃO
 ========================= */
 .pedajo-btn-voltar {
-    margin-top: 18px;
+    margin-top: 16px;
 
-    padding: 10px 18px;
+    width: 100%;
+    padding: 12px;
 
     border-radius: 10px;
+
     border: none;
 
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
+    font-size: 14px;
+    font-weight: 500;
 
-    font-weight: 600;
-    font-size: 0.9rem;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #ffffff;
 
     cursor: pointer;
 
@@ -118,116 +110,105 @@
 
 .pedajo-btn-voltar:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.pedajo-btn-voltar:active {
+    transform: scale(0.97);
 }
 
 /* =========================
    ANIMAÇÕES
 ========================= */
-@keyframes girar {
+@keyframes pedajoSpin {
     to {
         transform: rotate(360deg);
     }
 }
 
-@keyframes aparecer {
+@keyframes pedajoFade {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.95);
+        transform: translateY(20px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
 /* =========================
-   ESTADOS VISUAIS
-========================= */
-.pedajo-card.autorizado {
-    border: 1px solid rgba(34, 197, 94, 0.4);
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
-}
-
-.pedajo-card.negado {
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-}
-
-/* =========================
-RESPONSIVO
+   RESPONSIVO
 ========================= */
 
 /* Tablets */
 @media (max-width: 768px) {
     .pedajo-card {
-        max-width: 90%;
-        padding: 25px 20px;
+        padding: 28px 20px;
     }
 
     .pedajo-titulo {
-        font-size: 1.5rem;
+        font-size: 20px;
     }
 
     .pedajo-mensagem {
-        font-size: 0.95rem;
+        font-size: 14px;
     }
 }
 
 /* Celulares médios */
 @media (max-width: 480px) {
     .pedajo-root {
-        padding: 15px;
+        padding: 16px;
     }
 
     .pedajo-card {
-        padding: 20px 15px;
-        border-radius: 15px;
+        border-radius: 16px;
+        padding: 24px 18px;
     }
 
     .pedajo-titulo {
-        font-size: 1.3rem;
+        font-size: 18px;
     }
 
     .pedajo-mensagem {
-        font-size: 0.9rem;
+        font-size: 13.5px;
     }
 
     .pedajo-btn-voltar {
-        width: 100%;
-        padding: 12px;
-        font-size: 0.95rem;
+        font-size: 13px;
+        padding: 11px;
     }
 }
 
 /* Celulares pequenos */
-@media (max-width: 360px) {
+@media (max-width: 340px) {
     .pedajo-titulo {
-        font-size: 1.1rem;
+        font-size: 16px;
     }
 
     .pedajo-mensagem {
-        font-size: 0.85rem;
+        font-size: 13px;
     }
 
-    .pedajo-contador {
-        font-size: 0.8rem;
+    .pedajo-card {
+        padding: 20px 14px;
     }
 }
 
 /* Telas grandes */
 @media (min-width: 1200px) {
     .pedajo-card {
-        max-width: 500px;
-        padding: 40px 30px;
+        max-width: 460px;
+        padding: 42px 32px;
     }
 
     .pedajo-titulo {
-        font-size: 2rem;
+        font-size: 24px;
     }
 
     .pedajo-mensagem {
-        font-size: 1.1rem;
+        font-size: 16px;
     }
 }

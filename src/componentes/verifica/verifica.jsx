@@ -93,39 +93,37 @@ export default function Pedajo() {
     };
 
     return (
-        <div className="pedajo-root">
 
-            <div className="pedajo-card">
+        <div className="pedajo-card">
 
-                <h2 className="pedajo-titulo">
-                    Verificação de Acesso
-                </h2>
+            <h2 className="pedajo-titulo">
+                Verificação de Acesso
+            </h2>
 
-                <p className="pedajo-mensagem">
-                    {mensagem}
+            <p className="pedajo-mensagem">
+                {mensagem}
+            </p>
+
+            {status === "verificando" && (
+                <div className="pedajo-loader"></div>
+            )}
+
+            {status === "autorizado" && (
+                <p className="pedajo-contador">
+                    Redirecionando em {tempo}s...
                 </p>
+            )}
 
-                {status === "verificando" && (
-                    <div className="pedajo-loader"></div>
-                )}
-
-                {status === "autorizado" && (
-                    <p className="pedajo-contador">
-                        Redirecionando em {tempo}s...
-                    </p>
-                )}
-
-                {status === "negado" && (
-                    <button
-                        className="pedajo-btn-voltar"
-                        onClick={() => navigate("/")}
-                    >
-                        Voltar
-                    </button>
-                )}
-
-            </div>
+            {status === "negado" && (
+                <button
+                    className="pedajo-btn-voltar"
+                    onClick={() => navigate("/")}
+                >
+                    Voltar
+                </button>
+            )}
 
         </div>
+
     );
 }

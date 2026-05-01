@@ -21,7 +21,10 @@ export default function Usuarios() {
             }
         });
 
-        const data = await res.json();
+        const text = await res.text();
+
+        const data = JSON.parse(text); // 🔥 AQUI É O QUE FALTOU
+
         setUsuarios(data);
     };
 
@@ -160,6 +163,9 @@ export default function Usuarios() {
                             <button onClick={apagar} className="delete">Apagar</button>
                             <button onClick={() => setSelecionado(null)}>Fechar</button>
                         </div>
+                        <br />            <br />
+                        <br />
+
 
                     </div>
 
