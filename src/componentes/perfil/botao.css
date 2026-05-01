@@ -1,30 +1,76 @@
+/* 🔥 BOTÃO ADMIN ROOT */
 .paineladmin-btn-root {
-    width: 100%;
-    padding: 12px;
-
-    border-radius: 10px;
+    padding: 12px 22px;
+    background: linear-gradient(135deg, #03b40e, #02e006);
+    color: #fff;
     border: none;
-
-    font-size: 0.7rem;
-    font-weight: 600;
-
+    border-radius: 10px;
     cursor: pointer;
-
-    background: linear-gradient(135deg, #214d0d, #036920);
-    color: white;
-
-    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+    font-weight: 600;
+    font-size: 14px;
+    height: 39px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
     transition: all 0.25s ease;
+
+    position: relative;
+    z-index: 10;
+
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+
+    white-space: nowrap;
 }
 
+/* 🔥 HOVER */
 .paineladmin-btn-root:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(255, 152, 0, 0.6);
 }
 
+/* 🔥 CLICK */
+.paineladmin-btn-root:active {
+    transform: scale(0.96);
+    box-shadow: 0 3px 10px rgba(255, 152, 0, 0.4);
+}
+
+/* 🔥 DESABILITADO */
+.paineladmin-btn-root:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 🔥 CONTAINER DOS BOTÕES */
+.perfil-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* 🔥 GARANTE QUE NADA ESCONDE */
+.paineladmin-btn-root,
+.perfil-acoes {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 🔥 RESPONSIVO */
 @media (max-width: 600px) {
     .paineladmin-btn-root {
-        display: none;
+        width: 100%;
+        justify-content: center;
+        font-size: 15px;
+        padding: 14px;
+    }
+
+    .perfil-acoes {
+        flex-direction: column;
+        align-items: stretch;
     }
 }

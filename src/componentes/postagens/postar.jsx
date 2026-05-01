@@ -26,11 +26,33 @@ export default function Postar({ onPostado }) {
 
     const carregarUsuarios = async () => {
         try {
-            const res = await fetch(`${API_URL}/usuarios`);
+            const token = localStorage.getItem("token");
+
+            const res = await fetch(`${API_URL}/usuarios/`, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+
             const data = await res.json();
+
+            if (!res.ok) {
+                console.log("Erro:", data);
+                setUsuarios([]); // 🔥 evita crash
+                return;
+            }
+
+            if (!Array.isArray(data)) {
+                console.log("Não é array:", data);
+                setUsuarios([]);
+                return;
+            }
+
             setUsuarios(data);
+
         } catch (err) {
             console.log("ERRO USUARIOS:", err);
+            setUsuarios([]);
         }
     };
 

@@ -9,7 +9,7 @@ export default function FeedMissionario({ posts, loading, missionarioAtivo }) {
     const [postsLocal, setPostsLocal] = useState([]);
 
     useEffect(() => {
-        setPostsLocal(posts);
+        setPostsLocal(Array.isArray(posts) ? posts : []);
     }, [posts]);
 
     const atualizarCurtidas = async (postId) => {
@@ -27,19 +27,17 @@ export default function FeedMissionario({ posts, loading, missionarioAtivo }) {
         } catch (err) {
             console.log("erro curtidas:", err);
         }
-
     };
+
     const formatarImagem = (url) => {
         if (!url) return "https://i.imgur.com/6VBx3io.png";
 
         try {
-            // 🔥 CASO DO SEU LINK (lh3)
             if (url.includes("googleusercontent.com/d/")) {
                 const id = url.split("/d/")[1].split("/")[0];
                 return `https://lh3.googleusercontent.com/d/${id}=s400`;
             }
 
-            // 🔥 outros formatos drive
             if (url.includes("/d/")) {
                 const id = url.split("/d/")[1].split("/")[0];
                 return `https://lh3.googleusercontent.com/d/${id}=s400`;
@@ -57,23 +55,26 @@ export default function FeedMissionario({ posts, loading, missionarioAtivo }) {
         }
     };
 
-
     return (
         <div className="coluna-centro">
 
-            {missionarioAtivo?.auth === 0 && (
-                <p className="nao-autorizado">Aguardando autorização</p>
-            )}
-
+            {/* 🔥 loading */}
             {loading && (
                 <p className="loading">Carregando...</p>
             )}
 
-            {!loading && missionarioAtivo?.auth === 1 && postsLocal.length === 0 && (
+            {/* 🔥 sem missionário */}
+            {!missionarioAtivo && !loading && (
+                <p className="sem-posts">Selecione um missionário</p>
+            )}
+
+            {/* 🔥 sem posts */}
+            {!loading && missionarioAtivo && postsLocal.length === 0 && (
                 <p className="sem-posts">Nenhuma postagem encontrada</p>
             )}
 
-            {!loading && missionarioAtivo?.auth === 1 && postsLocal.map((p) => (
+            {/* 🔥 LISTA */}
+            {!loading && missionarioAtivo && postsLocal.map((p) => (
 
                 <div key={p.id} className="post-card">
 
@@ -104,7 +105,6 @@ export default function FeedMissionario({ posts, loading, missionarioAtivo }) {
                         </div>
                     )}
 
-                    {/* 🔥 REAÇÕES AGORA SEPARADAS */}
                     <ReacoesMissionario
                         post={p}
                         atualizarCurtidas={atualizarCurtidas}

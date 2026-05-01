@@ -29,7 +29,7 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
                 return;
             }
 
-            const user = JSON.parse(userLocal);
+            const token = localStorage.getItem("token");
 
             // 🔥 VISUAL
             setSelecionado(tipo);
@@ -38,27 +38,34 @@ export default function ReacoesComentario({ comentarioId, curtidasInicial }) {
 
             setTimeout(() => setAnimando(null), 600);
 
-            await fetch(`${API_URL}/curtidas_comentarios/reagir`, {
+            // 🔥 REAÇÃO (COM TOKEN)
+            const res = await fetch(`${API_URL}/curtidas_comentarios/reagir`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
                 },
                 body: JSON.stringify({
                     comentario_id: comentarioId,
-                    usuario_id: user.id,
                     tipo
                 })
             });
 
-            const res = await fetch(`${API_URL}/curtidas_comentarios/${comentarioId}`);
-            const data = await res.json();
+            if (!res.ok) {
+                console.log("Erro:", res.status);
+                return;
+            }
+
+            // 🔥 ATUALIZA CONTAGEM
+            const res2 = await fetch(`${API_URL}/curtidas_comentarios/${comentarioId}`);
+            const data = await res2.json();
 
             setCurtidas(data);
 
         } catch (err) {
             console.log("erro curtida comentario:", err);
         } finally {
-            setLoadingTipo(null); // 🔥 FINALIZA LOADING
+            setLoadingTipo(null);
         }
     };
 

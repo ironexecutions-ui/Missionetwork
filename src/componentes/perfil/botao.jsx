@@ -8,22 +8,25 @@ export default function PainelAdmin({ usuario }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    // 🔥 se não for admin, não renderiza nada
-    if (!usuario || usuario.funcao !== "Admin") {
-        return null;
-    }
+    // 🔥 CORREÇÃO AQUI
+    const isAdmin =
+        usuario &&
+        usuario.funcao &&
+        usuario.funcao.trim().toLowerCase() === "admin";
 
+    if (!isAdmin) return null;
     const acessarPainel = async () => {
         try {
             setLoading(true);
 
             const userLocal = JSON.parse(localStorage.getItem("usuario"));
 
+            const token = localStorage.getItem("token");
+
             const res = await fetch(`${API_URL}/verificar/admin/painel`, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json",
-                    "user-id": userLocal.id
+                    Authorization: "Bearer " + token
                 }
             });
 

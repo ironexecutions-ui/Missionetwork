@@ -4,7 +4,7 @@ import "./config.css";
 
 export default function MissionarioConfig({ atualizarLista }) {
 
-    const user = JSON.parse(localStorage.getItem("usuario"));
+    const token = localStorage.getItem("token");
 
     const [busca, setBusca] = useState("");
     const [resultados, setResultados] = useState([]);
@@ -12,31 +12,49 @@ export default function MissionarioConfig({ atualizarLista }) {
     const [tipo, setTipo] = useState("");
     const [lista, setLista] = useState([]);
 
+    // 🔍 BUSCA (continua pública)
     useEffect(() => {
         if (busca.length < 2) return setResultados([]);
 
-        fetch(`${API_URL}/missionarios-usuarios/busca/${busca}`)
-            .then(res => res.json())
+        fetch(`${API_URL}/missionarios-usuarios/busca/${busca}`, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        }).then(res => res.json())
             .then(setResultados);
     }, [busca]);
 
+    // 📥 LISTA (CORRIGIDO)
     const carregar = async () => {
-        const res = await fetch(`${API_URL}/missionarios-usuarios/${user.id}`);
-        const data = await res.json();
-        setLista(data);
+        try {
+            const res = await fetch(`${API_URL}/missionarios-usuarios`, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+
+            const data = await res.json();
+            setLista(data);
+
+        } catch (err) {
+            console.log("erro lista:", err);
+        }
     };
 
     useEffect(() => { carregar(); }, []);
 
+    // ➕ ADICIONAR (SEM usuario_id)
     const adicionar = async () => {
 
         if (!selecionado || !tipo) return;
 
         await fetch(`${API_URL}/missionarios-usuarios`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            },
             body: JSON.stringify({
-                usuario_id: user.id,
                 missionario_id: selecionado.id,
                 tipo
             })
@@ -52,7 +70,6 @@ export default function MissionarioConfig({ atualizarLista }) {
     return (
         <div className="cfgd-container">
 
-            {/* 🔍 BUSCA */}
             <input
                 className="cfgd-input"
                 placeholder="Buscar missionário..."
@@ -60,7 +77,6 @@ export default function MissionarioConfig({ atualizarLista }) {
                 onChange={(e) => setBusca(e.target.value)}
             />
 
-            {/* 🔥 RESULTADOS */}
             <div className="cfgd-resultados">
                 {resultados.map(m => (
                     <div
@@ -73,7 +89,6 @@ export default function MissionarioConfig({ atualizarLista }) {
                 ))}
             </div>
 
-            {/* 🔥 SELECIONADO */}
             {selecionado && (
                 <div className="cfgd-selecao">
 
@@ -98,7 +113,6 @@ export default function MissionarioConfig({ atualizarLista }) {
                 </div>
             )}
 
-            {/* 🔥 LISTA FINAL */}
             <div className="cfgd-lista">
                 {lista.map(item => (
                     <div key={item.id} className="cfgd-item-lista">

@@ -62,11 +62,11 @@ export default function Reacoes({ postId, curtidasInicial }) {
             await fetch(`${API_URL}/curtidas/reagir`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify({
                     postagem_id: postId,
-                    usuario_id: user.id,
                     tipo
                 })
             });

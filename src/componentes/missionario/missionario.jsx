@@ -43,8 +43,11 @@ export default function Missionario() {
 
             const user = JSON.parse(userLocal);
 
-            const res = await fetch(`${API_URL}/missionario/missionario-usuarios/${user.id}`);
-            const data = await res.json();
+            const res = await fetch(`${API_URL}/missionarios-usuarios`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            }); const data = await res.json();
 
             setMissionarios(data);
 
@@ -72,21 +75,40 @@ export default function Missionario() {
        CARREGAR POSTS
     ========================= */
     const carregarPosts = async () => {
-
-        if (!missionarioAtivo || !missionarioAtivo.email || missionarioAtivo.auth === 0) {
-            setPosts([]);
-            setLoading(false);
-            return;
-        }
-
         try {
             setLoading(true);
 
-            const res = await fetch(`${API_URL}/missionario/postagens/${missionarioAtivo.email}`);
+            const idReal =
+                missionarioAtivo?.missionario_id ||
+                missionarioAtivo?.id;
+
+
+            if (!idReal) {
+                console.log("ID inválido");
+                setPosts([]);
+                return;
+            }
+
+            const res = await fetch(`${API_URL}/missionarioss/postagens/${idReal}`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            });
+
             const data = await res.json();
 
-            setPosts(data);
+            console.log("POSTS RECEBIDOS:", data);
 
+            if (Array.isArray(data)) {
+                setPosts(data);
+            } else if (Array.isArray(data.postagens)) {
+                setPosts(data.postagens);
+            } else if (Array.isArray(data.dados)) {
+                setPosts(data.dados);
+            } else {
+                console.log("FORMATO DESCONHECIDO:", data);
+                setPosts([]);
+            }
         } catch (err) {
             console.log("erro posts:", err);
             setPosts([]);
@@ -100,10 +122,17 @@ export default function Missionario() {
     }, [id]);
 
     useEffect(() => {
-        if (missionarioAtivo) {
-            carregarPosts();
-        }
-    }, [missionarioAtivo]);
+        if (!missionarioAtivo) return;
+
+        const idReal =
+            missionarioAtivo?.missionario_id ||
+            missionarioAtivo?.id;
+
+        if (!idReal) return;
+
+        carregarPosts();
+
+    }, [missionarioAtivo?.missionario_id, missionarioAtivo?.id]);
 
     /* =========================
        RENDER

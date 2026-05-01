@@ -8,7 +8,7 @@ import Denuncia from "./denuncia";
 import ModalLogin from "./modallogin";
 import ModalPerfilIncompleto from "./modalincompleto";
 
-export default function Comentarios({ postId, onAtualizar }) {
+export default function Comentarios({ postId, onAtualizar, esconderLista }) {
     const [limite, setLimite] = useState(3);
     const [texto, setTexto] = useState("");
     const [loading, setLoading] = useState(false);
@@ -44,26 +44,36 @@ export default function Comentarios({ postId, onAtualizar }) {
         try {
             if (!texto.trim()) return;
 
-            // 🔥 VALIDA PRIMEIRO
             if (!validarUsuario()) return;
 
-            const user = JSON.parse(localStorage.getItem("usuario"));
+            const token = localStorage.getItem("token");
 
             setLoading(true);
 
-            await fetch(`${API_URL}/comentarios/`, {
+            const res = await fetch(`${API_URL}/comentarios/`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
+                },
                 body: JSON.stringify({
                     postagem_id: postId,
-                    usuario_id: user.id,
                     comentario: texto
                 })
             });
 
+            if (!res.ok) {
+                console.log("Erro:", res.status);
+                return;
+            }
+
             setTexto("");
-            carregarComentarios();
-            onAtualizar();
+
+            if (onAtualizar) {
+                onAtualizar();
+            } else {
+                carregarComentarios();
+            }
 
         } catch (err) {
             console.log("erro comentar:", err);
@@ -105,7 +115,6 @@ export default function Comentarios({ postId, onAtualizar }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     comentario: textoEdit,
-                    usuario_id: user.id
                 })
             });
 
@@ -140,94 +149,92 @@ export default function Comentarios({ postId, onAtualizar }) {
         <div className="comentarios-container">
 
             {/* 🔥 LISTA */}
-            {comentarios.slice(0, limite).map((c) => (
-                <div key={c.id} className="postagens-comentario">
+            {!esconderLista && comentarios.slice(0, limite).map((c) => (<div key={c.id} className="postagens-comentario">
 
-                    {/* TOPO */}
-                    <div className="comentario-topo">
+                {/* TOPO */}
+                <div className="comentario-topo">
 
-                        <strong>{c.usuario?.nome_completo}</strong>
+                    <strong>{c.usuario?.nome_completo}</strong>
 
-                        <div className="comentario-menu">
+                    <div className="comentario-menu">
 
-                            <button
-                                onClick={() =>
-                                    setMenuAberto(menuAberto === c.id ? null : c.id)
-                                }
-                            >
-                                ⋮
-                            </button>
+                        <button
+                            onClick={() =>
+                                setMenuAberto(menuAberto === c.id ? null : c.id)
+                            }
+                        >
+                            ⋮
+                        </button>
 
-                            {menuAberto === c.id && (
-                                <div className="comentario-dropdown">
+                        {menuAberto === c.id && (
+                            <div className="comentario-dropdown">
 
-                                    {Number(JSON.parse(localStorage.getItem("usuario"))?.id) === Number(c.usuario?.id) ? (
-                                        <>
-                                            <button
-                                                onClick={() => {
-                                                    setEditandoId(c.id);
-                                                    setTextoEdit(c.comentario);
-                                                    setMenuAberto(null);
-                                                }}
-                                            >
-                                                Editar
-                                            </button>
-
-                                            <button
-                                                onClick={() => {
-                                                    deletarComentario(c.id);
-                                                    setMenuAberto(null);
-                                                }}
-                                            >
-                                                Apagar
-                                            </button>
-                                        </>
-                                    ) : (
+                                {Number(JSON.parse(localStorage.getItem("usuario"))?.id) === Number(c.usuario?.id) ? (
+                                    <>
                                         <button
                                             onClick={() => {
-                                                setDenunciaComentarioId(c.id);
+                                                setEditandoId(c.id);
+                                                setTextoEdit(c.comentario);
                                                 setMenuAberto(null);
                                             }}
                                         >
-                                            Denunciar
+                                            Editar
                                         </button>
-                                    )}
 
-                                </div>
-                            )}
-                        </div>
+                                        <button
+                                            onClick={() => {
+                                                deletarComentario(c.id);
+                                                setMenuAberto(null);
+                                            }}
+                                        >
+                                            Apagar
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button
+                                        onClick={() => {
+                                            setDenunciaComentarioId(c.id);
+                                            setMenuAberto(null);
+                                        }}
+                                    >
+                                        Denunciar
+                                    </button>
+                                )}
+
+                            </div>
+                        )}
                     </div>
-
-                    {/* TEXTO */}
-                    {editandoId === c.id ? (
-                        <div className="comentario-editar">
-                            <input
-                                value={textoEdit}
-                                onChange={(e) => setTextoEdit(e.target.value)}
-                            />
-                            <button onClick={() => salvarEdicao(c.id)}>
-                                Salvar
-                            </button>
-                        </div>
-                    ) : (
-                        <p>{c.comentario}</p>
-                    )}
-
-                    {/* REAÇÕES */}
-                    <ReacoesComentario
-                        comentarioId={c.id}
-                        curtidasInicial={c.curtidas}
-                    />
-
                 </div>
+
+                {/* TEXTO */}
+                {editandoId === c.id ? (
+                    <div className="comentario-editar">
+                        <input
+                            value={textoEdit}
+                            onChange={(e) => setTextoEdit(e.target.value)}
+                        />
+                        <button onClick={() => salvarEdicao(c.id)}>
+                            Salvar
+                        </button>
+                    </div>
+                ) : (
+                    <p>{c.comentario}</p>
+                )}
+
+                {/* REAÇÕES */}
+                <ReacoesComentario
+                    comentarioId={c.id}
+                    curtidasInicial={c.curtidas}
+                />
+
+            </div>
             ))}
-            {comentarios.length > limite && (
-                <button
-                    className="comentarios-ver-mais"
-                    onClick={() => setLimite(limite + 3)}
-                >
-                    Ver mais comentários
-                </button>
+            {!esconderLista && comentarios.length > limite && (<button
+                className="comentarios-ver-mais"
+                onClick={() => setLimite(limite + 3)}
+            >
+                Ver mais comentários
+            </button>
             )}
             {/* INPUT */}
             <div className="comentarios-input-area">

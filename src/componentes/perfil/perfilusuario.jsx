@@ -15,19 +15,20 @@ export default function PerfilUsuario() {
     const [valorTemp, setValorTemp] = useState("");
     const [usuario, setUsuario] = useState(null);
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true); const navigate = useNavigate();
     const [modalImagem, setModalImagem] = useState(null);
     // "foto" ou "capa"
     const trocandoCampo = React.useRef(false);
     const [previewImagem, setPreviewImagem] = useState(null);
     const logout = () => {
         localStorage.removeItem("usuario");
+        localStorage.removeItem("token");
         navigate("/perfil"); // volta para login
     };
     useEffect(() => {
         carregarTudo();
     }, []);
+
     const uploadImagem = async (file, tipo) => {
         try {
             const userLocal = JSON.parse(localStorage.getItem("usuario"));
@@ -49,9 +50,14 @@ export default function PerfilUsuario() {
 
             const campo = tipo === "capa" ? "foto_capa" : "foto";
 
+            const token = localStorage.getItem("token");
+
             await fetch(`${API_URL}/usuarios/${userLocal.id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
+                },
                 body: JSON.stringify({
                     [campo]: data.url
                 })
@@ -93,55 +99,73 @@ export default function PerfilUsuario() {
 
         input.click();
     };
-    const aceitarEApagarConta = async () => {
+    const apagarConta = async () => {
         try {
             const userLocal = JSON.parse(localStorage.getItem("usuario"));
+            const token = localStorage.getItem("token");
 
-            // 🔥 tenta deletar
-            await fetch(`${API_URL}/usuarios/${userLocal.id}`, {
-                method: "DELETE"
+            const res = await fetch(`${API_URL}/usuarios/${userLocal.id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
             });
 
-        } catch (err) {
-            console.log("Erro ao apagar conta:", err);
-        } finally {
-            // 🔥 GARANTE LOGOUT SEMPRE
-            localStorage.removeItem("usuario");
+            if (!res.ok) {
+                console.log("Erro ao apagar conta");
+            }
 
-            // 🔥 limpa estados (evita bug visual)
+        } catch (err) {
+            console.log("Erro:", err);
+        } finally {
+            localStorage.removeItem("usuario");
+            localStorage.removeItem("token");
+
             setUsuario(null);
             setPosts([]);
 
-            // 🔥 redireciona
             navigate("/perfil");
         }
     };
     const carregarTudo = async () => {
         try {
-            const userLocal = localStorage.getItem("usuario");
-            if (!userLocal) return;
+            const token = localStorage.getItem("token");
 
-            const user = JSON.parse(userLocal);
+            if (!token) {
+                navigate("/perfil");
+                return;
+            }
 
-            // 🔥 usuario
-            const resUser = await fetch(`${API_URL}/usuarios/${user.id}`);
+            const resUser = await fetch(`${API_URL}/me`, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+
+            if (!resUser.ok) {
+                localStorage.clear();
+                navigate("/perfil");
+                return;
+            }
+
             const dataUser = await resUser.json();
+
+            // 🔥 ESSENCIAL
             setUsuario(dataUser);
 
-            // 🔥 posts do usuario
+            // 🔥 POSTS (corrigido)
             const resPosts = await fetch(`${API_URL}/postagens/feed`);
             const dataPosts = await resPosts.json();
 
             const filtrados = dataPosts.filter(
-                p => Number(p.usuario_id) === Number(user.id)
+                p => Number(p.usuario_id) === Number(dataUser.id)
             );
-            setPosts(filtrados);
 
+            setPosts(filtrados);
         } catch (err) {
             console.log(err);
-        } finally {
-            setLoading(false);
         }
+        setLoading(false);
     };
 
     if (loading) {
@@ -168,8 +192,7 @@ export default function PerfilUsuario() {
 
                     <button
                         className="termos-btn-aceitar"
-                        onClick={aceitarEApagarConta}
-                    >
+                        onClick={apagarConta}                    >
                         Aceitar e apagar conta
                     </button>
 
@@ -182,9 +205,14 @@ export default function PerfilUsuario() {
         try {
             const userLocal = JSON.parse(localStorage.getItem("usuario"));
 
+            const token = localStorage.getItem("token");
+
             await fetch(`${API_URL}/usuarios/${userLocal.id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
+                },
                 body: JSON.stringify({
                     [campo]: valorTemp
                 })
@@ -208,6 +236,7 @@ export default function PerfilUsuario() {
             console.log("erro ao salvar:", err);
         }
     };
+
     return (
         <div className="perfil-root">
 

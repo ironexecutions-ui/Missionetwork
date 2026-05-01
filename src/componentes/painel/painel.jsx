@@ -20,11 +20,12 @@ export default function Painel() {
                 return;
             }
 
+            const token = localStorage.getItem("token");
+
             const res = await fetch(`${API_URL}/verificar/admin/painel`, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json",
-                    "user-id": userLocal.id
+                    Authorization: "Bearer " + token
                 }
             });
 

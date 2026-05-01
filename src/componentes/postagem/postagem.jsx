@@ -180,8 +180,11 @@ export default function Postagem() {
                     </div>
                 ))}
 
-                {/* INPUT */}
-
+                <Comentarios
+                    postId={post.id}
+                    onAtualizar={carregarTudo}
+                    esconderLista={true}
+                />
             </div>
             {modalAberto && (
                 <div className="modal-overlay" onClick={fecharModal}>

@@ -13,7 +13,14 @@ export default function Usuarios() {
     }, []);
 
     const carregar = async () => {
-        const res = await fetch(`${API_URL}/admin/usuarios`);
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(`${API_URL}/admin/usuarios`, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+
         const data = await res.json();
         setUsuarios(data);
     };
@@ -24,9 +31,14 @@ export default function Usuarios() {
     };
 
     const salvar = async () => {
+        const token = localStorage.getItem("token");
+
         await fetch(`${API_URL}/admin/usuarios/${form.id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            },
             body: JSON.stringify(form)
         });
 
@@ -35,8 +47,13 @@ export default function Usuarios() {
     };
 
     const apagar = async () => {
+        const token = localStorage.getItem("token");
+
         await fetch(`${API_URL}/admin/usuarios/apagar/${form.id}`, {
-            method: "PUT"
+            method: "PUT",
+            headers: {
+                Authorization: "Bearer " + token
+            }
         });
 
         setSelecionado(null);

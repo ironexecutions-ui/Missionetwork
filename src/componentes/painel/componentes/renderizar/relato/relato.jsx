@@ -21,8 +21,13 @@ export default function Relato() {
         try {
             setCarregando(true);
 
-            const res = await fetch(`${API_URL}/relatorio/resumo`);
-            const data = await res.json();
+            const token = localStorage.getItem("token");
+
+            const res = await fetch(`${API_URL}/relatorio/resumo`, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            }); const data = await res.json();
 
             setDados({
                 usuarios: data.usuarios || 0,

@@ -27,7 +27,7 @@ export default function Andy({ abrirModal }) {
 
             {/* IDENTIDADE */}
             <h3 className="direcao-nome">Andy de Oliveira</h3>
-            <p className="direcao-cargo">Diretor de Sistemas</p>
+            <p className="direcao-cargo">Diretor do Sistema</p>
 
             <div className="direcao-divider"></div>
 
@@ -89,7 +89,7 @@ export default function Andy({ abrirModal }) {
                 </a>
                 , cujo apoio e exemplo foram fundamentais ao longo desse período.
             </p>
-
+            <br /><br /><br />
         </div>
     );
 }

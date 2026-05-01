@@ -44,11 +44,12 @@ export default function Pedajo() {
             }
 
             // 🔥 1. verifica se é admin
+            const token = localStorage.getItem("token");
+
             const res = await fetch(`${API_URL}/verificar/admin/painel`, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json",
-                    "user-id": userLocal.id
+                    Authorization: "Bearer " + token
                 }
             });
 

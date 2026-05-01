@@ -28,7 +28,11 @@ export default function MissionariosSidebar() {
 
             const user = JSON.parse(userLocal);
 
-            const res = await fetch(`${API_URL}/missionario/missionario-usuarios/${user.id}`);
+            const res = await fetch(`${API_URL}/missionarios-usuarios`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            });
             const data = await res.json();
 
             setLista(data || []);
@@ -160,10 +164,13 @@ function MissionarioForm({ fechar }) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                usuario_id: user.id,
                 missionario_id: selecionado.id,
                 tipo
-            })
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
         });
 
         if (!res.ok) {

@@ -27,9 +27,9 @@ export default function Perfil() {
     const [abrirConfirmacaoEmail, setAbrirConfirmacaoEmail] = useState(false);
     // 🔥 DETECTAR LOGIN AUTOMÁTICO
     useEffect(() => {
-        const user = localStorage.getItem("usuario");
+        const token = localStorage.getItem("token");
 
-        if (user) {
+        if (token) {
             navigate("/perfilusuario");
         }
     }, []);
@@ -58,7 +58,10 @@ export default function Perfil() {
                 return;
             }
 
-            localStorage.setItem("usuario", JSON.stringify(data));
+            console.log("TOKEN:", data.token); // ✔ correto
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("usuario", JSON.stringify(data.usuario));
 
             navigate("/perfilusuario");
 
@@ -71,8 +74,7 @@ export default function Perfil() {
     };
 
     // 🔥 CADASTRO
-    const handleCadastro = async (e) => {
-        e.preventDefault();
+    const handleCadastro = async () => {
         setErro("");
 
         if (!nome || !email || !senha || !confirmarSenha) {
@@ -122,18 +124,13 @@ export default function Perfil() {
             });
 
             const data = await res.json();
-
             if (!res.ok) {
+                console.log("ERRO BACKEND:", data);
                 setErro(data.detail || "Erro ao cadastrar");
                 return;
             }
 
-            // 🔥 2. SALVA TERMOS (AQUI ESTÁ O QUE FALTAVA)
-            if (aceitou && data.id) {
-                await fetch(`${API_URL}/usuarios/aceitar-termos/${data.id}`, {
-                    method: "PUT"
-                });
-            }
+
 
             // 🔥 3. LOGIN AUTOMÁTICO
             const loginAuto = await fetch(`${API_URL}/usuarios/login`, {
@@ -147,8 +144,8 @@ export default function Perfil() {
 
             const user = await loginAuto.json();
 
-            localStorage.setItem("usuario", JSON.stringify(user));
-
+            localStorage.setItem("token", user.token);
+            localStorage.setItem("usuario", JSON.stringify(user.usuario));
             navigate("/perfilusuario");
 
         } catch (err) {
@@ -316,10 +313,11 @@ export default function Perfil() {
                             </button>
 
                             <button
-                                onClick={(e) => {
+                                onClick={() => {
                                     setAbrirConfirmacaoEmail(false);
-                                    handleCadastro(e);
+                                    handleCadastro();
                                 }}
+
                             >
                                 Sim
                             </button>
@@ -327,7 +325,8 @@ export default function Perfil() {
 
                     </div>
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }

@@ -172,8 +172,11 @@ export default function PostCard({ post, atualizar }) {
 
             </div>
 
-            <Comentarios postId={post.id} onAtualizar={atualizar} />
-
+            <Comentarios
+                postId={post.id}
+                onAtualizar={atualizar}
+                esconderLista={true}
+            />
         </div>
     );
 }

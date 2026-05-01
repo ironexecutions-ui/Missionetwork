@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
-import "./missionarios.css"
+import "./missionarios.css";
+
 export default function MissionarioConfig() {
 
     const [busca, setBusca] = useState("");
@@ -9,9 +10,9 @@ export default function MissionarioConfig() {
     const [tipo, setTipo] = useState("");
     const [lista, setLista] = useState([]);
 
-    const user = JSON.parse(localStorage.getItem("usuario"));
+    const token = localStorage.getItem("token");
 
-    // 🔍 BUSCA
+    // 🔍 BUSCA (pública, pode continuar sem token)
     useEffect(() => {
         if (busca.length < 2) {
             setResultados([]);
@@ -24,27 +25,39 @@ export default function MissionarioConfig() {
 
     }, [busca]);
 
-    // 📥 LISTA
-    const carregar = () => {
-        fetch(`${API_URL}/missionarios-usuarios/${user.id}`)
-            .then(r => r.json())
-            .then(setLista);
+    // 📥 LISTA (AGORA SEGURA)
+    const carregar = async () => {
+        try {
+            const res = await fetch(`${API_URL}/missionarios-usuarios`, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+
+            const data = await res.json();
+            setLista(data);
+
+        } catch (err) {
+            console.log("erro lista:", err);
+        }
     };
 
     useEffect(() => {
         carregar();
     }, []);
 
-    // ➕ ADICIONAR
+    // ➕ ADICIONAR (SEM usuario_id)
     const adicionar = async () => {
 
         if (!selecionado || !tipo) return;
 
         const res = await fetch(`${API_URL}/missionarios-usuarios`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token
+            },
             body: JSON.stringify({
-                usuario_id: user.id,
                 missionario_id: selecionado.id,
                 tipo
             })
@@ -61,17 +74,20 @@ export default function MissionarioConfig() {
         carregar();
     };
 
-    // ❌ REMOVER
+    // ❌ REMOVER (agora com token)
     const remover = async (id) => {
         await fetch(`${API_URL}/missionarios-usuarios/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                Authorization: "Bearer " + token
+            }
         });
+
         carregar();
     };
 
     return (
         <div className="msn-container">
-
 
             {/* 🔍 BUSCA */}
             {!selecionado && (

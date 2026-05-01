@@ -28,8 +28,11 @@ export default function FamiliaresSidebar() {
 
             const user = JSON.parse(userLocal);
 
-            const res = await fetch(`${API_URL}/familiares/${user.id}`);
-            const data = await res.json();
+            const res = await fetch(`${API_URL}/familiares`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            }); const data = await res.json();
 
             setLista(data || []);
         } catch (err) {
@@ -155,10 +158,13 @@ function FamiliaresForm({ fechar }) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                usuario_id: user.id,
                 familiar_id: selecionado.id,
                 tipo_familiar: tipo
-            })
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
         });
 
         const data = await res.json();
