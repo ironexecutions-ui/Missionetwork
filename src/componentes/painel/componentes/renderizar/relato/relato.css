@@ -85,3 +85,103 @@
     transform: none;
     box-shadow: none;
 }
+
+/* =========================
+RESPONSIVO
+========================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .relato-grid {
+        gap: 16px;
+    }
+
+    .relato-card {
+        padding: 20px;
+    }
+
+    .relato-card span {
+        font-size: 28px;
+    }
+}
+
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+    .relato-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .relato-card {
+        padding: 18px;
+    }
+
+    .relato-card h3 {
+        font-size: 15px;
+    }
+
+    .relato-card span {
+        font-size: 26px;
+    }
+}
+
+
+/* Celulares médios */
+@media (max-width: 480px) {
+    .relato-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .relato-card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .relato-card h3 {
+        font-size: 14px;
+    }
+
+    .relato-card span {
+        font-size: 24px;
+    }
+
+    .relato-botao-atualizar {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+
+/* Celulares pequenos */
+@media (max-width: 360px) {
+    .relato-card span {
+        font-size: 20px;
+    }
+
+    .relato-card h3 {
+        font-size: 13px;
+    }
+
+    .relato-botao-atualizar {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+
+/* Telas grandes */
+@media (min-width: 1400px) {
+    .relato-grid {
+        gap: 24px;
+    }
+
+    .relato-card {
+        padding: 28px;
+    }
+
+    .relato-card span {
+        font-size: 36px;
+    }
+}

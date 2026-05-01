@@ -156,20 +156,78 @@
 }
 
 /* =========================
-   RESPONSIVO
+RESPONSIVO
 ========================= */
-@media (max-width: 500px) {
 
+/* Tablets */
+@media (max-width: 768px) {
     .pedajo-card {
-        padding: 26px 18px;
+        max-width: 90%;
+        padding: 25px 20px;
     }
 
     .pedajo-titulo {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+    }
+
+    .pedajo-mensagem {
+        font-size: 0.95rem;
+    }
+}
+
+/* Celulares médios */
+@media (max-width: 480px) {
+    .pedajo-root {
+        padding: 15px;
+    }
+
+    .pedajo-card {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    .pedajo-titulo {
+        font-size: 1.3rem;
     }
 
     .pedajo-mensagem {
         font-size: 0.9rem;
     }
 
+    .pedajo-btn-voltar {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Celulares pequenos */
+@media (max-width: 360px) {
+    .pedajo-titulo {
+        font-size: 1.1rem;
+    }
+
+    .pedajo-mensagem {
+        font-size: 0.85rem;
+    }
+
+    .pedajo-contador {
+        font-size: 0.8rem;
+    }
+}
+
+/* Telas grandes */
+@media (min-width: 1200px) {
+    .pedajo-card {
+        max-width: 500px;
+        padding: 40px 30px;
+    }
+
+    .pedajo-titulo {
+        font-size: 2rem;
+    }
+
+    .pedajo-mensagem {
+        font-size: 1.1rem;
+    }
 }

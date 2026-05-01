@@ -175,3 +175,122 @@
     color: #475569;
     line-height: 1.6;
 }
+
+/* =========================
+RESPONSIVO
+========================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .painel-container {
+        padding: 20px;
+    }
+
+    .painel-header {
+        width: 95%;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .painel-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .painel-conteudo {
+        width: 95%;
+        padding: 24px;
+    }
+}
+
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+    .painel-header {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .painel-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+
+    .painel-conteudo {
+        padding: 20px;
+    }
+}
+
+
+/* Celulares médios */
+@media (max-width: 480px) {
+    .painel-container {
+        padding: 15px;
+        gap: 16px;
+    }
+
+    .painel-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .painel-btn {
+        width: 100%;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .painel-conteudo {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .painel-conteudo h1,
+    .painel-conteudo h2 {
+        font-size: 18px;
+    }
+
+    .painel-conteudo p {
+        font-size: 14px;
+    }
+}
+
+
+/* Celulares pequenos */
+@media (max-width: 360px) {
+    .painel-btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .painel-conteudo {
+        padding: 14px;
+    }
+
+    .painel-conteudo h1,
+    .painel-conteudo h2 {
+        font-size: 16px;
+    }
+
+    .painel-conteudo p {
+        font-size: 13px;
+    }
+}
+
+
+/* Telas grandes */
+@media (min-width: 1400px) {
+    .painel-container {
+        padding: 40px;
+    }
+
+    .painel-header {
+        max-width: 1500px;
+    }
+
+    .painel-conteudo {
+        max-width: 1600px;
+        padding: 40px;
+    }
+}

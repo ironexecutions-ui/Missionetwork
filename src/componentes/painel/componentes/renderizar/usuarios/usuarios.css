@@ -353,3 +353,139 @@
     width: 100%;
     height: 100%;
 }
+
+/* =========================
+RESPONSIVO
+========================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .usuarios-container {
+        padding: 0 15px;
+    }
+
+    .usuario-item {
+        padding: 16px;
+    }
+
+    .usuario-item strong {
+        font-size: 15px;
+    }
+
+    .usuario-item p {
+        font-size: 12px;
+    }
+}
+
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+    .usuario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .usuario-info {
+        width: 100%;
+    }
+
+    .ok,
+    .no {
+        align-self: flex-end;
+    }
+
+    .modal-box {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+
+
+/* Celulares médios */
+@media (max-width: 480px) {
+    .usuarios-container {
+        padding: 0 10px;
+        gap: 16px;
+    }
+
+    .usuario-item {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .usuario-foto {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .preview-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .preview-img.capa {
+        height: 120px;
+    }
+
+    .modal-box {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .modal-box h2 {
+        font-size: 18px;
+    }
+
+    .modal-box input {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    .botoes button {
+        width: 100%;
+    }
+}
+
+
+/* Celulares pequenos */
+@media (max-width: 360px) {
+    .usuario-item strong {
+        font-size: 14px;
+    }
+
+    .usuario-item p {
+        font-size: 11px;
+    }
+
+    .ok,
+    .no {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
+    .modal-box h2 {
+        font-size: 16px;
+    }
+}
+
+
+/* Telas grandes */
+@media (min-width: 1400px) {
+    .usuarios-container {
+        max-width: 1400px;
+    }
+
+    .usuario-item {
+        padding: 20px;
+    }
+
+    .modal-box {
+        max-width: 650px;
+    }
+}
