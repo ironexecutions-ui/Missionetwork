@@ -64,7 +64,7 @@ export default function Postagem() {
             const resComentarios = await fetch(`${API_URL}/comentarios/${id}`);
             const dataComentarios = await resComentarios.json();
 
-            console.log("COMENTARIOS:", dataComentarios);
+            //   console.log("COMENTARIOS:", dataComentarios);
 
             setComentarios(dataComentarios);
 

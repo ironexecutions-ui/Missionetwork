@@ -36,8 +36,13 @@ export default function PerfilUsuario() {
             const formData = new FormData();
             formData.append("file", file);
 
+            const token = localStorage.getItem("token");
+
             const res = await fetch(`${API_URL}/upload-perfil`, {
                 method: "POST",
+                headers: {
+                    Authorization: "Bearer " + token
+                },
                 body: formData
             });
 
