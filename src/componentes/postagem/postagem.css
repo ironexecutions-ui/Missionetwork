@@ -12,6 +12,20 @@
     gap: 16px;
 }
 
+/* CONTAINER NOME + DATA */
+.postagem-topo-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* DATA */
+.postagem-data {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
 /* LOADING E ERRO */
 .postagem-loading,
 .postagem-erro {

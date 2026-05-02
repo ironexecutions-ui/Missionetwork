@@ -111,18 +111,39 @@ export default function Postagem() {
                     </div>
                 )}
 
-                <span className="postagem-nome">
-                    {post.nome_completo}
-                </span>
+                <div className="postagem-topo-info">
+                    <span className="postagem-nome">
+                        {post.nome_completo}
+                    </span>
+
+                    <div className="postagem-data">
+                        {post.data_formatada}
+                    </div>
+                </div>
             </div>
 
             {/* TEXTO */}
             {post.conteudo && (
-                <p className="postagem-conteudo">
-                    {post.conteudo}
-                </p>
-            )}
+                <>
+                    <p className="postagem-conteudo">
+                        {post.conteudo}
+                    </p>
 
+                    {post.marcados?.length > 0 && (
+                        <div className="postagens-marcados">
+                            {post.marcados.map(m => (
+                                <span
+                                    key={m.id}
+                                    className="postagens-marcado-item"
+                                    onClick={() => navigate(`/visita/${m.id}`)}
+                                >
+                                    @{m.nome_completo}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </>
+            )}
             {/* ARQUIVOS */}
             {post.arquivos?.length > 0 && (
                 <div className="postagem-arquivos">
