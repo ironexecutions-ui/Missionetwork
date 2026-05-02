@@ -26,12 +26,12 @@ export default function Visita() {
             setLoading(true);
 
             // 🔥 usuário
-            const resUser = await fetch(`${API_URL}/usuarios/${id}`);
+            const resUser = await fetch(`${API_URL}/usuarios/publico/${id}`);
             const dataUser = await resUser.json();
             setUsuario(dataUser);
 
             // 🔥 posts
-            const resPosts = await fetch(`${API_URL}/postagens/feed`);
+            const resPosts = await fetch(`${API_URL}/postagens/usuario-completo/${id}`);
             const dataPosts = await resPosts.json();
 
             const filtrados = dataPosts.filter(

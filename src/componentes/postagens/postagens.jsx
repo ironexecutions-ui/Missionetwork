@@ -174,8 +174,11 @@ export default function Postagens() {
                             >
                                 {p.nome_completo}
                             </span>
-                        </div>
 
+                        </div>
+                        <div className="postagens-data">
+                            {p.data_formatada}
+                        </div>
                         {/* MENU */}
                         <div
                             className="postagens-menu-container"
@@ -235,7 +238,10 @@ export default function Postagens() {
 
 
                     {editandoPost === p.id ? (
-                        <div className="postagens-editar-box" onClick={(e) => e.stopPropagation()}>
+                        <div
+                            className="postagens-editar-box"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                             <textarea
                                 value={textoEdit}
                                 onChange={(e) => setTextoEdit(e.target.value)}
@@ -244,16 +250,36 @@ export default function Postagens() {
                         </div>
                     ) : (
                         p.conteudo && (
-                            <p className="postagens-conteudoo">
-                                {p.conteudo?.split("\n").map((linha, i) => (
-                                    <span key={i}>
-                                        {linha}
-                                        <br />
-                                    </span>
-                                ))}
-                            </p>
+                            <>
+                                <p className="postagens-conteudoo">
+                                    {p.conteudo?.split("\n").map((linha, i) => (
+                                        <span key={i}>
+                                            {linha}
+                                            <br />
+                                        </span>
+                                    ))}
+                                </p>
+
+                                {p.marcados?.length > 0 && (
+                                    <div className="postagens-marcados">
+                                        {p.marcados.map(m => (
+                                            <span
+                                                key={m.id}
+                                                className="postagens-marcado-item"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    navigate(`/visita/${m.id}`);
+                                                }}
+                                            >
+                                                @{m.nome_completo}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </>
                         )
                     )}
+
                     {p.arquivos?.length > 0 && (
                         <div
                             className="preview-wrap"
@@ -262,7 +288,7 @@ export default function Postagens() {
                                 navigate(`/postagem/${p.id}`);
                             }}
                         >
-                            {/* PRIMEIRO ITEM (SEM ALTERAR CLASSE) */}
+                            {/* PRIMEIRO ITEM */}
                             {(() => {
                                 const url = p.arquivos[0]?.arquivo || "";
                                 const isVideo =
@@ -271,7 +297,8 @@ export default function Postagens() {
                                     url.includes(".mov");
 
                                 return isVideo ? (
-                                    <video src={url} controls className="FIX_VIDEO" />) : (
+                                    <video src={url} controls className="FIX_VIDEO" />
+                                ) : (
                                     <img src={url} className="FIX_VIDEO" />
                                 );
                             })()}
