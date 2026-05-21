@@ -119,7 +119,10 @@ export default function App() {
     <GoogleOAuthProvider clientId="337060969671-u0kvppbs1bpl70f0i4cefghb6ev7v157.apps.googleusercontent.com">
       <BrowserRouter>
         <AppRoutes />
-        <BottomNav />
+
+        {window.location.pathname !== "/painel" && (
+          <BottomNav />
+        )}
 
       </BrowserRouter>
     </GoogleOAuthProvider>

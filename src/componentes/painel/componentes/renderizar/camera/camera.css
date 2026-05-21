@@ -1,0 +1,1290 @@
+.cameraPagina {
+    width: 97%;
+    height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at top,
+            rgba(255, 119, 0, 0.18),
+            transparent 28%),
+
+        radial-gradient(circle at bottom right,
+            rgba(255, 255, 255, 0.05),
+            transparent 35%),
+
+        linear-gradient(180deg,
+            #040404 0%,
+            #0c0c0c 40%,
+            #000000 97%);
+    border-radius: 30px;
+}
+
+/* ========================================= */
+/* ENTRADA */
+/* ========================================= */
+
+.cameraEntrada {
+    width: 94%;
+    max-width: 470px;
+
+    padding: 42px 30px;
+
+    border-radius: 38px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.11),
+            rgba(255, 255, 255, 0.03));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(26px);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cameraEntrada::before {
+    content: "";
+
+    position: absolute;
+
+    top: -120px;
+    right: -120px;
+
+    width: 240px;
+    height: 240px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 120, 0, 0.42),
+            transparent 70%);
+
+    filter: blur(30px);
+
+    pointer-events: none;
+}
+
+.cameraEntradaLogo {
+    width: 88px;
+    height: 88px;
+
+    margin: 0 auto;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(135deg,
+            #ff7a00,
+            #ff4400);
+
+    box-shadow:
+        0 20px 45px rgba(255, 100, 0, 0.38);
+}
+
+.cameraEntradaLogoInterna {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 5px solid white;
+
+    position: relative;
+}
+
+.cameraEntradaLogoInterna::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: white;
+}
+
+.cameraTitulo {
+    color: white;
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+    text-align: center;
+
+    letter-spacing: -1px;
+}
+
+.cameraSubtitulo {
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    text-align: center;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+.cameraInputDistrito {
+    width: 60%;
+    height: 62px;
+    margin: auto auto;
+    border: none;
+
+    border-radius: 20px;
+
+    padding: 0 20px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.22s;
+}
+
+.cameraInputDistrito::placeholder {
+    color:
+        rgba(255, 255, 255, 0.4);
+}
+
+.cameraInputDistrito:focus {
+    background:
+        rgba(255, 255, 255, 0.11);
+
+    box-shadow:
+        0 0 0 4px rgba(255, 120, 0, 0.15);
+}
+
+.cameraBotaoAbrir {
+    width: 97%;
+    height: 64px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    transition: 0.25s;
+
+    background:
+        linear-gradient(135deg,
+            #ff7a00,
+            #ff4d00);
+
+    box-shadow:
+        0 15px 40px rgba(255, 110, 0, 0.35);
+}
+
+.cameraBotaoAbrir:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 20px 50px rgba(255, 110, 0, 0.45);
+}
+
+/* ========================================= */
+/* CAMERA */
+/* ========================================= */
+
+.cameraArea {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: black;
+
+    z-index: 999999;
+}
+
+.cameraVideo {
+    width: 97%;
+    height: 97%;
+
+    object-fit: cover;
+
+    background: black;
+}
+
+.cameraOverlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.88),
+            transparent 34%),
+
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.7),
+            transparent 26%);
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+/* ========================================= */
+/* TOPO */
+/* ========================================= */
+
+.cameraTopo {
+    position: absolute;
+
+    top: 18px;
+    left: 18px;
+    right: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 5;
+}
+
+.cameraDistritoBox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 16px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(0, 0, 0, 0.4);
+
+    backdrop-filter: blur(16px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cameraDistritoPonto {
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background:
+        #00ff95;
+
+    box-shadow:
+        0 0 16px #00ff95;
+}
+
+.cameraDistritoInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.cameraDistritoLabel {
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.cameraDistrito {
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+.cameraTempo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 18px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 0, 0, 0.15);
+
+    border:
+        1px solid rgba(255, 0, 0, 0.22);
+
+    backdrop-filter: blur(16px);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+.cameraTempoPulse {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #ff3b3b;
+
+    animation:
+        cameraPulse 1s infinite;
+}
+
+@keyframes cameraPulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    97% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ========================================= */
+/* LATERAL */
+/* ========================================= */
+
+.cameraLateral {
+    position: absolute;
+
+    top: 100px;
+    right: 16px;
+
+    z-index: 5;
+}
+
+.cameraMiniaturas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-height: 68vh;
+
+    overflow-y: auto;
+
+    padding-right: 4px;
+}
+
+.cameraMiniaturas::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cameraMiniaturas::-webkit-scrollbar-thumb {
+    background:
+        rgba(255, 255, 255, 0.24);
+
+    border-radius: 999px;
+}
+
+.cameraMiniaturaItem {
+    width: 95px;
+    height: 120px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.45);
+
+    transition: 0.22s;
+}
+
+.cameraMiniaturaItem:hover {
+    transform:
+        scale(1.05);
+}
+
+.cameraPreviewImagem,
+.cameraPreviewVideo {
+    width: 97%;
+    height: 97%;
+
+    object-fit: cover;
+}
+
+.cameraMiniaturaOverlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    padding: 10px;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.55),
+            transparent 45%);
+}
+
+.cameraMiniaturaIconFoto,
+.cameraMiniaturaIconVideo {
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: white;
+}
+
+.cameraMiniaturaIconVideo {
+    background:
+        #ff3b3b;
+}
+
+/* ========================================= */
+/* BOTTOM */
+/* ========================================= */
+
+.cameraBottom {
+    position: absolute;
+
+    bottom: 24px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: calc(97% - 30px);
+    max-width: 760px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    z-index: 5;
+}
+
+.cameraBottom button {
+    border: none;
+
+    cursor: pointer;
+
+    transition: 0.22s;
+}
+
+.cameraBottom button:hover {
+    transform:
+        translateY(-3px) scale(1.03);
+}
+
+.cameraBotaoSecundario,
+.cameraBotaoVideo,
+.cameraBotaoParar {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    backdrop-filter: blur(18px);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cameraBotaoFoto {
+    width: 96px;
+    height: 96px;
+
+    border-radius: 50%;
+
+    padding: 7px;
+
+    background:
+        rgba(255, 255, 255, 0.2);
+
+    border:
+        2px solid rgba(255, 255, 255, 0.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.cameraBotaoFotoInterno {
+    width: 97%;
+    height: 97%;
+
+    border-radius: 50%;
+
+    background:
+        white;
+}
+
+.cameraBotaoEnviar {
+    height: 68px;
+
+    padding: 0 28px;
+
+    border-radius: 999px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background:
+        linear-gradient(135deg,
+            #00b894,
+            #00886d);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 15px 40px rgba(0, 184, 148, 0.35);
+}
+
+.cameraBotaoEnviar:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+/* ========================================= */
+/* ICONES */
+/* ========================================= */
+
+.cameraIconeFechar {
+    width: 22px;
+    height: 22px;
+
+    position: relative;
+}
+
+.cameraIconeFechar::before,
+.cameraIconeFechar::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 22px;
+    height: 2px;
+
+    background: white;
+}
+
+.cameraIconeFechar::before {
+    transform:
+        translate(-50%, -50%) rotate(45deg);
+}
+
+.cameraIconeFechar::after {
+    transform:
+        translate(-50%, -50%) rotate(-45deg);
+}
+
+.cameraIconeVideo {
+    width: 26px;
+    height: 18px;
+
+    border-radius: 6px;
+
+    background: #ff3b3b;
+
+    position: relative;
+}
+
+.cameraIconeVideo::after {
+    content: "";
+
+    position: absolute;
+
+    right: -8px;
+    top: 4px;
+
+    border-left: 10px solid #ff3b3b;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.cameraIconeParar {
+    width: 20px;
+    height: 20px;
+
+    border-radius: 4px;
+
+    background: white;
+}
+
+.cameraIconeEnviar {
+    width: 18px;
+    height: 18px;
+
+    border-top: 3px solid white;
+    border-right: 3px solid white;
+
+    transform:
+        rotate(45deg);
+}
+
+.cameraTitulo {
+    color: #ffffff !important;
+
+    text-shadow:
+        0 2px 10px rgba(255, 255, 255, 0.18);
+}
+
+.cameraSubtitulo {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.cameraInputDistrito {
+    color: #ffffff;
+}
+
+.cameraInputDistrito::placeholder {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.cameraDistritoLabel {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.cameraDistrito {
+    color: #ffffff;
+
+    text-shadow:
+        0 2px 10px rgba(255, 255, 255, 0.16);
+}
+
+.cameraTempo {
+    color: #ffffff;
+}
+
+.cameraBotaoAbrir {
+    color: #ffffff;
+
+    text-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.cameraBotaoEnviar {
+    color: #ffffff;
+
+    text-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.28);
+}
+
+.cameraBotaoEnviar span {
+    color: #ffffff;
+}
+
+.cameraDistritoBox {
+    background:
+        rgba(0, 0, 0, 0.58);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.16);
+}
+
+.cameraTempo {
+    background:
+        rgba(120, 0, 0, 0.52);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cameraBotaoSecundario,
+.cameraBotaoVideo,
+.cameraBotaoParar {
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.18);
+}
+
+.cameraOverlay {
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.96),
+            transparent 38%),
+
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.82),
+            transparent 24%);
+}
+
+.cameraModalOverlay {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.72);
+
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999999;
+
+    padding: 20px;
+}
+
+.cameraModal {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 35px 28px;
+
+    border-radius: 34px;
+
+    background:
+        linear-gradient(180deg,
+            rgba(28, 28, 28, 0.98),
+            rgba(10, 10, 10, 0.98));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6);
+
+    text-align: center;
+
+    animation:
+        cameraModalEntrada 0.22s ease;
+}
+
+@keyframes cameraModalEntrada {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1) translateY(0);
+    }
+}
+
+.cameraModalIcone {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 20px auto;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(135deg,
+            #ff7a00,
+            #ff4d00);
+
+    color: white;
+
+    font-size: 38px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 18px 40px rgba(255, 120, 0, 0.35);
+}
+
+.cameraModalTitulo {
+    color: white !important;
+
+    font-size: 29px;
+
+    font-weight: 800;
+
+    margin-bottom: 14px;
+}
+
+.cameraModalTexto {
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 28px;
+}
+
+.cameraModalBotoes {
+    display: flex;
+    gap: 14px;
+}
+
+.cameraModalBotoes button {
+    flex: 1;
+
+    height: 58px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    transition: 0.22s;
+}
+
+.cameraModalBotoes button:hover {
+    transform:
+        translateY(-2px);
+}
+
+.cameraModalCancelar {
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cameraModalConfirmar {
+    background:
+        linear-gradient(135deg,
+            #00b894,
+            #00886d);
+
+    color: white;
+
+    box-shadow:
+        0 14px 35px rgba(0, 184, 148, 0.28);
+}
+
+@media (max-width: 900px) {
+
+    .cameraPagina {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .cameraEntrada {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 34px 22px;
+
+        border-radius: 28px;
+
+        gap: 18px;
+    }
+
+    .cameraEntradaLogo {
+        width: 74px;
+        height: 74px;
+    }
+
+    .cameraEntradaLogoInterna {
+        width: 40px;
+        height: 40px;
+    }
+
+    .cameraTitulo {
+        font-size: 30px;
+        line-height: 1.1;
+    }
+
+    .cameraSubtitulo {
+        font-size: 14px;
+    }
+
+    .cameraInputDistrito {
+        width: 60%;
+
+        height: 58px;
+
+        font-size: 15px;
+
+        border-radius: 16px;
+    }
+
+    .cameraBotaoAbrir {
+        width: 100%;
+
+        height: 58px;
+
+        font-size: 15px;
+
+        border-radius: 18px;
+    }
+
+    .cameraTopo {
+        top: 14px;
+        left: 14px;
+        right: 14px;
+    }
+
+    .cameraDistritoBox {
+        padding: 10px 14px;
+
+        border-radius: 15px;
+
+        gap: 10px;
+
+        max-width: 68%;
+    }
+
+    .cameraDistrito {
+        font-size: 13px;
+
+        word-break: break-word;
+    }
+
+    .cameraDistritoLabel {
+        font-size: 10px;
+    }
+
+    .cameraTempo {
+        padding: 10px 14px;
+
+        border-radius: 15px;
+
+        font-size: 13px;
+
+        gap: 8px;
+    }
+
+    .cameraTempoPulse {
+        width: 10px;
+        height: 10px;
+    }
+
+    .cameraLateral {
+        top: auto;
+
+        right: 10px;
+        bottom: 110px;
+    }
+
+    .cameraMiniaturas {
+        flex-direction: row;
+
+        max-width: 78vw;
+        max-height: none;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding-bottom: 4px;
+    }
+
+    .cameraMiniaturaItem {
+        min-width: 76px;
+
+        width: 76px;
+        height: 100px;
+
+        border-radius: 16px;
+    }
+
+    .cameraBottom {
+        width: calc(100% - 14px);
+
+        bottom: 10px;
+
+        gap: 10px;
+
+        flex-wrap: nowrap;
+    }
+
+    .cameraBotaoSecundario,
+    .cameraBotaoVideo,
+    .cameraBotaoParar {
+        width: 56px;
+        height: 56px;
+
+        min-width: 56px;
+    }
+
+    .cameraBotaoFoto {
+        width: 76px;
+        height: 76px;
+
+        min-width: 76px;
+
+        padding: 5px;
+    }
+
+    .cameraBotaoEnviar {
+        height: 56px;
+
+        padding: 0 18px;
+
+        font-size: 13px;
+
+        gap: 8px;
+
+        white-space: nowrap;
+    }
+
+    .cameraIconeEnviar {
+        width: 15px;
+        height: 15px;
+    }
+
+    .cameraIconeVideo {
+        width: 22px;
+        height: 15px;
+    }
+
+    .cameraIconeParar {
+        width: 17px;
+        height: 17px;
+    }
+
+    .cameraIconeFechar {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cameraModal {
+        max-width: 100%;
+
+        padding: 28px 20px;
+
+        border-radius: 26px;
+    }
+
+    .cameraModalIcone {
+        width: 66px;
+        height: 66px;
+
+        font-size: 30px;
+    }
+
+    .cameraModalTitulo {
+        font-size: 24px;
+    }
+
+    .cameraModalTexto {
+        font-size: 14px;
+    }
+
+    .cameraModalBotoes {
+        flex-direction: column;
+    }
+
+    .cameraModalBotoes button {
+        width: 100%;
+
+        height: 54px;
+
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .cameraPagina {
+        padding: 0;
+    }
+
+    .cameraEntrada {
+        border-radius: 0;
+
+        min-height: 100vh;
+
+        justify-content: center;
+
+        padding: 30px 18px;
+    }
+
+    .cameraTitulo {
+        font-size: 26px;
+    }
+
+    .cameraSubtitulo {
+        font-size: 13px;
+    }
+
+    .cameraInputDistrito {
+        height: 54px;
+
+        font-size: 14px;
+
+        padding: 0 16px;
+    }
+
+    .cameraBotaoAbrir {
+        height: 54px;
+
+        font-size: 14px;
+    }
+
+    .cameraDistritoBox {
+        max-width: 62%;
+
+        padding: 9px 12px;
+    }
+
+    .cameraDistrito {
+        font-size: 12px;
+    }
+
+    .cameraTempo {
+        font-size: 12px;
+
+        padding: 9px 12px;
+    }
+
+    .cameraMiniaturaItem {
+        min-width: 66px;
+
+        width: 66px;
+        height: 88px;
+    }
+
+    .cameraBottom {
+        gap: 8px;
+    }
+
+    .cameraBotaoSecundario,
+    .cameraBotaoVideo,
+    .cameraBotaoParar {
+        width: 50px;
+        height: 50px;
+
+        min-width: 50px;
+    }
+
+    .cameraBotaoFoto {
+        width: 68px;
+        height: 68px;
+
+        min-width: 68px;
+    }
+
+    .cameraBotaoEnviar {
+        height: 50px;
+
+        padding: 0 14px;
+
+        font-size: 12px;
+    }
+
+    .cameraIconeEnviar {
+        width: 13px;
+        height: 13px;
+    }
+
+    .cameraModal {
+        padding: 24px 18px;
+    }
+
+    .cameraModalTitulo {
+        font-size: 21px;
+    }
+
+    .cameraModalTexto {
+        font-size: 13px;
+    }
+}

@@ -156,15 +156,16 @@ function FamiliaresForm({ fechar }) {
 
         const res = await fetch(`${API_URL}/familiares`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                familiar_id: selecionado.id,
-                tipo_familiar: tipo
-            }),
+
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + localStorage.getItem("token")
-            }
+            },
+
+            body: JSON.stringify({
+                familiar_id: selecionado.id,
+                tipo_familiar: tipo
+            })
         });
 
         const data = await res.json();

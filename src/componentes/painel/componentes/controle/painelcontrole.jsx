@@ -1,34 +1,59 @@
 import React, { useState } from "react";
+
 import Relatorio from "../renderizar/relato/relato";
 import Usuarios from "../renderizar/usuarios/usuarios";
+import Camera from "../renderizar/camera/camera";
 
 import "./painelcontrole.css";
 
 export default function Painelcontrole() {
 
     const [abaAtiva, setAbaAtiva] = useState("relatorio");
+
     const [menuAberto, setMenuAberto] = useState(false);
 
     const abas = [
-        { id: "relatorio", nome: "Relatório" },
-        { id: "usuarios", nome: "Usuários" },
+        {
+            id: "relatorio",
+            nome: "Relatório"
+        },
+
+        {
+            id: "usuarios",
+            nome: "Usuários"
+        },
+
+        {
+            id: "camera",
+            nome: "Câmera"
+        }
+
         // 🔥 aqui você pode adicionar quantos quiser
     ];
 
     const renderConteudo = () => {
+
         switch (abaAtiva) {
+
             case "relatorio":
                 return <Relatorio />;
+
             case "usuarios":
                 return <Usuarios />;
+
+            case "camera":
+                return <Camera />;
+
             default:
                 return <h2>Selecione uma opção</h2>;
         }
     };
 
     const selecionarAba = (id) => {
+
         setAbaAtiva(id);
-        setMenuAberto(false); // 🔥 fecha ao clicar
+
+        setMenuAberto(false);
     };
 
     return (
