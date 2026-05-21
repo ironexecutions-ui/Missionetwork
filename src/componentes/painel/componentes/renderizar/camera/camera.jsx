@@ -506,19 +506,121 @@ export default function Camera() {
 
                     </div>
 
-                    <div className="cameraBottom">
+                    <div
+                        className="cameraBottom"
+                        style={{
+                            bottom: "90px"
+                        }}
+                    >
 
                         <button
                             className="cameraBotaoSecundario"
                             onClick={fecharTudo}
+                            style={{
+                                transform: "translateY(-10px)"
+                            }}
                         >
                             <div className="cameraIconeFechar" />
+                        </button>
+
+                        <button
+                            className="cameraBotaoVideo"
+                            onClick={async () => {
+
+                                try {
+
+                                    const track = streamRef.current
+                                        ?.getVideoTracks?.()[0];
+
+                                    if (!track) return;
+
+                                    const atual = track.getSettings().facingMode;
+
+                                    const novoModo =
+                                        atual === "environment"
+                                            ? "user"
+                                            : "environment";
+
+                                    streamRef.current
+                                        ?.getTracks()
+                                        .forEach(track => track.stop());
+
+                                    const novoStream =
+                                        await navigator.mediaDevices.getUserMedia({
+                                            video: {
+                                                facingMode: novoModo,
+
+                                                width: {
+                                                    ideal: 1920
+                                                },
+
+                                                height: {
+                                                    ideal: 1080
+                                                }
+                                            },
+
+                                            audio: true
+                                        });
+
+                                    streamRef.current = novoStream;
+
+                                    if (videoRef.current) {
+
+                                        videoRef.current.srcObject =
+                                            novoStream;
+
+                                        await videoRef.current.play();
+                                    }
+
+                                } catch (erro) {
+
+                                    console.log(erro);
+                                }
+                            }}
+                            style={{
+                                transform: "translateY(-25px)"
+                            }}
+                        >
+                            <div
+                                style={{
+                                    width: "24px",
+                                    height: "24px",
+
+                                    border: "3px solid white",
+
+                                    borderRadius: "50%",
+
+                                    position: "relative"
+                                }}
+                            >
+
+                                <div
+                                    style={{
+                                        position: "absolute",
+
+                                        top: "-6px",
+                                        right: "-6px",
+
+                                        width: "10px",
+                                        height: "10px",
+
+                                        borderTop: "3px solid white",
+                                        borderRight: "3px solid white",
+
+                                        transform: "rotate(45deg)"
+                                    }}
+                                />
+
+                            </div>
                         </button>
 
                         {!gravando && (
                             <button
                                 className="cameraBotaoVideo"
                                 onClick={iniciarVideo}
+                                style={{
+                                    transform: "translateY(-45px)"
+                                }}
                             >
                                 <div className="cameraIconeVideo" />
                             </button>
@@ -528,6 +630,9 @@ export default function Camera() {
                             <button
                                 className="cameraBotaoParar"
                                 onClick={pararVideo}
+                                style={{
+                                    transform: "translateY(-45px)"
+                                }}
                             >
                                 <div className="cameraIconeParar" />
                             </button>
@@ -536,6 +641,9 @@ export default function Camera() {
                         <button
                             className="cameraBotaoFoto"
                             onClick={tirarFoto}
+                            style={{
+                                transform: "translateY(-60px)"
+                            }}
                         >
                             <div className="cameraBotaoFotoInterno" />
                         </button>
@@ -546,6 +654,9 @@ export default function Camera() {
                                 setModalConfirmar(true);
                             }}
                             disabled={enviando}
+                            style={{
+                                transform: "translateY(-25px)"
+                            }}
                         >
 
                             <div className="cameraIconeEnviar" />
