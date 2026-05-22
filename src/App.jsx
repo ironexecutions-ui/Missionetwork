@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation
+} from "react-router-dom";
+
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import "./App.css";
@@ -17,34 +23,40 @@ import Postagem from "./componentes/postagem/postagem";
 import BottomNav from "./componentes/header/nav";
 import Pedajo from "./componentes/verifica/verifica";
 import Painel from "./componentes/painel/painel";
+
 // LOADER
 import Loader from "./loader";
 
 // 🔥 LAYOUT COM HEADER
 function LayoutComHeader({ children }) {
+
   return (
     <>
       <Header />
       {children}
-      {/* ❌ REMOVE ISSO */}
-      {/* <BottomNav /> */}
     </>
   );
 }
 
 // 🔥 CONTROLE DE ROTA + LOADER
 function AppRoutes() {
+
   const location = useLocation();
+
   const [carregando, setCarregando] = useState(false);
 
   useEffect(() => {
+
     setCarregando(true);
 
     const timer = setTimeout(() => {
+
       setCarregando(false);
-    }, 800); // tempo do loader
+
+    }, 800);
 
     return () => clearTimeout(timer);
+
   }, [location.pathname]);
 
   return (
@@ -80,17 +92,17 @@ function AppRoutes() {
             </LayoutComHeader>
           }
         />
+
         <Route
           path="/perfilusuario/pedajo"
-          element={
-            <Pedajo />
-          }
-        /> <Route
-          path="/painel"
-          element={
-            <Painel />
-          }
+          element={<Pedajo />}
         />
+
+        <Route
+          path="/painel"
+          element={<Painel />}
+        />
+
         <Route
           path="/config"
           element={
@@ -101,30 +113,76 @@ function AppRoutes() {
         />
 
         {/* SEM HEADER */}
-        <Route path="/meu-missionario/:id" element={<Missionario />} />
-        <Route path="/visita/:id" element={<Visita />} />
-        <Route path="/postagem/:id" element={<Postagem />} />
+        <Route
+          path="/meu-missionario/:id"
+          element={<Missionario />}
+        />
+
+        <Route
+          path="/visita/:id"
+          element={<Visita />}
+        />
+
+        <Route
+          path="/postagem/:id"
+          element={<Postagem />}
+        />
 
         {/* DINÂMICA */}
-        <Route path="/:nome" element={<PerfilUsuario />} />
+        <Route
+          path="/:nome"
+          element={<PerfilUsuario />}
+        />
 
       </Routes>
     </>
   );
 }
 
+// 🔥 COMPONENTE DO NAV
+function ControleNav() {
+
+  const location = useLocation();
+
+  const [mostrarNav, setMostrarNav] = useState(true);
+
+  useEffect(() => {
+
+    if (location.pathname === "/painel") {
+
+      setMostrarNav(false);
+
+    } else {
+
+      setMostrarNav(true);
+
+    }
+
+  }, [location.pathname]);
+
+  if (!mostrarNav) {
+
+    return null;
+
+  }
+
+  return <BottomNav />;
+}
+
 // 🔥 APP PRINCIPAL
 export default function App() {
+
   return (
     <GoogleOAuthProvider clientId="337060969671-u0kvppbs1bpl70f0i4cefghb6ev7v157.apps.googleusercontent.com">
+
       <BrowserRouter>
+
         <AppRoutes />
 
-        {window.location.pathname !== "/painel" && (
-          <BottomNav />
-        )}
+        <ControleNav />
 
       </BrowserRouter>
+
     </GoogleOAuthProvider>
   );
 }

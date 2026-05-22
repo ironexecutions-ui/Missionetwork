@@ -149,7 +149,7 @@
 
 .cameraSubtitulo {
     color:
-        rgba(255, 255, 255, 0.65);
+        rgb(255, 255, 255);
 
     text-align: center;
 
@@ -752,6 +752,66 @@
     border-bottom: 5px solid transparent;
 }
 
+.labelinput {
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.cameraEntradaImagemLogo {
+
+    width: 130px;
+
+    height: 130px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin: 0 auto;
+
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.25));
+
+    animation: cameraLogoAnimacao 1.5s ease;
+}
+
+@keyframes cameraLogoAnimacao {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0.7) translateY(-20px);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .cameraEntradaImagemLogo {
+
+        width: 110px;
+
+        height: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .cameraEntradaImagemLogo {
+
+        width: 90px;
+
+        height: 90px;
+    }
+}
+
 .cameraIconeParar {
     width: 20px;
     height: 20px;
@@ -780,7 +840,7 @@
 }
 
 .cameraSubtitulo {
-    color: rgba(255, 255, 255, 0.88);
+    color: rgb(250, 250, 250) !important;
 }
 
 .cameraInputDistrito {
@@ -1096,7 +1156,7 @@
 
     .cameraBotaoAbrir {
         width: 100%;
-
+        margin-bottom: 120px;
         height: 58px;
 
         font-size: 15px;

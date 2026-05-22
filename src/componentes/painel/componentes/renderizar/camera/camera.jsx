@@ -5,7 +5,7 @@ import React, {
 } from "react";
 
 import "./camera.css";
-
+import logoMissionary from "./imagen/m.png";
 import { API_URL } from "../../../../../config";
 
 export default function Camera() {
@@ -27,7 +27,7 @@ export default function Camera() {
     const [enviando, setEnviando] = useState(false);
 
     const [tempoVideo, setTempoVideo] = useState(0);
-
+    const [cameraAtual, setCameraAtual] = useState("environment");
     const intervaloRef = useRef(null);
     const [modalConfirmar, setModalConfirmar] = useState(false);
     // =====================================
@@ -47,34 +47,32 @@ export default function Camera() {
 
             setCameraAberta(true);
 
-            setTimeout(async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({
 
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: {
-                        facingMode: "environment",
+                video: {
 
-                        width: {
-                            ideal: 1920
-                        },
+                    facingMode: cameraAtual,
 
-                        height: {
-                            ideal: 1080
-                        }
+                    width: {
+                        ideal: 1920
                     },
 
-                    audio: true
-                });
+                    height: {
+                        ideal: 1080
+                    }
+                },
 
-                streamRef.current = stream;
+                audio: true
+            });
 
-                if (videoRef.current) {
+            streamRef.current = stream;
 
-                    videoRef.current.srcObject = stream;
+            if (videoRef.current) {
 
-                    await videoRef.current.play();
-                }
+                videoRef.current.srcObject = stream;
 
-            }, 200);
+                await videoRef.current.play();
+            }
 
         } catch (erro) {
 
@@ -83,7 +81,6 @@ export default function Camera() {
             alert("Erro ao abrir câmera");
         }
     }
-
     // =====================================
     // FOTO
     // =====================================
@@ -378,9 +375,12 @@ export default function Camera() {
             {!cameraAberta && (
                 <div className="cameraEntrada">
 
-                    <div className="cameraEntradaLogo">
-                        <div className="cameraEntradaLogoInterna" />
-                    </div>
+                    <div className="cameraEntradaogo">
+                        <img
+                            src={logoMissionary}
+                            alt=""
+                            className="cameraEntradaImagemLogo"
+                        />                    </div>
 
                     <h1 className="cameraTitulo">
                         Missionary Store Brasil
@@ -389,7 +389,7 @@ export default function Camera() {
                     <p className="cameraSubtitulo">
                         Registre momentos do distrito com fotos e vídeos
                     </p>
-
+                    <label className="labelinput" >digite o seu distroto exemplo <br /> 39A-ESP3</label>
                     <input
                         type="text"
                         placeholder="Digite o distrito"
@@ -529,26 +529,43 @@ export default function Camera() {
 
                                 try {
 
-                                    const track = streamRef.current
-                                        ?.getVideoTracks?.()[0];
+                                    if (gravando) {
 
-                                    if (!track) return;
+                                        alert("Pare a gravação antes de virar a câmera");
 
-                                    const atual = track.getSettings().facingMode;
+                                        return;
+                                    }
 
                                     const novoModo =
-                                        atual === "environment"
+                                        cameraAtual === "environment"
                                             ? "user"
                                             : "environment";
 
-                                    streamRef.current
-                                        ?.getTracks()
-                                        .forEach(track => track.stop());
+                                    if (videoRef.current) {
+
+                                        videoRef.current.pause();
+
+                                        videoRef.current.srcObject = null;
+                                    }
+
+                                    if (streamRef.current) {
+
+                                        streamRef.current
+                                            .getTracks()
+                                            .forEach((track) => {
+
+                                                track.stop();
+                                            });
+                                    }
 
                                     const novoStream =
                                         await navigator.mediaDevices.getUserMedia({
+
                                             video: {
-                                                facingMode: novoModo,
+
+                                                facingMode: {
+                                                    exact: novoModo
+                                                },
 
                                                 width: {
                                                     ideal: 1920
@@ -564,6 +581,8 @@ export default function Camera() {
 
                                     streamRef.current = novoStream;
 
+                                    setCameraAtual(novoModo);
+
                                     if (videoRef.current) {
 
                                         videoRef.current.srcObject =
@@ -575,6 +594,8 @@ export default function Camera() {
                                 } catch (erro) {
 
                                     console.log(erro);
+
+                                    alert("Não foi possível virar a câmera");
                                 }
                             }}
                             style={{
