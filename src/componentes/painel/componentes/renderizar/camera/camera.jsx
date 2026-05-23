@@ -33,7 +33,56 @@ export default function Camera() {
     // =====================================
     // ABRIR CAMERA
     // =====================================
+    const [orientacao, setOrientacao] = useState(
+        window.innerWidth > window.innerHeight
+            ? "horizontal"
+            : "vertical"
+    );
+    // =====================================
+    // DETECTAR ORIENTAÇÃO
+    // =====================================
 
+    useEffect(() => {
+
+        function atualizarOrientacao() {
+
+            const horizontal =
+                window.innerWidth >
+                window.innerHeight;
+
+            setOrientacao(
+                horizontal
+                    ? "horizontal"
+                    : "vertical"
+            );
+        }
+
+        atualizarOrientacao();
+
+        window.addEventListener(
+            "resize",
+            atualizarOrientacao
+        );
+
+        window.addEventListener(
+            "orientationchange",
+            atualizarOrientacao
+        );
+
+        return () => {
+
+            window.removeEventListener(
+                "resize",
+                atualizarOrientacao
+            );
+
+            window.removeEventListener(
+                "orientationchange",
+                atualizarOrientacao
+            );
+        };
+
+    }, []);
     async function abrirCamera() {
 
         if (!distrito.trim()) {
@@ -145,6 +194,42 @@ export default function Camera() {
     // =====================================
     // VIDEO
     // =====================================
+    // =====================================
+    // FULLSCREEN AUTOMÁTICO
+    // =====================================
+
+    useEffect(() => {
+
+        async function entrarFullscreen() {
+
+            try {
+
+                if (
+                    cameraAberta &&
+                    document.documentElement
+                        .requestFullscreen
+                ) {
+
+                    await document.documentElement
+                        .requestFullscreen();
+
+                    if (screen.orientation?.lock) {
+
+                        await screen.orientation.lock(
+                            "landscape"
+                        );
+                    }
+                }
+
+            } catch (erro) {
+
+                console.log(erro);
+            }
+        }
+
+        entrarFullscreen();
+
+    }, [cameraAberta]);
 
     function iniciarVideo() {
 
@@ -366,6 +451,11 @@ export default function Camera() {
         setGravando(false);
 
         setTempoVideo(0);
+
+        if (document.fullscreenElement) {
+
+            document.exitFullscreen();
+        }
     }
 
     useEffect(() => {
@@ -486,8 +576,12 @@ export default function Camera() {
             )}
 
             {cameraAberta && (
-                <div className="cameraArea">
-
+                <div
+                    className={`cameraArea ${orientacao === "horizontal"
+                        ? "cameraHorizontal"
+                        : "cameraVertical"
+                        }`}
+                >
                     <video
                         ref={videoRef}
                         autoPlay
