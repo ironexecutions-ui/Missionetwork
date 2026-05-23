@@ -18,7 +18,7 @@
    HEADER (TOP BAR)
 ========================= */
 .painel-header {
-    position: sticky;
+    position: relative;
     top: 16px;
     z-index: 10;
 

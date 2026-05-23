@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Relatorio from "../renderizar/relato/relato";
 import Usuarios from "../renderizar/usuarios/usuarios";
 import Camera from "../renderizar/camera/camera";
-
+import Imagens from "../imagens/imagens";
 import "./painelcontrole.css";
 
 export default function Painelcontrole() {
@@ -26,6 +26,10 @@ export default function Painelcontrole() {
         {
             id: "camera",
             nome: "Câmera"
+        },
+        {
+            id: "imagens",
+            nome: "imagens"
         }
 
         // 🔥 aqui você pode adicionar quantos quiser
@@ -43,6 +47,9 @@ export default function Painelcontrole() {
 
             case "camera":
                 return <Camera />;
+
+            case "imagens":
+                return <Imagens />;
 
             default:
                 return <h2>Selecione uma opção</h2>;

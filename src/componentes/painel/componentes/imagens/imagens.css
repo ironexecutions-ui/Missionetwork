@@ -1,0 +1,343 @@
+.imagensPaginaContainer {
+    border-radius: 20px;
+    width: 95%;
+    min-height: 100vh;
+    margin: auto;
+    background:
+        #0f111700;
+
+    padding:
+        20px;
+
+    box-sizing:
+        border-box;
+}
+
+.imagensTopoBarra {
+
+    width: 95%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom:
+        25px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 22220;
+
+    padding:
+        15px;
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(20, 20, 20, 0.88);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.imagensBotaoModo,
+.imagensBotaoBaixar,
+.imagensBotaoCancelar,
+.imagensSelecionarGrupoBotao,
+.imagensSelecionarBotao {
+
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        0.2s;
+
+    font-weight:
+        600;
+}
+
+.imagensBotaoModo {
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        12px;
+
+    background:
+        #1f2430;
+
+    color:
+        white;
+}
+
+.imagensBotaoModoAtivo {
+
+    background:
+        #376dff;
+}
+
+.imagensBotaoBaixar {
+
+    background:
+        #20c45a;
+
+    color:
+        white;
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        12px;
+}
+
+.imagensBotaoCancelar {
+
+    background:
+        #c93a3a;
+
+    color:
+        white;
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        12px;
+}
+
+.imagensGrupoArea {
+
+    margin-bottom:
+        40px;
+}
+
+.imagensGrupoTopo {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        18px;
+
+    gap:
+        10px;
+}
+
+.imagensGrupoTopo h2 {
+
+    color:
+        white;
+
+    font-size:
+        22px;
+}
+
+.imagensSelecionarGrupoBotao {
+
+    padding:
+        10px 16px;
+
+    border-radius:
+        12px;
+
+    background:
+        #252a38;
+
+    color:
+        white;
+}
+
+.imagensGridContainer {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill,
+            minmax(180px, 1fr));
+
+    gap:
+        15px;
+}
+
+.imagensCardItem {
+
+    background:
+        #1a1f2b;
+
+    border-radius:
+        18px;
+
+    overflow:
+        hidden;
+
+    border:
+        2px solid transparent;
+
+    transition:
+        0.2s;
+}
+
+.imagensCardSelecionado {
+
+    border:
+        2px solid #20c45a;
+}
+
+.imagensMiniatura {
+
+    width: 95%;
+
+    aspect-ratio:
+        1 / 1;
+
+    object-fit:
+        cover;
+
+    cursor:
+        pointer;
+}
+
+.imagensSelecionarBotao {
+
+    width: 95%;
+
+    padding:
+        12px;
+
+    background:
+        #252a38;
+
+    color:
+        white;
+}
+
+.imagensModalFundo {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.9);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.imagensModalImagem {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    max-height: 90vh;
+
+    object-fit:
+        contain;
+
+    border-radius:
+        20px;
+}
+
+.imagensLoadingArea {
+
+    width: 95%;
+
+    height: 60vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap:
+        20px;
+}
+
+.imagensLoadingArea h3 {
+
+    color:
+        white;
+}
+
+.imagensLoadingSpinner {
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius:
+        50%;
+
+    border:
+        5px solid rgba(255, 255, 255, 0.2);
+
+    border-top:
+        5px solid white;
+
+    animation:
+        imagensRodar 1s linear infinite;
+}
+
+@keyframes imagensRodar {
+
+    from {
+
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .imagensGridContainer {
+
+        grid-template-columns:
+            repeat(auto-fill,
+                minmax(120px, 1fr));
+    }
+
+    .imagensGrupoTopo {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+    }
+
+    .imagensTopoBarra {
+
+        flex-wrap:
+            wrap;
+    }
+}
