@@ -1148,66 +1148,6 @@
             #3f3f3f);
 }
 
-/* ========================================= */
-/* ORIENTAÇÃO HORIZONTAL */
-/* ========================================= */
-
-.cameraHorizontal {
-
-    width: 100vw;
-
-    height: 100vh;
-
-    overflow: hidden;
-
-    position: fixed;
-
-    inset: 0;
-
-    background: black;
-}
-
-.cameraHorizontal .cameraVideo {
-
-    width: 100vw;
-
-    height: 100vh;
-
-    object-fit: cover;
-}
-
-/* ========================================= */
-/* AJUSTES HORIZONTAIS */
-/* ========================================= */
-
-.cameraHorizontal .cameraBottom {
-
-    bottom: 20px;
-}
-
-.cameraHorizontal .cameraLateral {
-
-    top: 90px;
-
-    right: 10px;
-}
-
-.cameraHorizontal .cameraMiniaturas {
-
-    max-height: 60vh;
-}
-
-/* ========================================= */
-/* MODO VERTICAL */
-/* ========================================= */
-
-.cameraVertical {
-
-    width: 100vw;
-
-    height: 100vh;
-}
-
 .cameraUploadTitulo {
 
     font-size: 28px;

@@ -30,59 +30,42 @@ export default function Camera() {
     const [cameraAtual, setCameraAtual] = useState("environment");
     const intervaloRef = useRef(null);
     const [modalConfirmar, setModalConfirmar] = useState(false);
-    // =====================================
-    // ABRIR CAMERA
-    // =====================================
-    const [orientacao, setOrientacao] = useState(
-        window.innerWidth > window.innerHeight
-            ? "horizontal"
-            : "vertical"
-    );
-    // =====================================
-    // DETECTAR ORIENTAÇÃO
-    // =====================================
+    const [rotacao, setRotacao] = useState(0);
 
     useEffect(() => {
 
-        function atualizarOrientacao() {
+        function atualizarRotacao() {
 
-            const horizontal =
-                window.innerWidth >
-                window.innerHeight;
+            const angulo =
+                screen.orientation?.angle ||
+                window.orientation ||
+                0;
 
-            setOrientacao(
-                horizontal
-                    ? "horizontal"
-                    : "vertical"
-            );
+            setRotacao(angulo);
         }
 
-        atualizarOrientacao();
-
-        window.addEventListener(
-            "resize",
-            atualizarOrientacao
-        );
+        atualizarRotacao();
 
         window.addEventListener(
             "orientationchange",
-            atualizarOrientacao
+            atualizarRotacao
         );
 
         return () => {
 
             window.removeEventListener(
-                "resize",
-                atualizarOrientacao
-            );
-
-            window.removeEventListener(
                 "orientationchange",
-                atualizarOrientacao
+                atualizarRotacao
             );
         };
 
     }, []);
+
+
+    // =====================================
+    // ABRIR CAMERA
+    // =====================================
+
     async function abrirCamera() {
 
         if (!distrito.trim()) {
@@ -194,42 +177,6 @@ export default function Camera() {
     // =====================================
     // VIDEO
     // =====================================
-    // =====================================
-    // FULLSCREEN AUTOMÁTICO
-    // =====================================
-
-    useEffect(() => {
-
-        async function entrarFullscreen() {
-
-            try {
-
-                if (
-                    cameraAberta &&
-                    document.documentElement
-                        .requestFullscreen
-                ) {
-
-                    await document.documentElement
-                        .requestFullscreen();
-
-                    if (screen.orientation?.lock) {
-
-                        await screen.orientation.lock(
-                            "landscape"
-                        );
-                    }
-                }
-
-            } catch (erro) {
-
-                console.log(erro);
-            }
-        }
-
-        entrarFullscreen();
-
-    }, [cameraAberta]);
 
     function iniciarVideo() {
 
@@ -451,11 +398,6 @@ export default function Camera() {
         setGravando(false);
 
         setTempoVideo(0);
-
-        if (document.fullscreenElement) {
-
-            document.exitFullscreen();
-        }
     }
 
     useEffect(() => {
@@ -576,12 +518,8 @@ export default function Camera() {
             )}
 
             {cameraAberta && (
-                <div
-                    className={`cameraArea ${orientacao === "horizontal"
-                        ? "cameraHorizontal"
-                        : "cameraVertical"
-                        }`}
-                >
+                <div className="cameraArea">
+
                     <video
                         ref={videoRef}
                         autoPlay
@@ -594,8 +532,13 @@ export default function Camera() {
 
                     <div className="cameraOverlay" />
 
-                    <div className="cameraTopo">
-
+                    <div
+                        className="cameraTopo"
+                        style={{
+                            transform:
+                                `rotate(${rotacao}deg)`
+                        }}
+                    >
                         <div className="cameraDistritoBox">
                             <div className="cameraEntradaogo">
                                 <img
@@ -637,8 +580,13 @@ export default function Camera() {
 
                     </div>
 
-                    <div className="cameraLateral">
-
+                    <div
+                        className="cameraLateral"
+                        style={{
+                            transform:
+                                `rotate(${rotacao}deg)`
+                        }}
+                    >
                         <div className="cameraMiniaturas">
 
                             {midias.map((item, index) => (
@@ -683,7 +631,9 @@ export default function Camera() {
                     <div
                         className="cameraBottom"
                         style={{
-                            bottom: "90px"
+                            bottom: "90px",
+                            transform:
+                                `translateX(-50%) rotate(${rotacao}deg)`
                         }}
                     >
 
