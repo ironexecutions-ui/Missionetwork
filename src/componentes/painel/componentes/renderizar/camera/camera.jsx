@@ -136,6 +136,16 @@ export default function Camera() {
 
         const ctx = canvas.getContext("2d");
 
+        if (cameraAtual === "user") {
+
+            ctx.translate(
+                canvas.width,
+                0
+            );
+
+            ctx.scale(-1, 1);
+        }
+
         ctx.drawImage(
             video,
             0,
@@ -528,7 +538,12 @@ export default function Camera() {
                         controls={false}
                         disablePictureInPicture
                         className="cameraVideo"
-                    />
+                        style={{
+                            transform:
+                                cameraAtual === "user"
+                                    ? "scaleX(-1)"
+                                    : "scaleX(1)"
+                        }} />
 
                     <div className="cameraOverlay" />
 
