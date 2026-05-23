@@ -397,13 +397,79 @@ export default function Camera() {
                     <p className="cameraSubtitulo">
                         Registre momentos do distrito com fotos e vídeos
                     </p>
-                    <label className="labelinput" >digite o seu distroto exemplo <br /> 39A-ESP3</label>
+                    <label className="labelinput" >digite o seu distrito exemplo <br /> 39A-ESP3</label>
                     <input
                         type="text"
                         placeholder="Digite o distrito"
                         value={distrito}
+                        maxLength={8}
                         onChange={(e) => {
-                            setDistrito(e.target.value);
+
+                            let valor = e.target.value
+                                .toUpperCase()
+                                .replace(/[^A-Z0-9]/g, "");
+
+                            let formatado = "";
+
+                            // =========================
+                            // 2 NÚMEROS
+                            // =========================
+
+                            if (valor.length >= 1) {
+
+                                formatado += valor.substring(0, 2)
+                                    .replace(/[^0-9]/g, "");
+                            }
+
+                            // =========================
+                            // 1 LETRA
+                            // =========================
+
+                            if (valor.length >= 3) {
+
+                                const letra = valor
+                                    .substring(2, 3)
+                                    .replace(/[^A-Z]/g, "");
+
+                                formatado += letra;
+                            }
+
+                            // =========================
+                            // HÍFEN AUTOMÁTICO
+                            // =========================
+
+                            if (formatado.length === 3) {
+
+                                formatado += "-";
+                            }
+
+                            // =========================
+                            // 3 LETRAS
+                            // =========================
+
+                            if (valor.length >= 4) {
+
+                                const letras = valor
+                                    .substring(3, 6)
+                                    .replace(/[^A-Z]/g, "");
+
+                                formatado += letras;
+                            }
+
+                            // =========================
+                            // NÚMERO FINAL
+                            // =========================
+
+                            if (valor.length >= 7) {
+
+                                const numeroFinal = valor
+                                    .substring(6, 7)
+                                    .replace(/[^0-9]/g, "");
+
+                                formatado += numeroFinal;
+                            }
+
+                            setDistrito(formatado);
                         }}
                         className="cameraInputDistrito"
                     />
@@ -411,6 +477,7 @@ export default function Camera() {
                     <button
                         className="cameraBotaoAbrir"
                         onClick={abrirCamera}
+                        disabled={!/^\d{2}[A-Z]-[A-Z]{3}\d$/.test(distrito)}
                     >
                         Iniciar câmera
                     </button>
@@ -436,7 +503,12 @@ export default function Camera() {
                     <div className="cameraTopo">
 
                         <div className="cameraDistritoBox">
-
+                            <div className="cameraEntradaogo">
+                                <img
+                                    src={logoMissionary}
+                                    alt=""
+                                    className="cameraEntradaImagemLogo"
+                                />                    </div>
                             <div className="cameraDistritoPonto" />
 
                             <div className="cameraDistritoInfo">
@@ -610,16 +682,19 @@ export default function Camera() {
                                 transform: "translateY(-25px)"
                             }}
                         >
+
                             <div
                                 style={{
                                     width: "24px",
+
                                     height: "24px",
 
-                                    border: "3px solid white",
 
                                     borderRadius: "50%",
 
-                                    position: "relative"
+                                    position: "relative",
+
+                                    transform: "rotate(-20deg)"
                                 }}
                             >
 
@@ -627,20 +702,44 @@ export default function Camera() {
                                     style={{
                                         position: "absolute",
 
-                                        top: "-6px",
-                                        right: "-6px",
+                                        top: "-4px",
 
-                                        width: "10px",
-                                        height: "10px",
+                                        right: "-4px",
+
+                                        width: "13px",
+
+                                        height: "13px",
 
                                         borderTop: "3px solid white",
+
                                         borderRight: "3px solid white",
 
                                         transform: "rotate(45deg)"
                                     }}
                                 />
 
+                                <div
+                                    style={{
+                                        position: "absolute",
+
+                                        bottom: "-4px",
+
+                                        left: "-4px",
+
+                                        width: "13px",
+
+                                        height: "13px",
+
+                                        borderTop: "3px solid white",
+
+                                        borderRight: "3px solid white",
+
+                                        transform: "rotate(225deg)"
+                                    }}
+                                />
+
                             </div>
+
                         </button>
 
                         {!gravando && (
