@@ -730,9 +730,9 @@
 
 .cameraIconeVideo {
     width: 26px;
-    height: 18px;
-
-    border-radius: 6px;
+    height: 26px;
+    padding: none;
+    border-radius: 50%;
 
     background: #ff3b3b;
 
@@ -748,8 +748,6 @@
     top: 4px;
 
     border-left: 10px solid #ff3b3b;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
 }
 
 .labelinput {
@@ -1088,11 +1086,191 @@
 .cameraModalCancelar {
     background:
         rgba(255, 255, 255, 0.08);
-
+    padding: 10px;
     color: white;
 
     border:
         1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cameraUploadSpinner {
+
+    width: 85px;
+
+    height: 85px;
+
+    border-radius: 50%;
+
+    border: 6px solid rgba(255, 255, 255, 0.15);
+
+    border-top: 6px solid #ffffff;
+
+    margin: 0 auto 25px auto;
+
+    animation: cameraSpinnerAnimacao 1s linear infinite;
+}
+
+@keyframes cameraSpinnerAnimacao {
+
+    100% {
+
+        transform: rotate(360deg);
+    }
+}
+
+.cameraUploadTitulo {
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: white !important;
+
+    text-align: center;
+
+    margin-bottom: 14px;
+}
+
+.cameraUploadTexto {
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.cameraUploadAviso {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(10px);
+}
+
+.cameraUploadAvisoIcone {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #ff9800;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+.cameraUploadAvisoTextos {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.cameraUploadAvisoTextos strong {
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.cameraUploadAvisoTextos span {
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.cameraUploadSucesso {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.cameraUploadSucessoIcone {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,
+            #00c853,
+            #00e676);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    margin-bottom: 24px;
+
+    box-shadow: 0 10px 40px rgba(0, 230, 118, 0.35);
+}
+
+.cameraUploadSucessoTitulo {
+
+    color: white;
+
+    font-size: 28px;
+
+    margin-bottom: 12px;
+
+    text-align: center;
+}
+
+.cameraUploadSucessoTexto {
+
+    color: rgba(255, 255, 255, 0.78);
+
+    text-align: center;
+
+    font-size: 15px;
+
+    line-height: 1.6;
 }
 
 .cameraModalConfirmar {
@@ -1100,7 +1278,7 @@
         linear-gradient(135deg,
             #00b894,
             #00886d);
-
+    padding: 10px !important;
     color: white;
 
     box-shadow:

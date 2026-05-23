@@ -260,15 +260,9 @@ export default function Camera() {
             return;
         }
 
-        setEnviando(true);
-
         try {
 
             const token = localStorage.getItem("token");
-
-            // =====================================
-            // CRIA POSTAGEM
-            // =====================================
 
             const respostaPost = await fetch(
                 `${API_URL}/camera/postagem`,
@@ -287,10 +281,6 @@ export default function Camera() {
             );
 
             const postagem = await respostaPost.json();
-
-            // =====================================
-            // ENVIA MIDIAS
-            // =====================================
 
             for (const item of midias) {
 
@@ -320,19 +310,37 @@ export default function Camera() {
                 );
             }
 
-            alert("Postagem enviada com sucesso");
+            const modal = document.querySelector(
+                ".cameraModal"
+            );
 
-            fecharTudo();
+            if (modal) {
+
+                modal.innerHTML = `
+
+                <div class="cameraUploadSucesso">
+
+                    <div class="cameraUploadSucessoIcone">
+                        ✓
+                    </div>
+
+                    <h2 class="cameraUploadSucessoTitulo">
+                        Arquivos enviados
+                    </h2>
+
+                    <p class="cameraUploadSucessoTexto">
+                        Sua postagem foi publicada com sucesso.
+                    </p>
+
+                </div>
+            `;
+            }
 
         } catch (erro) {
 
             console.log(erro);
 
             alert("Erro ao enviar");
-
-        } finally {
-
-            setEnviando(false);
         }
     }
 
@@ -695,46 +703,112 @@ export default function Camera() {
                 </div>
             )}
             {modalConfirmar && (
+
                 <div className="cameraModalOverlay">
 
                     <div className="cameraModal">
 
-                        <div className="cameraModalIcone">
-                            !
-                        </div>
+                        {!enviando && (
+                            <>
 
-                        <h2 className="cameraModalTitulo">
-                            Finalizar postagem?
-                        </h2>
+                                <div className="cameraModalIcone">
+                                    !
+                                </div>
 
-                        <p className="cameraModalTexto">
-                            Todas as fotos e vídeos serão enviados para a postagem do distrito.
-                        </p>
+                                <h2 className="cameraModalTitulo">
+                                    Finalizar postagem?
+                                </h2>
 
-                        <div className="cameraModalBotoes">
+                                <p className="cameraModalTexto">
+                                    Todas as fotos e vídeos serão enviados para a postagem do distrito.
+                                </p>
 
-                            <button
-                                className="cameraModalCancelar"
-                                onClick={() => {
-                                    setModalConfirmar(false);
-                                }}
-                            >
-                                Cancelar
-                            </button>
+                                <div className="cameraModalBotoes">
 
-                            <button
-                                className="cameraModalConfirmar"
-                                onClick={() => {
+                                    <button
+                                        className="cameraModalCancelar"
+                                        onClick={() => {
+                                            setModalConfirmar(false);
+                                        }}
+                                    >
+                                        Cancelar
+                                    </button>
 
-                                    setModalConfirmar(false);
+                                    <button
+                                        className="cameraModalConfirmar"
+                                        onClick={async () => {
 
-                                    sairEEnviar();
-                                }}
-                            >
-                                Confirmar
-                            </button>
+                                            setEnviando(true);
 
-                        </div>
+                                            try {
+
+                                                await sairEEnviar();
+
+                                                setTimeout(() => {
+
+                                                    setModalConfirmar(false);
+
+                                                    fecharTudo();
+
+                                                    setDistrito("");
+
+                                                }, 1800);
+
+                                            } catch (erro) {
+
+                                                console.log(erro);
+
+                                            } finally {
+
+                                                setEnviando(false);
+                                            }
+                                        }}
+                                    >
+                                        Confirmar
+                                    </button>
+
+                                </div>
+
+                            </>
+                        )}
+
+                        {enviando && (
+                            <>
+
+                                <div className="cameraUploadSpinner" />
+
+                                <h2 className="cameraUploadTitulo">
+                                    Enviando arquivos...
+                                </h2>
+
+                                <p className="cameraUploadTexto">
+
+                                    Aguarde enquanto as fotos e vídeos são enviados.
+
+                                </p>
+
+                                <div className="cameraUploadAviso">
+
+                                    <div className="cameraUploadAvisoIcone">
+                                        !
+                                    </div>
+
+                                    <div className="cameraUploadAvisoTextos">
+
+                                        <strong>
+                                            Não saia desta tela
+                                        </strong>
+
+                                        <span>
+                                            Não desconecte a internet até o envio terminar.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </>
+                        )}
 
                     </div>
 
