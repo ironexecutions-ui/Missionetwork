@@ -61,7 +61,46 @@ export default function Camera() {
 
     }, []);
 
+    useEffect(() => {
 
+        // =========================
+        // BLOQUEAR BOTÃO VOLTAR
+        // =========================
+
+        const bloquearVoltar = () => {
+
+            window.history.pushState(
+                null,
+                "",
+                window.location.href
+            );
+        };
+
+        bloquearVoltar();
+
+        const aoVoltar = () => {
+
+            window.history.pushState(
+                null,
+                "",
+                window.location.href
+            );
+        };
+
+        window.addEventListener(
+            "popstate",
+            aoVoltar
+        );
+
+        return () => {
+
+            window.removeEventListener(
+                "popstate",
+                aoVoltar
+            );
+        };
+
+    }, []);
     // =====================================
     // ABRIR CAMERA
     // =====================================
