@@ -63,40 +63,41 @@ export default function Camera() {
 
     useEffect(() => {
 
-        // =========================
-        // BLOQUEAR BOTÃO VOLTAR
-        // =========================
+        // =====================================
+        // BLOQUEAR BOTÃO VOLTAR COMPLETAMENTE
+        // =====================================
 
-        const bloquearVoltar = () => {
+        const adicionarHistorico = () => {
 
             window.history.pushState(
-                null,
+                { trava: true },
                 "",
                 window.location.href
             );
         };
 
-        bloquearVoltar();
+        // coloca várias entradas
+        adicionarHistorico();
+        adicionarHistorico();
+        adicionarHistorico();
+        adicionarHistorico();
 
-        const aoVoltar = () => {
+        const bloquearVoltar = () => {
 
-            window.history.pushState(
-                null,
-                "",
-                window.location.href
-            );
+            // recoloca novamente
+            adicionarHistorico();
         };
 
         window.addEventListener(
             "popstate",
-            aoVoltar
+            bloquearVoltar
         );
 
         return () => {
 
             window.removeEventListener(
                 "popstate",
-                aoVoltar
+                bloquearVoltar
             );
         };
 
