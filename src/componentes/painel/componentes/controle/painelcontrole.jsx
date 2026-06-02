@@ -29,7 +29,7 @@ export default function Painelcontrole() {
             nome: "imagens"
         }
 
-        // 🔥 aqui você pode adicionar quantos quiser
+        //  aqui você pode adicionar quantos quiser
     ];
 
     const renderConteudo = () => {
