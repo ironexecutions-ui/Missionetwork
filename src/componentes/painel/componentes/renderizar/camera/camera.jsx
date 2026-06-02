@@ -544,10 +544,24 @@ export default function Camera() {
     }, []);
     async function instalarApp() {
 
+        const iphone =
+            /iPhone|iPad|iPod/i.test(
+                navigator.userAgent
+            );
+
+        if (iphone) {
+
+            alert(
+                "No iPhone toque em Compartilhar e depois em Adicionar à Tela de Início."
+            );
+
+            return;
+        }
+
         if (!installPrompt) {
 
             alert(
-                "Instalação não disponível neste dispositivo."
+                "Abra o menu ⋮ do navegador e toque em Adicionar à tela inicial."
             );
 
             return;
@@ -555,15 +569,7 @@ export default function Camera() {
 
         installPrompt.prompt();
 
-        const resultado =
-            await installPrompt.userChoice;
-
-        if (
-            resultado.outcome === "accepted"
-        ) {
-
-            setInstallPrompt(null);
-        }
+        await installPrompt.userChoice;
     }
     return (
         <div className="cameraPagina">
