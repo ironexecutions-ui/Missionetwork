@@ -6,7 +6,15 @@ import { API_URL } from "../../config";
 import "./inicio.css";
 
 export default function Inicio() {
+    const fazerLogoutForcado = () => {
 
+        localStorage.removeItem("token");
+        localStorage.removeItem("usuario");
+
+        sessionStorage.clear();
+
+        window.location.href = "/";
+    };
     const [aba, setAba] = useState("postagens");
     const [mobile, setMobile] = useState(window.innerWidth < 900);
 
@@ -25,12 +33,34 @@ export default function Inicio() {
     }, []);
 
     const registrarEntrada = async () => {
+
         try {
-            await fetch(`${API_URL}/entradas/registrar`, {
-                method: "POST"
-            });
+
+            const token =
+                localStorage.getItem("token");
+
+            const resposta = await fetch(
+                `${API_URL}/entradas/registrar`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (resposta.status === 401) {
+
+                fazerLogoutForcado();
+                return;
+            }
+
         } catch (err) {
-            console.error("Erro ao registrar entrada:", err);
+
+            console.error(
+                "Erro ao registrar entrada:",
+                err
+            );
         }
     };
 
