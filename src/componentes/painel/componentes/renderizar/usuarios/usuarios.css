@@ -10,6 +10,51 @@
     gap: 20px;
 }
 
+.modal-box input,
+.modal-box select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+
+    border: 1px solid #d0d7de;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #1f2937;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.modal-box input::placeholder {
+    color: #9ca3af;
+}
+
+.modal-box input:hover,
+.modal-box select:hover {
+    border-color: #94a3b8;
+}
+
+.modal-box label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 14px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #374151;
+}
 
 /* =========================
    LISTA

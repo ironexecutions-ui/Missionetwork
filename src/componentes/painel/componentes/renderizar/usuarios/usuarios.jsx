@@ -86,6 +86,7 @@ export default function Usuarios() {
                             <div className="usuario-texto">
                                 <strong>{u.nome_completo}</strong>
                                 <p>{u.email}</p>
+                                <small>{u.funcao}</small>
                             </div>
 
                         </div>
@@ -104,15 +105,87 @@ export default function Usuarios() {
 
                         <h2>Editar usuário</h2>
 
-                        <input value={form.nome_completo} onChange={e => setForm({ ...form, nome_completo: e.target.value })} />
-                        <input value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+                        <label>Nome Completo</label>
+                        <input
+                            value={form.nome_completo || ""}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    nome_completo: e.target.value
+                                })
+                            }
+                        />
 
-                        <input value={form.ala} onChange={e => setForm({ ...form, ala: e.target.value })} />
-                        <input value={form.estaca} onChange={e => setForm({ ...form, estaca: e.target.value })} />
-                        <input value={form.bispo} onChange={e => setForm({ ...form, bispo: e.target.value })} />
-                        <input value={form.chamado} onChange={e => setForm({ ...form, chamado: e.target.value })} />
+                        <label>Email</label>
+                        <input
+                            value={form.email || ""}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    email: e.target.value
+                                })
+                            }
+                        />
 
-                        {/* FOTO PERFIL */}
+                        <label>Função</label>
+                        <select
+                            value={form.funcao || "user"}
+                            onChange={(e) =>
+                                setForm({
+                                    ...form,
+                                    funcao: e.target.value
+                                })
+                            }
+                        >
+                            <option value="user">User</option>
+                            <option value="Admin">Admin</option>
+                            <option value="CTM">CTM</option>
+                        </select>
+
+                        <label>Ala</label>
+                        <input
+                            value={form.ala || ""}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    ala: e.target.value
+                                })
+                            }
+                        />
+
+                        <label>Estaca</label>
+                        <input
+                            value={form.estaca || ""}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    estaca: e.target.value
+                                })
+                            }
+                        />
+
+                        <label>Bispo</label>
+                        <input
+                            value={form.bispo || ""}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    bispo: e.target.value
+                                })
+                            }
+                        />
+
+                        <label>Chamado</label>
+                        <input
+                            value={form.chamado || ""}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    chamado: e.target.value
+                                })
+                            }
+                        />
+
                         <div className="img-group">
 
                             <label>Foto de Perfil</label>
@@ -127,7 +200,12 @@ export default function Usuarios() {
                                 type="button"
                                 onClick={() => {
                                     const nova = prompt("Cole o link da nova foto");
-                                    if (nova) setForm({ ...form, foto: nova });
+                                    if (nova) {
+                                        setForm({
+                                            ...form,
+                                            foto: nova
+                                        });
+                                    }
                                 }}
                             >
                                 Alterar foto
@@ -135,8 +213,6 @@ export default function Usuarios() {
 
                         </div>
 
-
-                        {/* FOTO CAPA */}
                         <div className="img-group">
 
                             <label>Foto de Capa</label>
@@ -151,21 +227,39 @@ export default function Usuarios() {
                                 type="button"
                                 onClick={() => {
                                     const nova = prompt("Cole o link da nova capa");
-                                    if (nova) setForm({ ...form, foto_capa: nova });
+                                    if (nova) {
+                                        setForm({
+                                            ...form,
+                                            foto_capa: nova
+                                        });
+                                    }
                                 }}
                             >
                                 Alterar capa
                             </button>
 
                         </div>
-                        <div className="botoes">
-                            <button onClick={salvar}>Salvar</button>
-                            <button onClick={apagar} className="delete">Apagar</button>
-                            <button onClick={() => setSelecionado(null)}>Fechar</button>
-                        </div>
-                        <br />            <br />
-                        <br />
 
+                        <div className="botoes">
+                            <button onClick={salvar}>
+                                Salvar
+                            </button>
+
+                            <button
+                                onClick={apagar}
+                                className="delete"
+                            >
+                                Apagar
+                            </button>
+
+                            <button
+                                onClick={() =>
+                                    setSelecionado(null)
+                                }
+                            >
+                                Fechar
+                            </button>
+                        </div>
 
                     </div>
 

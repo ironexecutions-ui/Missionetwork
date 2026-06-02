@@ -23,10 +23,7 @@ export default function Painelcontrole() {
             nome: "Usuários"
         },
 
-        {
-            id: "camera",
-            nome: "Câmera"
-        },
+
         {
             id: "imagens",
             nome: "imagens"
