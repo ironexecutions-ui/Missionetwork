@@ -677,12 +677,7 @@ export default function Camera() {
                     >
                         Iniciar câmera
                     </button>
-                    <button
-                        className="cameraBotaoInstalar"
-                        onClick={instalarApp}
-                    >
-                        📲 Instalar CAMERA PDAY
-                    </button>
+
                 </div>
             )}
 
