@@ -23,7 +23,7 @@ import Postagem from "./componentes/postagem/postagem";
 import BottomNav from "./componentes/header/nav";
 import Pedajo from "./componentes/verifica/verifica";
 import Painel from "./componentes/painel/painel";
-
+import Camera from "./componentes/painel/componentes/renderizar/camera/camera";
 // LOADER
 import Loader from "./loader";
 
@@ -97,6 +97,10 @@ function AppRoutes() {
           path="/perfilusuario/pedajo"
           element={<Pedajo />}
         />
+        <Route
+          path="/camera-ctm/:token"
+          element={<Camera />}
+        />
 
         <Route
           path="/painel"
@@ -148,7 +152,10 @@ function ControleNav() {
 
   useEffect(() => {
 
-    if (location.pathname === "/painel") {
+    if (
+      location.pathname === "/painel" ||
+      location.pathname.startsWith("/camera-ctm/")
+    ) {
 
       setMostrarNav(false);
 

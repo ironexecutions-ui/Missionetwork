@@ -3,19 +3,21 @@ import React, {
     useRef,
     useState
 } from "react";
-
+import { useParams } from "react-router-dom";
 import "./camera.css";
 import logoMissionary from "./imagen/m.png";
 import { API_URL } from "../../../../../config";
-
+import cameraIcon from "./imagen/camera.png";
 export default function Camera() {
-
+    const { token } = useParams();
     const videoRef = useRef(null);
-
+    const [nomeCompleto, setNomeCompleto] =
+        useState("");
     const mediaRecorderRef = useRef(null);
-
+    const [flashFoto, setFlashFoto] = useState(false);
     const streamRef = useRef(null);
-
+    const [modalFechar, setModalFechar] =
+        useState(false);
     const [cameraAberta, setCameraAberta] = useState(false);
 
     const [distrito, setDistrito] = useState("");
@@ -31,7 +33,37 @@ export default function Camera() {
     const intervaloRef = useRef(null);
     const [modalConfirmar, setModalConfirmar] = useState(false);
     const [rotacao, setRotacao] = useState(0);
+    const [installPrompt, setInstallPrompt] =
+        useState(null);
+    useEffect(() => {
 
+        async function carregarNome() {
+
+            try {
+
+                const resposta = await fetch(
+                    `${API_URL}/camera/nome/${token}`
+                );
+
+                const dados =
+                    await resposta.json();
+
+                setNomeCompleto(
+                    dados.nome_completo || ""
+                );
+
+            } catch (erro) {
+
+                console.log(erro);
+            }
+        }
+
+        if (token) {
+
+            carregarNome();
+        }
+
+    }, [token]);
     useEffect(() => {
 
         function atualizarRotacao() {
@@ -157,6 +189,30 @@ export default function Camera() {
     // FOTO
     // =====================================
 
+    useEffect(() => {
+
+        document.title = "CAMERA PDAY";
+
+        let favicon =
+            document.querySelector(
+                "link[rel='icon']"
+            );
+
+        if (!favicon) {
+
+            favicon =
+                document.createElement("link");
+
+            favicon.rel = "icon";
+
+            document.head.appendChild(
+                favicon
+            );
+        }
+
+        favicon.href = cameraIcon;
+
+    }, []);
     function tirarFoto() {
 
         const video = videoRef.current;
@@ -193,7 +249,11 @@ export default function Camera() {
             canvas.width,
             canvas.height
         );
+        setFlashFoto(true);
 
+        setTimeout(() => {
+            setFlashFoto(false);
+        }, 500);
         canvas.toBlob((blob) => {
 
             if (!blob) {
@@ -343,8 +403,8 @@ export default function Camera() {
         }
 
         try {
-
-            const token = localStorage.getItem("token");
+            const tokenLogin =
+                localStorage.getItem("token");
 
             const respostaPost = await fetch(
                 `${API_URL}/camera/postagem`,
@@ -357,7 +417,8 @@ export default function Camera() {
                     },
 
                     body: JSON.stringify({
-                        distrito
+                        distrito,
+                        token_camera: token
                     })
                 }
             );
@@ -458,7 +519,52 @@ export default function Camera() {
         };
 
     }, []);
+    useEffect(() => {
 
+        const handler = (e) => {
+
+            e.preventDefault();
+
+            setInstallPrompt(e);
+        };
+
+        window.addEventListener(
+            "beforeinstallprompt",
+            handler
+        );
+
+        return () => {
+
+            window.removeEventListener(
+                "beforeinstallprompt",
+                handler
+            );
+        };
+
+    }, []);
+    async function instalarApp() {
+
+        if (!installPrompt) {
+
+            alert(
+                "Instalação não disponível neste dispositivo."
+            );
+
+            return;
+        }
+
+        installPrompt.prompt();
+
+        const resultado =
+            await installPrompt.userChoice;
+
+        if (
+            resultado.outcome === "accepted"
+        ) {
+
+            setInstallPrompt(null);
+        }
+    }
     return (
         <div className="cameraPagina">
 
@@ -475,7 +581,9 @@ export default function Camera() {
                     <h1 className="cameraTitulo">
                         Missionary Store Brasil
                     </h1>
-
+                    <h3 style={{ color: "white", textAlign: "center", margin: "-19px" }} className="cameraNomeUsuario">
+                        {nomeCompleto}
+                    </h3>
                     <p className="cameraSubtitulo">
                         Registre momentos do distrito com fotos e vídeos
                     </p>
@@ -563,7 +671,12 @@ export default function Camera() {
                     >
                         Iniciar câmera
                     </button>
-
+                    <button
+                        className="cameraBotaoInstalar"
+                        onClick={instalarApp}
+                    >
+                        📲 Instalar CAMERA PDAY
+                    </button>
                 </div>
             )}
 
@@ -586,7 +699,9 @@ export default function Camera() {
                         }} />
 
                     <div className="cameraOverlay" />
-
+                    {flashFoto && (
+                        <div className="cameraFlashFoto" />
+                    )}
                     <div
                         className="cameraTopo"
                         style={{
@@ -612,7 +727,11 @@ export default function Camera() {
                                 <span className="cameraDistrito">
                                     {distrito}
                                 </span>
-
+                                <span style={{
+                                    color: "white"
+                                }} >
+                                    {nomeCompleto}
+                                </span>
                             </div>
 
                         </div>
@@ -694,14 +813,15 @@ export default function Camera() {
 
                         <button
                             className="cameraBotaoSecundario"
-                            onClick={fecharTudo}
+                            onClick={() => {
+                                setModalFechar(true);
+                            }}
                             style={{
                                 transform: "translateY(-10px)"
                             }}
                         >
                             <div className="cameraIconeFechar" />
                         </button>
-
                         <button
                             className="cameraBotaoVideo"
                             onClick={async () => {
@@ -1011,6 +1131,57 @@ export default function Camera() {
                     </div>
 
                 </div>
+            )}
+            {modalFechar && (
+
+                <div className="cameraModalOverlay">
+
+                    <div className="cameraModal">
+
+                        <div className="cameraModalIcone">
+                            !
+                        </div>
+
+                        <h2 className="cameraModalTitulo">
+                            Fechar câmera?
+                        </h2>
+
+                        <p className="cameraModalTexto">
+                            Todas as fotos e vídeos que ainda não foram enviados serão perdidos.
+                        </p>
+
+                        <div className="cameraModalBotoes">
+
+                            <button
+                                className="cameraModalCancelar"
+                                onClick={() => {
+                                    setModalFechar(false);
+                                }}
+                            >
+                                Voltar
+                            </button>
+
+                            <button
+                                className="cameraModalConfirmar"
+                                onClick={() => {
+
+                                    setModalFechar(false);
+
+                                    fecharTudo();
+
+                                    setDistrito("");
+
+                                }}
+                            >
+                                Fechar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             )}
         </div>
     );

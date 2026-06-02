@@ -60,8 +60,22 @@ export default function Perfil() {
 
             console.log("TOKEN:", data.token); // ✔ correto
 
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+            localStorage.setItem(
+                "token_camera",
+                data.token_camera
+            );
+
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(
+                    data.usuario
+                )
+            );
 
             navigate("/perfilusuario");
 
