@@ -151,6 +151,15 @@ export default function Camera() {
 
             setCameraAberta(true);
 
+            setTimeout(() => {
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+
+            }, 100);
+
             const stream = await navigator.mediaDevices.getUserMedia({
 
                 video: {
