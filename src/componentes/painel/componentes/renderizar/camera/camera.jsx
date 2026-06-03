@@ -1010,7 +1010,7 @@ export default function Camera() {
                             onClick={() => {
                                 setModalConfirmar(true);
                             }}
-                            disabled={enviando}
+                            disabled={enviando || midias.length === 0}
                             style={{
                                 transform: "translateY(-25px)"
                             }}
