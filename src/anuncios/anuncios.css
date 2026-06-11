@@ -1,0 +1,507 @@
+.anunciosTelaPrincipal {
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        linear-gradient(135deg,
+            #ff6b00 0%,
+            #ff7f11 50%,
+            #ff8c1a 100%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===================================== */
+/* LOGO */
+/* ===================================== */
+
+.anunciosLogoSuperior {
+
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+
+    width: 95px;
+
+    z-index: 1000;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 8px 20px rgba(0, 0, 0, .25));
+}
+
+/* ===================================== */
+/* GALERIA 3 IMAGENS */
+/* ===================================== */
+
+.anunciosGaleriaTresColunas {
+
+    width: 94%;
+    height: 88%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 35px;
+}
+
+.anunciosCardVertical {
+
+    flex: 1;
+
+    height: 100%;
+
+    background: white;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, .20);
+
+    backdrop-filter: blur(10px);
+}
+
+.anunciosImagemVertical {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transform: scale(1);
+
+    animation:
+        anunciosZoomImagem 15s linear forwards;
+}
+
+/* ===================================== */
+/* ENTRADA */
+/* ===================================== */
+
+.anunciosEntrando {
+
+    animation:
+        anunciosFadeEntrada 2.5s ease forwards;
+}
+
+/* ===================================== */
+/* SAÍDA */
+/* ===================================== */
+
+.anunciosSaindo {
+
+    animation:
+        anunciosFadeSaida 2.5s ease forwards;
+}
+
+/* ===================================== */
+/* VIDEO */
+/* ===================================== */
+
+.anunciosVideoArea {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    animation:
+        anunciosFadeEntrada 1.5s ease;
+}
+
+.anunciosVideoPlayer {
+
+    width: 95%;
+    height: 92%;
+
+    object-fit: contain;
+
+    background: black;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .35);
+}
+
+/* ===================================== */
+/* TEXTO */
+/* ===================================== */
+
+.anunciosTextoArea {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 80px;
+
+    box-sizing: border-box;
+}
+
+.anunciosTextoCard {
+
+    max-width: 1400px;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 4.5rem;
+
+    font-weight: 900;
+
+    line-height: 1.3;
+
+    text-shadow:
+        0 6px 20px rgba(0, 0, 0, .25);
+
+    animation:
+        anunciosFadeEntrada 2s ease;
+}
+
+/* ===================================== */
+/* ANIMAÇÕES */
+/* ===================================== */
+
+@keyframes anunciosFadeEntrada {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.92) translateY(40px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1) translateY(0);
+
+    }
+
+}
+
+@keyframes anunciosFadeSaida {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.05);
+
+    }
+
+}
+
+@keyframes anunciosZoomImagem {
+
+    0% {
+
+        transform:
+            scale(1);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1.08);
+
+    }
+
+}
+
+/* ===================================== */
+/* EFEITOS PREMIUM PARA ADICIONAR NO FINAL */
+/* ===================================== */
+
+.anunciosTelaPrincipal::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 1200px;
+    height: 1200px;
+
+    top: -500px;
+    right: -300px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 255, 255, .18) 0%,
+            transparent 70%);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.anunciosTelaPrincipal::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 1000px;
+    height: 1000px;
+
+    bottom: -500px;
+    left: -300px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 255, 255, .10) 0%,
+            transparent 70%);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+/* ===================================== */
+/* GALERIA MAIS SOFISTICADA */
+/* ===================================== */
+
+.anunciosGaleriaTresColunas {
+
+    width: 92%;
+
+    height: 84%;
+
+    gap: 50px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.anunciosCardVertical {
+
+    flex: 1;
+
+    height: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 34px;
+
+    background:
+        rgba(255, 255, 255, .15);
+
+    border:
+        1px solid rgba(255, 255, 255, .25);
+
+    backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, .22),
+        0 8px 20px rgba(0, 0, 0, .12);
+
+    transition:
+        transform .5s ease;
+}
+
+.anunciosCardVertical:hover {
+
+    transform:
+        translateY(-8px);
+}
+
+.anunciosCardVertical::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -150%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, .35),
+            transparent);
+
+    transform:
+        skewX(-20deg);
+
+    animation:
+        anunciosReflexo 8s linear infinite;
+
+    z-index: 3;
+}
+
+/* ===================================== */
+/* IMAGENS */
+/* ===================================== */
+
+.anunciosImagemVertical {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transform: scale(1);
+
+    animation:
+        anunciosZoomImagem 15s linear forwards;
+}
+
+/* ===================================== */
+/* VIDEO */
+/* ===================================== */
+
+.anunciosVideoPlayer {
+
+    width: 95%;
+    height: 92%;
+
+    object-fit: contain;
+
+    border-radius: 35px;
+
+    border:
+        2px solid rgba(255, 255, 255, .20);
+
+    background: #000;
+
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, .40),
+        0 0 40px rgba(255, 255, 255, .08);
+}
+
+/* ===================================== */
+/* TEXTO */
+/* ===================================== */
+
+.anunciosTextoCard {
+
+    max-width: 1400px;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 4.8rem;
+
+    font-weight: 900;
+
+    line-height: 1.2;
+
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 4px 10px rgba(0, 0, 0, .20),
+        0 12px 40px rgba(0, 0, 0, .30),
+        0 20px 80px rgba(0, 0, 0, .20);
+}
+
+/* ===================================== */
+/* LOGO */
+/* ===================================== */
+
+.anunciosLogoSuperior {
+
+    animation:
+        anunciosLogoFloat 5s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 15px 30px rgba(0, 0, 0, .25));
+}
+
+/* ===================================== */
+/* ANIMAÇÕES */
+/* ===================================== */
+
+@keyframes anunciosReflexo {
+
+    0% {
+
+        left: -150%;
+    }
+
+    100% {
+
+        left: 250%;
+    }
+
+}
+
+@keyframes anunciosLogoFloat {
+
+    0% {
+
+        transform:
+            translateY(0px);
+    }
+
+    50% {
+
+        transform:
+            translateY(-8px);
+    }
+
+    100% {
+
+        transform:
+            translateY(0px);
+    }
+
+}

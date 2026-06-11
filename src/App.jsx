@@ -24,6 +24,7 @@ import BottomNav from "./componentes/header/nav";
 import Pedajo from "./componentes/verifica/verifica";
 import Painel from "./componentes/painel/painel";
 import Camera from "./componentes/painel/componentes/renderizar/camera/camera";
+import Anuncios from "./anuncios/anuncios";
 // LOADER
 import Loader from "./loader";
 
@@ -121,7 +122,10 @@ function AppRoutes() {
           path="/meu-missionario/:id"
           element={<Missionario />}
         />
-
+        <Route
+          path="/anuncios"
+          element={<Anuncios />}
+        />
         <Route
           path="/visita/:id"
           element={<Visita />}
