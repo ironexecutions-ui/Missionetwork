@@ -7,7 +7,11 @@ const FRASES = [
     "Cada missão possui uma história.",
     "Servir ao próximo é servir a Deus.",
     "A fé move montanhas.",
-    "Missionários mudam o mundo."
+    "Missionários mudam o mundo.",
+    "Missionary Store Brasil",
+    "Quer aparecer no nosso Instagram?",
+    "Usando a Camêra Pday pode aparecer e receber suas fotos",
+
 ];
 
 export default function Anuncios() {
@@ -257,7 +261,6 @@ export default function Anuncios() {
                 alt=""
                 className="anunciosLogoSuperior"
             />
-
             {
                 modo === "fotos" &&
 
