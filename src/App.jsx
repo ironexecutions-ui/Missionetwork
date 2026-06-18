@@ -84,7 +84,14 @@ function AppRoutes() {
             </LayoutComHeader>
           }
         />
-
+        <Route
+          path="/perfil/camera"
+          element={
+            <LayoutComHeader>
+              <Perfil />
+            </LayoutComHeader>
+          }
+        />
         <Route
           path="/direcao"
           element={
