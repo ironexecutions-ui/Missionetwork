@@ -193,17 +193,118 @@ export default function Perfil() {
                     >
 
                         <GoogleLogin
-                            onSuccess={(
-                                response
-                            ) => {
+                            onSuccess={async (response) => {
 
-                                setGoogleResponse(
-                                    response
-                                );
+                                try {
 
-                                setAbrirModalTermos(
-                                    true
-                                );
+                                    const googleUser =
+                                        jwtDecode(
+                                            response.credential
+                                        );
+
+                                    const resposta =
+                                        await fetch(
+                                            `${API_URL}/usuarios/verificar-google`,
+                                            {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type":
+                                                        "application/json"
+                                                },
+                                                body: JSON.stringify({
+                                                    email:
+                                                        googleUser.email
+                                                })
+                                            }
+                                        );
+
+                                    const dados =
+                                        await resposta.json();
+
+                                    setGoogleResponse(
+                                        response
+                                    );
+
+                                    if (
+                                        dados.existe &&
+                                        Number(
+                                            dados.termos
+                                        ) === 1
+                                    ) {
+
+                                        const usuarioTemp =
+                                            jwtDecode(
+                                                response.credential
+                                            );
+
+                                        const login =
+                                            await fetch(
+                                                `${API_URL}/usuarios/google-login`,
+                                                {
+                                                    method: "POST",
+                                                    headers: {
+                                                        "Content-Type":
+                                                            "application/json"
+                                                    },
+                                                    body: JSON.stringify({
+
+                                                        email:
+                                                            usuarioTemp.email,
+
+                                                        nome_completo:
+                                                            usuarioTemp.name,
+
+                                                        foto:
+                                                            usuarioTemp.picture,
+
+                                                        funcao:
+                                                            location.pathname ===
+                                                                "/perfil/camera"
+                                                                ? "CTM"
+                                                                : "user"
+
+                                                    })
+                                                }
+                                            );
+
+                                        const loginDados =
+                                            await login.json();
+
+                                        localStorage.setItem(
+                                            "token",
+                                            loginDados.token
+                                        );
+
+                                        localStorage.setItem(
+                                            "usuario",
+                                            JSON.stringify(
+                                                loginDados.usuario
+                                            )
+                                        );
+
+                                        navigate(
+                                            "/perfilusuario"
+                                        );
+
+                                        return;
+                                    }
+
+                                    setAbrirModalTermos(
+                                        true
+                                    );
+
+                                } catch {
+
+                                    setGoogleResponse(
+                                        response
+                                    );
+
+                                    setAbrirModalTermos(
+                                        true
+                                    );
+
+                                }
+
 
                             }}
                             onError={() =>
