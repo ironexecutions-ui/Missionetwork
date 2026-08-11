@@ -270,10 +270,25 @@ export default function Perfil() {
                                         const loginDados =
                                             await login.json();
 
+                                        if (!login.ok) {
+                                            setErro(
+                                                loginDados.detail ||
+                                                "Erro ao autenticar"
+                                            );
+                                            return;
+                                        }
+
                                         localStorage.setItem(
                                             "token",
                                             loginDados.token
                                         );
+
+                                        if (loginDados.token_camera) {
+                                            localStorage.setItem(
+                                                "token_camera",
+                                                loginDados.token_camera
+                                            );
+                                        }
 
                                         localStorage.setItem(
                                             "usuario",
